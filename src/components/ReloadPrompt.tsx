@@ -6,7 +6,20 @@ export function ReloadPrompt() {
   const {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
-  } = useRegisterSW()
+  } = useRegisterSW({
+    // Détecte les nouveaux déploiements sans attendre un redémarrage complet :
+    // on redemande au SW de se mettre à jour à l'ouverture, périodiquement, et au
+    // retour au premier plan.
+    onRegisteredSW(_swUrl, registration) {
+      if (!registration) return
+      const check = () => registration.update().catch(() => {})
+      check()
+      setInterval(check, 60_000)
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') check()
+      })
+    },
+  })
 
   if (!needRefresh) return null
 
