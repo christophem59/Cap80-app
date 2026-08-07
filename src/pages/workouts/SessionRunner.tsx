@@ -147,6 +147,16 @@ export function SessionRunner({
         const last = lastSetsForExercise(workouts, e.ex.id)
         const prog = last ? suggestProgression(last, e.ex.repRange) : null
         const isTime = e.ex.unit === 'seconds'
+        const lastSummary = last
+          ?.filter((s) => !s.skipped && s.reps > 0)
+          .map((s) =>
+            isTime
+              ? `${s.reps} s`
+              : s.weightKg != null
+                ? `${s.reps} × ${String(s.weightKg).replace('.', ',')} kg`
+                : `${s.reps} reps`,
+          )
+          .join(' · ')
         return (
           <section
             key={e.ex.id}
@@ -163,6 +173,11 @@ export function SessionRunner({
                   {e.ex.repRange[0] !== e.ex.repRange[1] ? `–${e.ex.repRange[1]}` : ''}{' '}
                   {isTime ? 's' : 'reps'}
                 </p>
+                {lastSummary && (
+                  <p className="mt-0.5 text-xs" style={{ color: 'var(--accent)' }}>
+                    Dernière fois : {lastSummary}
+                  </p>
+                )}
               </div>
               <button
                 type="button"
