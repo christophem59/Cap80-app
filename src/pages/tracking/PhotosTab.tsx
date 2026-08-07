@@ -67,7 +67,8 @@ export function PhotosTab() {
   const weights = useWeights()
   const [angle, setAngle] = useState<PhotoAngle>('face')
   const [mode, setMode] = useState<'grille' | 'comparer'>('grille')
-  const fileRef = useRef<HTMLInputElement>(null)
+  const cameraRef = useRef<HTMLInputElement>(null)
+  const galleryRef = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
 
   async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -117,23 +118,45 @@ export function PhotosTab() {
             </button>
           ))}
         </div>
+        {/* Caméra (capture) et galerie/fichiers (sans capture) : deux entrées distinctes
+            pour laisser le choix sur mobile. */}
         <input
-          ref={fileRef}
+          ref={cameraRef}
           type="file"
           accept="image/*"
           capture="environment"
           onChange={onFile}
           className="hidden"
         />
-        <button
-          type="button"
-          disabled={busy}
-          onClick={() => fileRef.current?.click()}
-          className="mt-3 w-full rounded-lg py-3 text-sm font-semibold text-white disabled:opacity-50"
-          style={{ background: 'var(--accent)' }}
-        >
-          {busy ? 'Traitement…' : `Prendre / choisir une photo (${ANGLE_LABELS[angle]})`}
-        </button>
+        <input
+          ref={galleryRef}
+          type="file"
+          accept="image/*"
+          onChange={onFile}
+          className="hidden"
+        />
+        <p className="mt-3 mb-1 text-xs text-[var(--text-muted)]">
+          Angle : <strong>{ANGLE_LABELS[angle]}</strong>
+        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => cameraRef.current?.click()}
+            className="flex-1 rounded-lg py-3 text-sm font-semibold text-white disabled:opacity-50"
+            style={{ background: 'var(--accent)' }}
+          >
+            {busy ? 'Traitement…' : 'Prendre une photo'}
+          </button>
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => galleryRef.current?.click()}
+            className="flex-1 rounded-lg border border-[var(--border)] py-3 text-sm font-semibold disabled:opacity-50"
+          >
+            Importer une photo
+          </button>
+        </div>
       </section>
 
       {photos.length > 0 && (
