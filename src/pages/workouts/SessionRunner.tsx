@@ -134,7 +134,12 @@ export function SessionRunner({
 
       {week >= 1 && week <= 2 && (
         <p className="rounded-lg bg-[var(--surface-2)] p-2 text-xs text-[var(--text-muted)]">
-          Semaines 1-2 : moitié des séries prévues, le temps que le corps s'habitue.
+          Semaines 1-2 (rodage) : on fait la <strong>moitié des séries</strong> prévues, le
+          temps que le corps s'habitue.{' '}
+          {[...new Set(exercises.map((e) => `${e.ex.defaultSets} → ${e.sets.length}`))].join(
+            ', ',
+          )}{' '}
+          séries cette semaine.
         </p>
       )}
 
@@ -152,7 +157,9 @@ export function SessionRunner({
               <div>
                 <h2 className="text-sm font-semibold">{e.ex.label}</h2>
                 <p className="text-xs text-[var(--text-muted)]">
-                  {e.ex.defaultSets} × {e.ex.repRange[0]}
+                  {e.sets.length} série{e.sets.length > 1 ? 's' : ''}
+                  {e.sets.length !== e.ex.defaultSets ? ` (${e.ex.defaultSets} prévues)` : ''} ×{' '}
+                  {e.ex.repRange[0]}
                   {e.ex.repRange[0] !== e.ex.repRange[1] ? `–${e.ex.repRange[1]}` : ''}{' '}
                   {isTime ? 's' : 'reps'}
                 </p>
@@ -249,7 +256,13 @@ export function SessionRunner({
         Terminer la séance
       </button>
 
-      {restEndsAt && <RestBanner endsAt={restEndsAt} onClose={() => setRestEndsAt(null)} />}
+      {restEndsAt && (
+        <RestBanner
+          endsAt={restEndsAt}
+          totalSeconds={REST_SECONDS}
+          onClose={() => setRestEndsAt(null)}
+        />
+      )}
     </div>
   )
 }

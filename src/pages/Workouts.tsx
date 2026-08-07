@@ -4,11 +4,13 @@ import { useWorkouts, deleteWorkout } from '../repo/workouts'
 import { sessionProgress } from '../domain/workout'
 import { SessionRunner } from './workouts/SessionRunner'
 import { ExerciseHistory } from './workouts/ExerciseHistory'
+import { SessionDetail } from './workouts/SessionDetail'
 
 type View =
   | { name: 'home' }
   | { name: 'session'; templateId: 'A' | 'B' }
   | { name: 'history'; exerciseId: string }
+  | { name: 'detail'; id: string }
 
 export function Workouts() {
   const [view, setView] = useState<View>({ name: 'home' })
@@ -26,6 +28,18 @@ export function Workouts() {
   }
   if (view.name === 'history') {
     return <ExerciseHistory exerciseId={view.exerciseId} onBack={() => setView({ name: 'home' })} />
+  }
+  if (view.name === 'detail') {
+    const session = workouts.find((w) => w.id === view.id)
+    if (session) return <SessionDetail session={session} onBack={() => setView({ name: 'home' })} />
+    return (
+      <p className="p-6 text-center text-sm text-[var(--text-muted)]">
+        Séance introuvable.{' '}
+        <button type="button" onClick={() => setView({ name: 'home' })} className="underline">
+          Retour
+        </button>
+      </p>
+    )
   }
 
   const allExerciseIds = [...new Set([...workoutTemplates.A, ...workoutTemplates.B])]
@@ -66,19 +80,25 @@ export function Workouts() {
                   key={w.id}
                   className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm"
                 >
-                  <span className="tabular-nums text-[var(--text-muted)]">
-                    {w.date.slice(8)}/{w.date.slice(5, 7)}
-                  </span>
-                  <span className="font-medium">Séance {w.templateId}</span>
-                  <span className="text-xs text-[var(--text-muted)]">
-                    {done}/{total} séries
-                    {w.durationMin ? ` · ${w.durationMin} min` : ''}
-                    {w.completed ? ' · terminée' : ''}
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setView({ name: 'detail', id: w.id })}
+                    className="flex flex-1 items-center gap-3 text-left"
+                  >
+                    <span className="tabular-nums text-[var(--text-muted)]">
+                      {w.date.slice(8)}/{w.date.slice(5, 7)}
+                    </span>
+                    <span className="font-medium">Séance {w.templateId}</span>
+                    <span className="text-xs text-[var(--text-muted)]">
+                      {done}/{total} séries
+                      {w.durationMin ? ` · ${w.durationMin} min` : ''}
+                      {w.completed ? ' · terminée' : ''}
+                    </span>
+                  </button>
                   <button
                     type="button"
                     onClick={() => void deleteWorkout(w.id)}
-                    className="ml-auto text-xs text-[var(--text-muted)] underline"
+                    className="shrink-0 text-xs text-[var(--text-muted)] underline"
                   >
                     suppr.
                   </button>
