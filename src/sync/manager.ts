@@ -23,7 +23,12 @@ export interface SyncStatus {
 
 // Fichiers d'enregistrements tirés au démarrage (lot 3 : le poids ; les autres
 // s'ajouteront dans leurs lots).
-const PULL_FILES = ['weights.json', 'measurements.json', 'photos/index.json']
+const PULL_FILES = [
+  'weights.json',
+  'measurements.json',
+  'workouts.json',
+  'photos/index.json',
+]
 
 let status: SyncStatus = { state: 'unconfigured', pending: 0 }
 const listeners = new Set<() => void>()
