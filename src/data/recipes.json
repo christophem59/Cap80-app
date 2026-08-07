@@ -1,0 +1,197 @@
+{
+  "recipes": [
+    {
+      "id": "shaker-matin",
+      "label": "Shaker du matin",
+      "slot": ["petit-dej"],
+      "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        { "foodId": "skyr-0", "grams": 250 },
+        { "foodId": "whey", "grams": 30 },
+        { "foodId": "fruits-rouges-surgeles", "grams": 100 }
+      ],
+      "steps": ["Tout mettre dans un shaker ou un blender.", "Mixer 90 secondes. Boire aussitôt."]
+    },
+    {
+      "id": "muffins-oeufs",
+      "label": "Muffins aux œufs",
+      "slot": ["petit-dej", "collation"],
+      "servings": 12,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": true,
+      "ingredients": [
+        { "foodId": "oeuf-entier", "grams": 600 },
+        { "foodId": "courgette", "grams": 100 },
+        { "foodId": "poivron", "grams": 100 },
+        { "foodId": "feta", "grams": 80 }
+      ],
+      "steps": [
+        "Préchauffer le four à 180 °C.",
+        "Battre les œufs, ajouter les légumes en petits dés et la feta émiettée.",
+        "Répartir dans 12 empreintes à muffins.",
+        "Cuire 25 min. Se réchauffent en 40 s, tiennent 5 jours au frigo, se congèlent."
+      ]
+    },
+    {
+      "id": "oeufs-durs",
+      "label": "Œufs durs",
+      "slot": ["collation"],
+      "servings": 12,
+      "prepMin": 2,
+      "cookMin": 10,
+      "batchFriendly": true,
+      "ingredients": [{ "foodId": "oeuf-entier", "grams": 600 }],
+      "steps": [
+        "Plonger les œufs dans l'eau bouillante 10 min.",
+        "Refroidir aussitôt dans l'eau froide.",
+        "Se conservent 7 jours en coquille intacte au frigo."
+      ]
+    },
+    {
+      "id": "poulet-roti-epices",
+      "label": "Poulet rôti aux épices",
+      "slot": ["dejeuner", "diner"],
+      "servings": 6,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": true,
+      "ingredients": [
+        { "foodId": "poulet-blanc-cru", "grams": 1200 },
+        { "foodId": "huile-olive", "grams": 20 },
+        { "foodId": "ail", "grams": 15 },
+        { "foodId": "citron", "grams": 60 }
+      ],
+      "steps": [
+        "Préchauffer le four à 200 °C.",
+        "Enrober les blancs d'huile, ail écrasé, jus de citron, paprika fumé et cumin.",
+        "Cuire 25 min. Se conserve 4 jours, idéal en batch cooking."
+      ]
+    },
+    {
+      "id": "legumes-rotis",
+      "label": "Légumes rôtis",
+      "slot": ["dejeuner", "diner"],
+      "servings": 6,
+      "prepMin": 15,
+      "cookMin": 35,
+      "batchFriendly": true,
+      "ingredients": [
+        { "foodId": "courgette", "grams": 500 },
+        { "foodId": "poivron", "grams": 400 },
+        { "foodId": "brocoli", "grams": 300 },
+        { "foodId": "oignon", "grams": 300 },
+        { "foodId": "huile-olive", "grams": 30 }
+      ],
+      "steps": [
+        "Préchauffer le four à 200 °C.",
+        "Couper les légumes en morceaux, enrober d'huile, sel, poivre.",
+        "Étaler sur une plaque et cuire 35 min en remuant à mi-cuisson."
+      ]
+    },
+    {
+      "id": "lentilles-oignon-carotte",
+      "label": "Lentilles à l'oignon et à la carotte",
+      "slot": ["dejeuner", "diner"],
+      "servings": 5,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": true,
+      "ingredients": [
+        { "foodId": "lentilles-vertes-crues", "grams": 500 },
+        { "foodId": "oignon", "grams": 110 },
+        { "foodId": "carotte", "grams": 160 }
+      ],
+      "steps": [
+        "Faire revenir l'oignon et la carotte en dés.",
+        "Ajouter les lentilles, une feuille de laurier, couvrir d'eau.",
+        "Cuire 25 min jusqu'à tendreté. Saler en fin de cuisson."
+      ]
+    },
+    {
+      "id": "sauce-fromage-blanc",
+      "label": "Sauce fromage blanc citron-herbes",
+      "slot": ["dejeuner", "diner"],
+      "servings": 4,
+      "prepMin": 5,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        { "foodId": "fromage-blanc-0", "grams": 300 },
+        { "foodId": "moutarde", "grams": 10 },
+        { "foodId": "ail", "grams": 5 },
+        { "foodId": "citron", "grams": 30 }
+      ],
+      "steps": [
+        "Mélanger le fromage blanc, la moutarde, l'ail pressé et le jus de citron.",
+        "Ajouter des herbes ciselées (ciboulette, persil). Saler, poivrer."
+      ]
+    },
+    {
+      "id": "cabillaud-courgettes-quinoa",
+      "label": "Cabillaud au four, courgettes, quinoa",
+      "slot": ["diner"],
+      "servings": 2,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        { "foodId": "cabillaud-cru", "grams": 280 },
+        { "foodId": "courgette", "grams": 300 },
+        { "foodId": "quinoa-cru", "grams": 120 },
+        { "foodId": "huile-olive", "grams": 10 }
+      ],
+      "steps": [
+        "Cuire le quinoa 15 min dans 2,5 fois son volume d'eau.",
+        "Rôtir les courgettes en rondelles au four à 200 °C, 20 min.",
+        "Ajouter le cabillaud sur les légumes les 12 dernières minutes.",
+        "Filet d'huile, citron, herbes."
+      ]
+    },
+    {
+      "id": "steak-haricots-patate-douce",
+      "label": "Steak haché, haricots verts, patate douce",
+      "slot": ["diner"],
+      "servings": 2,
+      "prepMin": 10,
+      "cookMin": 20,
+      "batchFriendly": false,
+      "ingredients": [
+        { "foodId": "steak-hache-5-cru", "grams": 250 },
+        { "foodId": "haricots-verts", "grams": 400 },
+        { "foodId": "patate-douce-crue", "grams": 400 }
+      ],
+      "steps": [
+        "Cuire la patate douce en dés (four ou vapeur) ~20 min.",
+        "Poêler les haricots verts.",
+        "Saisir les steaks 2 à 3 min par face selon l'épaisseur."
+      ]
+    },
+    {
+      "id": "salade-complete",
+      "label": "Salade complète",
+      "slot": ["dejeuner"],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 10,
+      "batchFriendly": false,
+      "ingredients": [
+        { "foodId": "oeuf-entier", "grams": 150 },
+        { "foodId": "thon-naturel-egoutte", "grams": 112 },
+        { "foodId": "pois-chiches-cuits", "grams": 150 },
+        { "foodId": "tomate", "grams": 120 },
+        { "foodId": "concombre", "grams": 150 },
+        { "foodId": "salade-verte", "grams": 60 },
+        { "foodId": "huile-olive", "grams": 10 }
+      ],
+      "steps": [
+        "Cuire les œufs durs (10 min).",
+        "Dresser la salade, les crudités, les pois chiches, le thon et les œufs.",
+        "Assaisonner d'un filet d'huile, citron, moutarde."
+      ]
+    }
+  ]
+}

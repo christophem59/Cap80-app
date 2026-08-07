@@ -5,7 +5,8 @@ import { getRepoConfig, getToken, isConfigured } from './config'
 import { processOutbox } from './outbox'
 import { parseRecordsEnvelope, parseProfileEnvelope } from './files'
 import { mergeRecords } from './merge'
-import { countPending, getRecordsByFile, setSha } from '../db/db'
+import { countPending, getRecordsByFile, setSha, kvSet } from '../db/db'
+import { emitRecordsChanged } from '../db/events'
 import { dbOutboxStore, applyPulledRecords } from '../db/outboxStore'
 import { loadProfileFromDb, reconcileRemoteProfile } from '../repo/profile'
 import type { Profile } from '../domain/types'
@@ -72,6 +73,38 @@ export async function pullAndReconcile(): Promise<void> {
   if (prof.status === 'present') {
     await reconcileRemoteProfile(parseProfileEnvelope(prof.text) as Profile)
     await setSha('profile.json', prof.sha)
+  }
+
+  // Catalogues perso (enrichissement futur) → kv, fusionnés à la base au runtime (§4).
+  for (const [file, key] of [
+    ['custom-foods.json', 'customFoods'],
+    ['custom-recipes.json', 'customRecipes'],
+  ] as const) {
+    const r = await client.getFile(file)
+    if (r.status === 'present') {
+      await kvSet(key, parseRecordsEnvelope(r.text))
+      await setSha(file, r.sha)
+      emitRecordsChanged(file)
+    }
+  }
+
+  // Repas : mois courant + mois précédent (partition §3).
+  const now = new Date()
+  const pad = (n: number) => String(n).padStart(2, '0')
+  const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+  const months = [
+    `${now.getFullYear()}-${pad(now.getMonth() + 1)}`,
+    `${prev.getFullYear()}-${pad(prev.getMonth() + 1)}`,
+  ]
+  for (const m of months) {
+    const file = `meals/${m}.json`
+    const r = await client.getFile(file)
+    if (r.status === 'present') {
+      const remote = parseRecordsEnvelope(r.text) as SyncedRecord[]
+      const local = await getRecordsByFile(file)
+      await applyPulledRecords(file, mergeRecords(local, remote))
+      await setSha(file, r.sha)
+    }
   }
 }
 
