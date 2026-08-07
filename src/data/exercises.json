@@ -1,0 +1,160 @@
+{
+  "exercises": [
+    {
+      "id": "squat-gobelet",
+      "label": "Squat gobelet",
+      "pattern": "squat",
+      "equipment": ["halteres"],
+      "defaultSets": 3,
+      "repRange": [10, 10],
+      "unit": "reps",
+      "cues": [
+        "Haltère tenu contre la poitrine, coudes vers le bas",
+        "Descends entre les cuisses, buste droit",
+        "Talons ancrés au sol, pousse depuis les talons"
+      ]
+    },
+    {
+      "id": "developpe-couche-halteres",
+      "label": "Développé couché haltères",
+      "pattern": "poussee-horizontale",
+      "equipment": ["halteres"],
+      "defaultSets": 3,
+      "repRange": [8, 12],
+      "unit": "reps",
+      "cues": [
+        "Omoplates serrées, dos plaqué au banc (ou au sol)",
+        "Descends les haltères au niveau de la poitrine",
+        "À défaut de matériel : pompes au même nombre de reps"
+      ]
+    },
+    {
+      "id": "rowing-halteres-un-bras",
+      "label": "Rowing haltère un bras",
+      "pattern": "tirage-horizontal",
+      "equipment": ["halteres"],
+      "defaultSets": 3,
+      "repRange": [8, 12],
+      "unit": "reps",
+      "cues": [
+        "Un genou et une main en appui sur un support, dos plat",
+        "Tire l'haltère vers la hanche, coude près du corps",
+        "Serre l'omoplate en haut, contrôle la descente"
+      ]
+    },
+    {
+      "id": "souleve-terre-roumain-halteres",
+      "label": "Soulevé de terre roumain haltères",
+      "pattern": "charniere",
+      "equipment": ["halteres"],
+      "defaultSets": 3,
+      "repRange": [10, 10],
+      "unit": "reps",
+      "cues": [
+        "Dos plat, jambes presque tendues",
+        "Les haltères frôlent les cuisses en descendant",
+        "Tu dois sentir l'arrière des cuisses, pas le bas du dos"
+      ]
+    },
+    {
+      "id": "planche",
+      "label": "Planche (gainage)",
+      "pattern": "gainage",
+      "equipment": ["tapis"],
+      "defaultSets": 3,
+      "repRange": [30, 45],
+      "unit": "seconds",
+      "cues": [
+        "Corps aligné des talons à la tête, fessiers serrés",
+        "Ne creuse pas le bas du dos",
+        "Respire régulièrement, ne bloque pas"
+      ]
+    },
+    {
+      "id": "fentes-marchees",
+      "label": "Fentes marchées",
+      "pattern": "fente",
+      "equipment": ["aucun"],
+      "defaultSets": 3,
+      "repRange": [10, 10],
+      "unit": "reps",
+      "cues": [
+        "Grand pas, genou arrière vers le sol sans le toucher",
+        "Buste droit, genou avant au-dessus de la cheville",
+        "Haltères en main pour ajouter de la charge (optionnel)"
+      ]
+    },
+    {
+      "id": "developpe-militaire-halteres",
+      "label": "Développé militaire haltères",
+      "pattern": "poussee-verticale",
+      "equipment": ["halteres"],
+      "defaultSets": 3,
+      "repRange": [8, 12],
+      "unit": "reps",
+      "cues": [
+        "Gaine les abdos, ne cambre pas le dos",
+        "Pousse les haltères à la verticale au-dessus des épaules",
+        "Descends jusqu'au niveau des oreilles"
+      ]
+    },
+    {
+      "id": "tirage-vertical-elastique",
+      "label": "Tirage vertical à l'élastique",
+      "pattern": "tirage-vertical",
+      "equipment": ["elastique"],
+      "defaultSets": 3,
+      "repRange": [8, 12],
+      "unit": "reps",
+      "cues": [
+        "Élastique ancré en hauteur, tire vers la poitrine",
+        "Descends les coudes le long du corps",
+        "Serre les omoplates en fin de tirage"
+      ]
+    },
+    {
+      "id": "pont-fessier",
+      "label": "Pont fessier",
+      "pattern": "charniere",
+      "equipment": ["tapis"],
+      "defaultSets": 3,
+      "repRange": [10, 10],
+      "unit": "reps",
+      "cues": [
+        "Pieds à plat, monte le bassin en serrant les fessiers",
+        "Aligne épaules-hanches-genoux en haut",
+        "Ne cambre pas : c'est le fessier qui pousse"
+      ]
+    },
+    {
+      "id": "gainage-lateral",
+      "label": "Gainage latéral",
+      "pattern": "gainage",
+      "equipment": ["tapis"],
+      "defaultSets": 3,
+      "repRange": [30, 45],
+      "unit": "seconds",
+      "cues": [
+        "Appui sur l'avant-bras, corps aligné, hanche haute",
+        "Ne laisse pas le bassin s'affaisser",
+        "Fais les deux côtés"
+      ]
+    }
+  ],
+  "templates": {
+    "A": [
+      "squat-gobelet",
+      "developpe-couche-halteres",
+      "rowing-halteres-un-bras",
+      "souleve-terre-roumain-halteres",
+      "planche"
+    ],
+    "B": [
+      "fentes-marchees",
+      "developpe-militaire-halteres",
+      "tirage-vertical-elastique",
+      "pont-fessier",
+      "gainage-lateral"
+    ]
+  }
+}

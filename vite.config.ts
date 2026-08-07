@@ -1,0 +1,96 @@
+import { execSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
+
+// GitHub Pages sert le dépôt public Cap80-app sous /Cap80-app/ (§2.1). Sans ce base
+// path, le SW, le manifest et les assets sont demandés à la racine → 404 et PWA non
+// installable.
+const BASE = '/Cap80-app/'
+
+// §7.8 : afficher version + hash du commit déployé dans les réglages.
+const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8'))
+const commitHash = (() => {
+  try {
+    return execSync('git rev-parse --short HEAD').toString().trim()
+  } catch {
+    return 'dev'
+  }
+})()
+
+// https://vite.dev/config/
+export default defineConfig({
+  base: BASE,
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+    __COMMIT_HASH__: JSON.stringify(commitHash),
+  },
+  plugins: [
+    react(),
+    VitePWA({
+      // §10 : on propose « nouvelle version, recharger » plutôt qu'un reload forcé.
+      registerType: 'prompt',
+      // Icônes et fichiers statiques à précacher en plus du bundle.
+      includeAssets: [
+        'favicon.svg',
+        'icon-192.png',
+        'icon-512.png',
+        'icon-maskable-192.png',
+        'icon-maskable-512.png',
+      ],
+      manifest: {
+        name: 'Cap80 — programme de perte de poids',
+        short_name: 'Cap80',
+        description:
+          'Suivi hors-ligne du poids, des mensurations, des séances, des repas et du programme.',
+        lang: 'fr',
+        display: 'standalone',
+        orientation: 'portrait',
+        theme_color: '#2563eb',
+        background_color: '#ffffff',
+        // §2.1 : scope et start_url doivent pointer sous le base path.
+        scope: BASE,
+        start_url: BASE,
+        // §10 : sinon Chrome propose une app du Play Store au lieu de la PWA.
+        prefer_related_applications: false,
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
+          {
+            src: 'icon-maskable-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
+            src: 'icon-maskable-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+      workbox: {
+        // §2.1 : fallback de navigation vers l'index sous le base path.
+        navigateFallback: `${BASE}index.html`,
+        // Précache le shell applicatif + les catalogues JSON embarqués.
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,json,webmanifest}'],
+        runtimeCaching: [
+          {
+            // §10 : ne JAMAIS mettre en cache l'API GitHub (données + sha).
+            urlPattern: /^https:\/\/api\.github\.com\/.*/i,
+            handler: 'NetworkOnly',
+            method: 'GET',
+          },
+        ],
+        // Nettoie les anciens précaches à chaque activation.
+        cleanupOutdatedCaches: true,
+      },
+      devOptions: {
+        // Le SW n'est pas activé en dev par défaut ; on le teste sur le build (preview).
+        enabled: false,
+      },
+    }),
+  ],
+})

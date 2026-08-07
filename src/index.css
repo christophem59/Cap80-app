@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Jetons de couleur. Le thème sombre est activé par la classe `dark` sur <html>
+   (posée par le gestionnaire de thème, §11), pas par prefers-color-scheme seul :
+   ça permet la bascule manuelle. */
+@layer base {
+  :root {
+    --bg: #f8fafc; /* slate-50 */
+    --surface: #ffffff;
+    --surface-2: #f1f5f9; /* slate-100 */
+    --border: #e2e8f0; /* slate-200 */
+    --text: #0f172a; /* slate-900 */
+    --text-muted: #64748b; /* slate-500 */
+    --accent: #2563eb; /* blue-600 */
+    --ok: #16a34a; /* green-600  — ÉTAT uniquement */
+    --warn: #ea580c; /* orange-600 — ÉTAT uniquement */
+    --alert: #dc2626; /* red-600    — ÉTAT uniquement */
+  }
+
+  html.dark {
+    --bg: #0b1120;
+    --surface: #111827; /* gray-900 */
+    --surface-2: #1f2937; /* gray-800 */
+    --border: #334155; /* slate-700 */
+    --text: #f1f5f9; /* slate-100 */
+    --text-muted: #94a3b8; /* slate-400 */
+    --accent: #3b82f6; /* blue-500, un peu plus clair sur fond sombre */
+    --ok: #22c55e;
+    --warn: #f97316;
+    --alert: #ef4444;
+  }
+
+  html {
+    /* Le navigateur connaît les deux schémas → scrollbars/inputs natifs cohérents. */
+    color-scheme: light dark;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* §11 : chiffres tabulaires partout (tableaux, axes, gros compteurs). */
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Cibles tactiles confortables par défaut (§11 : 48 px mini pour les actions). */
+  button {
+    touch-action: manipulation;
+  }
+}

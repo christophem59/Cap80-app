@@ -1,0 +1,274 @@
+// Modèle de données — §4 du cahier des charges. Ces types sont contractuels :
+// le format des fichiers JSON du dépôt privé en découle directement.
+
+/** Identifiant : ULID (ordonnable dans le temps) ou `${isoDate}-${slug}` quand
+ *  l'unicité par jour suffit. */
+export type Id = string
+
+/** Date locale, format YYYY-MM-DD. Jamais d'UTC pour les dates métier : une pesée
+ *  du matin appartient au jour où l'utilisateur l'a faite, quel que soit son fuseau. */
+export type LocalDate = string
+
+/** Horodatage ISO 8601 complet, en UTC, pour la résolution de conflits uniquement. */
+export type Timestamp = string
+
+/** Base commune à TOUT enregistrement synchronisé. `deletedAt` est le tombstone
+ *  (§5.4) : un enregistrement supprimé reste dans le fichier, masqué dans l'interface. */
+export interface SyncedRecord {
+  id: Id
+  updatedAt: Timestamp
+  deletedAt?: Timestamp
+}
+
+export type Sex = 'male' | 'female'
+
+export interface Profile {
+  heightCm: number
+  birthYear: number
+  sex: Sex
+  startWeightKg: number
+  targetWeightKg: number
+  activityFactor: number // 1.40 par défaut, éditable
+  startDate: LocalDate // fixe la semaine 1
+  plan: Plan
+  /** Mode « pesée stricte 7 jours » déclenché par la règle audit_journal (§6.7). */
+  strictLoggingUntil?: LocalDate
+  updatedAt: Timestamp
+}
+
+/** Le programme. Modifiable par l'utilisateur : c'est le point 7 du besoin. */
+export interface Plan {
+  phases: Phase[]
+  /** Objectif de pas par phase, indexé par phase.id */
+  stepGoals: Record<string, number>
+}
+
+export type PhaseKind =
+  | 'calibration'
+  | 'deficit'
+  | 'maintenance'
+  | 'stabilisation'
+
+export interface Phase {
+  id: string // 'p0' | 'p1' | 'break1' | 'p2' | 'break2' | 'p3' | 'p4'
+  label: string // 'Phase 1 — Lancement'
+  /** Bornes en SEMAINES CALENDAIRES (pauses incluses), incluses. null = phase ouverte (§6.6). */
+  startCalendarWeek: number
+  endCalendarWeek: number | null
+  kind: PhaseKind
+  /** null en phase de calibrage : pas de cible. Ignoré si `ramp` est présent. */
+  targetKcal: number | null
+  proteinG: number | null
+  fatG: number | null
+  carbsG: number | null
+  fiberMinG: number
+  /** Montée progressive de l'apport, semaine par semaine (stabilisation). Prend le pas
+   *  sur targetKcal : l'apport de la semaine N de la phase vaut
+   *  min(toKcal, fromKcal + stepPerWeek * (N - 1)). */
+  ramp?: { fromKcal: number; toKcal: number; stepPerWeek: number }
+  /** Jalon ARRONDI, à visée d'affichage uniquement. La projection du §6.6 est la seule
+   *  référence testée : ne jamais comparer les deux dans un test. */
+  targetWeightAtEndKg: number | null
+  /** Nombre de séances de renforcement attendues par semaine. */
+  workoutsPerWeek: number
+  notes: string
+}
+
+export type WeightFlag =
+  | 'repas_sale'
+  | 'alcool'
+  | 'mauvais_sommeil'
+  | 'seance_veille'
+  | 'constipation'
+  | 'maladie'
+
+export interface WeightEntry extends SyncedRecord {
+  id: Id // `${date}-weight`
+  date: LocalDate
+  weightKg: number // 1 décimale
+  /** Contexte utile à l'interprétation d'un pic. Facultatif. */
+  flags?: WeightFlag[]
+  note?: string
+}
+
+export interface BodyMeasurement extends SyncedRecord {
+  id: Id // `${date}-body`
+  date: LocalDate
+  waistCm?: number // au nombril, debout, fin d'expiration — hebdo
+  neckCm?: number
+  chestCm?: number
+  armCm?: number // bras dominant contracté
+  thighCm?: number
+  hipCm?: number
+}
+
+export type PhotoAngle = 'face' | 'profil' | 'dos'
+
+export interface PhotoEntry extends SyncedRecord {
+  id: Id // `${date}-${angle}`
+  date: LocalDate
+  angle: PhotoAngle
+  /** Chemin dans le dépôt privé. */
+  path: string
+  widthPx: number
+  heightPx: number
+  bytes: number
+  weightKgAtDate: number | null // dénormalisé pour l'affichage comparatif
+}
+
+export type WorkoutTemplateId = 'A' | 'B' | 'custom'
+
+export interface WorkoutSession extends SyncedRecord {
+  id: Id
+  date: LocalDate
+  templateId: WorkoutTemplateId
+  /** Durée réelle en minutes, facultative. */
+  durationMin?: number
+  perceivedEffort?: 1 | 2 | 3 | 4 | 5
+  entries: WorkoutEntry[]
+  completed: boolean // true quand toutes les séries prévues sont saisies ou passées
+  note?: string
+}
+
+export interface WorkoutEntry {
+  exerciseId: string // référence le catalogue d'exercices (§8.2)
+  sets: { reps: number; weightKg: number | null; skipped?: boolean }[]
+}
+
+export interface StepEntry extends SyncedRecord {
+  id: Id // `${date}-steps`
+  date: LocalDate
+  steps: number
+  source: 'manual' | 'shortcut' | 'health-import'
+}
+
+export type MealSlot =
+  | 'petit-dej'
+  | 'dejeuner'
+  | 'collation'
+  | 'diner'
+  | 'extra'
+
+export interface MealLog extends SyncedRecord {
+  id: Id
+  date: LocalDate
+  slot: MealSlot
+  items: MealItem[]
+  /** Renseigné quand le repas vient d'une recette du catalogue, pour la traçabilité. */
+  fromRecipeId?: string
+  note?: string
+}
+
+export interface MealItem {
+  /** Référence au catalogue d'aliments (§8.3), ou saisie libre. */
+  foodId?: string
+  label: string // toujours rempli, même si foodId existe (résilience)
+  grams: number | null // null si l'item est saisi directement en macros
+  kcal: number // valeurs finales retenues, déjà calculées
+  proteinG: number
+  fatG: number
+  carbsG: number
+  fiberG: number
+}
+
+export type Recommendation =
+  | 'increase'
+  | 'hold'
+  | 'decrease'
+  | 'diet_break'
+  | 'audit_journal'
+
+export interface Adjustment extends SyncedRecord {
+  id: Id
+  date: LocalDate
+  /** Ce que la règle a mesuré au moment de la décision. */
+  observedWeeklyLossKg: number
+  weeksAnalysed: number
+  recommendation: Recommendation
+  /** Ce qui a effectivement été appliqué. */
+  appliedKcalDelta: number
+  appliedStepDelta: number
+  phaseId: string
+  accepted: boolean // false si l'utilisateur a lu la reco et ne l'a pas suivie
+  note?: string
+}
+
+// ---- Catalogues (dépôt public, statiques, versionnés avec le code) ----
+
+export type FoodCategory =
+  | 'proteines'
+  | 'laitiers'
+  | 'legumes'
+  | 'feculents'
+  | 'fruits'
+  | 'gras'
+  | 'epices'
+  | 'boissons'
+  | 'autre'
+
+export interface Macros {
+  kcal: number
+  proteinG: number
+  fatG: number
+  carbsG: number
+  fiberG: number
+}
+
+export interface Food {
+  id: string // 'poulet-blanc-cru'
+  label: string // 'Blanc de poulet, cru'
+  category: FoodCategory
+  /** Toutes les valeurs pour 100 g du produit tel que pesé (cru sauf mention). */
+  per100g: Macros
+  /** Portions usuelles, pour saisir en 1 tap. */
+  servings?: { label: string; grams: number }[]
+  /** Coefficient cru → cuit, quand pertinent (riz 1 → 2,8). Informatif. */
+  cookedFactor?: number
+  barcode?: string
+}
+
+export interface Recipe {
+  id: string
+  label: string
+  slot: ('petit-dej' | 'dejeuner' | 'collation' | 'diner')[]
+  servings: number // nombre de portions produites
+  prepMin: number
+  cookMin: number
+  batchFriendly: boolean // apparaît dans l'écran Batch cooking
+  ingredients: { foodId: string; grams: number }[]
+  steps: string[] // instructions, une par étape
+  /** Calculé à partir des ingrédients, jamais saisi à la main. */
+  tags?: string[]
+}
+
+export type ExercisePattern =
+  | 'squat'
+  | 'charniere'
+  | 'poussee-horizontale'
+  | 'poussee-verticale'
+  | 'tirage-horizontal'
+  | 'tirage-vertical'
+  | 'fente'
+  | 'gainage'
+
+export type Equipment = 'aucun' | 'halteres' | 'elastique' | 'tapis'
+
+export interface Exercise {
+  id: string // 'squat-gobelet'
+  label: string
+  pattern: ExercisePattern
+  equipment: Equipment[]
+  defaultSets: number
+  repRange: [number, number] // [8, 12]
+  /** Pour le gainage : durée au lieu de répétitions. */
+  unit: 'reps' | 'seconds'
+  cues: string[] // 2 à 4 points d'exécution
+}
+
+/** Profil réduit nécessaire aux calculs métaboliques (§6.1/§6.2). */
+export interface BmrProfile {
+  heightCm: number
+  ageYears: number
+  sex: Sex
+  activityFactor: number
+}
