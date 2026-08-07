@@ -43,8 +43,13 @@ export function RepoConfigCard() {
     try {
       const res = await new GitHubClient({ owner, repo, token }).validate()
       if (res.ok) {
-        setFeedback({ kind: 'ok', text: 'Token et dépôt valides ✓' })
+        // Tire immédiatement les données existantes du dépôt privé (§5.4), sinon
+        // l'historique n'apparaîtrait qu'au prochain démarrage de l'app.
+        setFeedback({ kind: 'info', text: 'Récupération des données…' })
+        await pullAndReconcile()
         await refreshPending()
+        void sync()
+        setFeedback({ kind: 'ok', text: 'Connecté — données récupérées ✓' })
       } else {
         setFeedback({ kind: 'error', text: `Dépôt "${owner}/${repo}" introuvable (ou non autorisé par le token).` })
       }
