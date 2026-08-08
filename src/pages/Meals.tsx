@@ -1,16 +1,31 @@
 import { useState } from 'react'
 import { JournalTab } from './meals/JournalTab'
+import { PropositionsTab } from './meals/PropositionsTab'
+import { CoursesTab } from './meals/CoursesTab'
+import { BatchTab } from './meals/BatchTab'
+import { RecipeView } from './meals/RecipeView'
 
-type Tab = 'journal' | 'propositions' | 'courses'
+type Tab = 'journal' | 'semaine' | 'courses' | 'batch'
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'journal', label: 'Journal' },
-  { id: 'propositions', label: 'Propositions' },
+  { id: 'semaine', label: 'Semaine' },
   { id: 'courses', label: 'Courses' },
+  { id: 'batch', label: 'Batch' },
 ]
 
 export function Meals() {
   const [tab, setTab] = useState<Tab>('journal')
+  const [recipeId, setRecipeId] = useState<string | null>(null)
+
+  if (recipeId) {
+    return (
+      <section>
+        <RecipeView recipeId={recipeId} onBack={() => setRecipeId(null)} />
+      </section>
+    )
+  }
+
   return (
     <section>
       <h1 className="mb-3 text-2xl font-semibold tracking-tight">Repas</h1>
@@ -39,12 +54,9 @@ export function Meals() {
       </div>
 
       {tab === 'journal' && <JournalTab />}
-      {tab !== 'journal' && (
-        <p className="rounded-xl border border-dashed border-[var(--border)] p-6 text-center text-sm text-[var(--text-muted)]">
-          Propositions (semaine type), recettes, liste de courses et batch cooking arrivent
-          au lot 6b.
-        </p>
-      )}
+      {tab === 'semaine' && <PropositionsTab onOpenRecipe={setRecipeId} />}
+      {tab === 'courses' && <CoursesTab />}
+      {tab === 'batch' && <BatchTab onOpenRecipe={setRecipeId} />}
     </section>
   )
 }

@@ -1,0 +1,33 @@
+{
+  "note": "Semaine type de propositions (§7.3). Un repas par créneau, réutilise les 10 recettes. Modifiable / enrichissable comme les autres catalogues.",
+  "days": [
+    {
+      "label": "Lundi",
+      "slots": { "petit-dej": "shaker-matin", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "cabillaud-courgettes-quinoa" }
+    },
+    {
+      "label": "Mardi",
+      "slots": { "petit-dej": "muffins-oeufs", "dejeuner": "poulet-roti-epices", "collation": "shaker-matin", "diner": "steak-haricots-patate-douce" }
+    },
+    {
+      "label": "Mercredi",
+      "slots": { "petit-dej": "shaker-matin", "dejeuner": "lentilles-oignon-carotte", "collation": "oeufs-durs", "diner": "cabillaud-courgettes-quinoa" }
+    },
+    {
+      "label": "Jeudi",
+      "slots": { "petit-dej": "muffins-oeufs", "dejeuner": "poulet-roti-epices", "collation": "shaker-matin", "diner": "steak-haricots-patate-douce" }
+    },
+    {
+      "label": "Vendredi",
+      "slots": { "petit-dej": "shaker-matin", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "cabillaud-courgettes-quinoa" }
+    },
+    {
+      "label": "Samedi",
+      "slots": { "petit-dej": "muffins-oeufs", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "steak-haricots-patate-douce" }
+    },
+    {
+      "label": "Dimanche",
+      "slots": { "petit-dej": "shaker-matin", "dejeuner": "poulet-roti-epices", "collation": "oeufs-durs", "diner": "lentilles-oignon-carotte" }
+    }
+  ]
+}
