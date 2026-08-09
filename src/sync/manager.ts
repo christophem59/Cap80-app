@@ -7,9 +7,10 @@ import { parseRecordsEnvelope, parseProfileEnvelope } from './files'
 import { mergeRecords } from './merge'
 import { countPending, getRecordsByFile, setSha, kvSet } from '../db/db'
 import { emitRecordsChanged } from '../db/events'
-import { dbOutboxStore, applyPulledRecords } from '../db/outboxStore'
+import { dbOutboxStore, applyPulledRecords, enqueueRecord } from '../db/outboxStore'
 import { loadProfileFromDb, reconcileRemoteProfile } from '../repo/profile'
-import type { Profile } from '../domain/types'
+import { nowIso } from '../domain/dates'
+import type { Profile, StepEntry } from '../domain/types'
 
 // Orchestration de la synchronisation (§1.3, §5.6). IndexedDB reste la source de
 // vérité ; le manager ne fait que pousser l'outbox et tirer/réconcilier au démarrage.
@@ -29,6 +30,7 @@ const PULL_FILES = [
   'measurements.json',
   'workouts.json',
   'adjustments.json',
+  'steps.json',
   'photos/index.json',
 ]
 
@@ -106,6 +108,47 @@ export async function pullAndReconcile(): Promise<void> {
         await applyPulledRecords(file, mergeRecords(local, remote))
         await setSha(file, r.sha)
       }
+    }
+  }
+
+  await consumeStepsInbox(client)
+}
+
+/**
+ * §9 niveau 3 — Boîte de réception des pas déposée par l'automatisation Android. On
+ * liste steps-inbox/, on intègre chaque `{date, steps}` dans steps.json (source
+ * 'shortcut', via l'outbox → poussé à la prochaine passe), puis on supprime le fichier
+ * consommé. Robuste aux fichiers malformés (ignorés).
+ */
+async function consumeStepsInbox(client: GitHubClient): Promise<void> {
+  let entries: { name: string; path: string; sha: string }[]
+  try {
+    entries = await client.listDir('steps-inbox')
+  } catch {
+    return // dossier absent ou indisponible : rien à faire
+  }
+  for (const entry of entries) {
+    if (!entry.name.endsWith('.json')) continue
+    try {
+      const res = await client.getFile(entry.path)
+      if (res.status !== 'present') continue
+      const parsed = JSON.parse(res.text) as { date?: unknown; steps?: unknown }
+      const date = parsed.date
+      const steps = parsed.steps
+      if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) || typeof steps !== 'number') {
+        continue // malformé : on n'intègre pas, on ne supprime pas non plus
+      }
+      const rec: StepEntry = {
+        id: `${date}-steps`,
+        date,
+        steps: Math.round(steps),
+        source: 'shortcut',
+        updatedAt: nowIso(),
+      }
+      await enqueueRecord('steps.json', rec)
+      await client.deleteFile(entry.path, entry.sha, `pas du jour consommés (${date})`)
+    } catch {
+      // Un fichier en échec ne bloque pas les autres.
     }
   }
 }

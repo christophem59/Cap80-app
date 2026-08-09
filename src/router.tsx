@@ -5,6 +5,7 @@ import { Tracking } from './pages/Tracking'
 import { Meals } from './pages/Meals'
 import { Workouts } from './pages/Workouts'
 import { Program } from './pages/Program'
+import { Steps } from './pages/Steps'
 import { Settings } from './pages/Settings'
 import { AdjustmentScreen } from './pages/AdjustmentScreen'
 import { EnvieFlow } from './pages/EnvieFlow'
@@ -23,6 +24,7 @@ export const router = createHashRouter([
       { path: 'seances', element: <Workouts /> },
       { path: 'programme', element: <Program /> },
       { path: 'ajustement', element: <AdjustmentScreen /> },
+      { path: 'pas', element: <Steps /> },
       { path: 'reglages', element: <Settings /> },
       { path: 'envie', element: <EnvieFlow /> },
       { path: '*', element: <NotFound /> },

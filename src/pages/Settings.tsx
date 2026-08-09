@@ -1,6 +1,7 @@
 import { setThemePref, useThemePref } from '../theme'
 import type { ThemePref } from '../theme'
 import { RepoConfigCard } from '../components/RepoConfigCard'
+import { HealthConnectDiagnostic } from './HealthConnectDiagnostic'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
   { value: 'light', label: 'Clair' },
@@ -55,6 +56,8 @@ export function Settings() {
       </Card>
 
       <RepoConfigCard />
+
+      <HealthConnectDiagnostic />
 
       <Card title="À propos">
         <dl className="grid grid-cols-2 gap-y-1 text-sm">

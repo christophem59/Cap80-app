@@ -84,7 +84,7 @@ export function Today() {
           <QuickAction label="Peser" onClick={() => setWeighing((w) => !w)} active={weighing} />
           <QuickAction label="Repas" onClick={() => navigate('/repas')} />
           <QuickAction label="Séance" onClick={() => navigate('/seances')} />
-          <QuickAction label="Pas" disabled hint="lot 8" />
+          <QuickAction label="Pas" onClick={() => navigate('/pas')} />
         </div>
         {weighing && (
           <div className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
@@ -137,9 +137,6 @@ export function Today() {
         </section>
       )}
 
-      <p className="px-1 text-xs text-[var(--text-muted)]">
-        Les objectifs kcal / protéines / pas du jour s'afficheront avec les lots Repas et Pas.
-      </p>
     </section>
   )
 }
