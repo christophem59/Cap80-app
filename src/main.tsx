@@ -1,9 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
+import '@fontsource-variable/inter'
+import '@fontsource-variable/outfit'
 import './index.css'
 import { router } from './router'
 import { initTheme } from './theme'
+import './pwa/install' // capture beforeinstallprompt au plus tôt
 import { startSync } from './sync/manager'
 
 // Applique le thème avant le premier rendu pour éviter un flash clair→sombre.

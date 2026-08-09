@@ -20,7 +20,7 @@ export interface OutboxEntry {
   createdAt: Timestamp
 }
 
-interface StoredRecord {
+export interface StoredRecord {
   pk: string // `${file}::${id}`
   file: string
   id: string
@@ -101,6 +101,43 @@ export async function getRecordsByFile(file: string): Promise<SyncedRecord[]> {
   const db = await getDb()
   const rows = await db.getAllFromIndex('records', 'by-file', file)
   return rows.map((r) => r.record)
+}
+
+// ---- Export / import complet (§7.8) ----
+
+export async function getAllStoredRecords(): Promise<StoredRecord[]> {
+  const db = await getDb()
+  return db.getAll('records')
+}
+
+export async function putStoredRecord(row: StoredRecord): Promise<void> {
+  const db = await getDb()
+  await db.put('records', row)
+}
+
+/** Réinitialisation : vide tout le stockage local (les données restent dans git). */
+export async function clearAllLocal(): Promise<void> {
+  const db = await getDb()
+  const tx = db.transaction(['records', 'outbox', 'fileMeta', 'kv', 'thumbnails'], 'readwrite')
+  await Promise.all([
+    tx.objectStore('records').clear(),
+    tx.objectStore('outbox').clear(),
+    tx.objectStore('fileMeta').clear(),
+    tx.objectStore('kv').clear(),
+    tx.objectStore('thumbnails').clear(),
+    tx.done,
+  ])
+}
+
+export async function getAllThumbnails(): Promise<Record<string, string>> {
+  const db = await getDb()
+  const out: Record<string, string> = {}
+  let cursor = await db.transaction('thumbnails').store.openCursor()
+  while (cursor) {
+    out[cursor.key as string] = cursor.value
+    cursor = await cursor.continue()
+  }
+  return out
 }
 
 // ---- Outbox ----

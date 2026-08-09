@@ -26,6 +26,17 @@ export default defineConfig({
     __APP_VERSION__: JSON.stringify(pkg.version),
     __COMMIT_HASH__: JSON.stringify(commitHash),
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Isole les grosses dépendances dans leurs propres chunks (cache + parse).
+        manualChunks: {
+          recharts: ['recharts'],
+          react: ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
+  },
   plugins: [
     react(),
     VitePWA({
@@ -47,8 +58,8 @@ export default defineConfig({
         lang: 'fr',
         display: 'standalone',
         orientation: 'portrait',
-        theme_color: '#2563eb',
-        background_color: '#ffffff',
+        theme_color: '#059669',
+        background_color: '#fafaf9',
         // §2.1 : scope et start_url doivent pointer sous le base path.
         scope: BASE,
         start_url: BASE,

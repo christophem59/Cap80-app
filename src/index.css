@@ -2,38 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Jetons de couleur. Le thème sombre est activé par la classe `dark` sur <html>
-   (posée par le gestionnaire de thème, §11), pas par prefers-color-scheme seul :
-   ça permet la bascule manuelle. */
+/* Design system Cap80 — « Bien-être & Vitalité ». Sauge (succès/primaire), terracotta
+   (accent chaud), fonds crème, coins doux. Le thème sombre est activé par la classe
+   `dark` sur <html> (bascule manuelle, §11). */
 @layer base {
   :root {
-    --bg: #f8fafc; /* slate-50 */
+    --bg: #fafaf9; /* crème */
     --surface: #ffffff;
-    --surface-2: #f1f5f9; /* slate-100 */
-    --border: #e2e8f0; /* slate-200 */
-    --text: #0f172a; /* slate-900 */
-    --text-muted: #64748b; /* slate-500 */
-    --accent: #2563eb; /* blue-600 */
-    --ok: #16a34a; /* green-600  — ÉTAT uniquement */
-    --warn: #ea580c; /* orange-600 — ÉTAT uniquement */
-    --alert: #dc2626; /* red-600    — ÉTAT uniquement */
+    --surface-2: #f3f4f6; /* surface atténuée / inputs */
+    --border: #e7e5e4;
+    --text: #1c1917; /* charcoal */
+    --text-muted: #78716c;
+    --accent: #059669; /* sauge — primaire / succès / CTA */
+    --accent-2: #f97316; /* terracotta — accent chaud */
+    --ok: #059669; /* état positif = sauge */
+    --warn: #f97316; /* attention = terracotta (jamais de rouge agressif) */
+    --alert: #b91c1c; /* réservé aux erreurs dures (token, etc.) */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
   html.dark {
-    --bg: #0b1120;
-    --surface: #111827; /* gray-900 */
-    --surface-2: #1f2937; /* gray-800 */
-    --border: #334155; /* slate-700 */
-    --text: #f1f5f9; /* slate-100 */
-    --text-muted: #94a3b8; /* slate-400 */
-    --accent: #3b82f6; /* blue-500, un peu plus clair sur fond sombre */
-    --ok: #22c55e;
-    --warn: #f97316;
-    --alert: #ef4444;
+    --bg: #1c1917; /* stone-900 chaud */
+    --surface: #292524; /* stone-800 */
+    --surface-2: #3b3634;
+    --border: #44403c; /* stone-700 */
+    --text: #f5f5f4; /* stone-100 */
+    --text-muted: #a8a29e; /* stone-400 */
+    --accent: #10b981; /* sauge un peu plus clair sur fond sombre */
+    --accent-2: #fb923c;
+    --ok: #10b981;
+    --warn: #fb923c;
+    --alert: #f87171;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   }
 
   html {
-    /* Le navigateur connaît les deux schémas → scrollbars/inputs natifs cohérents. */
     color-scheme: light dark;
   }
 
@@ -48,8 +51,21 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* Cibles tactiles confortables par défaut (§11 : 48 px mini pour les actions). */
+  /* Titres et gros chiffres : Outfit (DS). */
+  h1,
+  h2,
+  h3 {
+    font-family: theme('fontFamily.heading');
+  }
+
   button {
     touch-action: manipulation;
+  }
+}
+
+/* Ombre douce réutilisable (DS). */
+@layer components {
+  .shadow-soft {
+    box-shadow: var(--shadow);
   }
 }
