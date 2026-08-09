@@ -2,11 +2,17 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useWeights } from '../repo/weights'
 import { useMeasurements } from '../repo/measurements'
+import { useDayMeals } from '../repo/meals'
+import { useWorkouts } from '../repo/workouts'
+import { useSteps } from '../repo/steps'
 import { useProfile } from '../repo/profile'
 import { WeightEntryForm } from '../components/WeightEntryForm'
+import { StepEntryForm } from '../components/StepEntryForm'
 import { todayLocal, calendarWeek } from '../domain/dates'
 import { phaseForCalendarWeek } from '../domain/plan'
 import { trailingAvg, weeklyAverages, lossRate } from '../domain/weight'
+import { dailyTotals } from '../domain/nutrition'
+import { sessionProgress } from '../domain/workout'
 
 function fmtKg(n: number) {
   return n.toFixed(1).replace('.', ',')
@@ -19,15 +25,27 @@ function signedKg(n: number) {
 export function Today() {
   const weights = useWeights()
   const measurements = useMeasurements()
+  const meals = useDayMeals(todayLocal())
+  const workouts = useWorkouts()
+  const steps = useSteps()
   const profile = useProfile()
   const navigate = useNavigate()
   const [weighing, setWeighing] = useState(false)
+  const [stepping, setStepping] = useState(false)
 
   const today = todayLocal()
   const week = calendarWeek(profile.startDate, today)
   const phase = phaseForCalendarWeek(profile.plan, week)
   const avg = trailingAvg(weights, today)
   const latest = weights[0]
+
+  // Ce qui est enregistré aujourd'hui.
+  const todayWeight = weights.find((w) => w.date === today)?.weightKg
+  const dayItems = meals.flatMap((m) => m.items)
+  const totals = dailyTotals(dayItems, phase ?? profile.plan.phases[0])
+  const todayWorkouts = workouts.filter((w) => w.date === today)
+  const todaySteps = steps.find((s) => s.date === today)?.steps
+  const stepGoal = phase ? profile.plan.stepGoals[phase.id] : undefined
 
   const joursPeses = new Set(
     weights.filter((w) => calendarWeek(profile.startDate, w.date) === week).map((w) => w.date),
@@ -81,16 +99,95 @@ export function Today() {
       {/* Actions rapides. */}
       <section>
         <div className="grid grid-cols-4 gap-2">
-          <QuickAction label="Peser" onClick={() => setWeighing((w) => !w)} active={weighing} />
+          <QuickAction
+            label="Peser"
+            onClick={() => {
+              setWeighing((w) => !w)
+              setStepping(false)
+            }}
+            active={weighing}
+          />
           <QuickAction label="Repas" onClick={() => navigate('/repas')} />
           <QuickAction label="Séance" onClick={() => navigate('/seances')} />
-          <QuickAction label="Pas" onClick={() => navigate('/pas')} />
+          <QuickAction
+            label="Pas"
+            onClick={() => {
+              setStepping((s) => !s)
+              setWeighing(false)
+            }}
+            active={stepping}
+          />
         </div>
         {weighing && (
           <div className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
             <WeightEntryForm compact onSaved={() => setWeighing(false)} />
           </div>
         )}
+        {stepping && (
+          <div className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
+            <StepEntryForm onSaved={() => setStepping(false)} />
+            <button
+              type="button"
+              onClick={() => navigate('/pas')}
+              className="mt-2 text-xs underline"
+              style={{ color: 'var(--accent)' }}
+            >
+              Voir le détail des pas
+            </button>
+          </div>
+        )}
+      </section>
+
+      {/* Récap de la journée. */}
+      <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-2">
+        <h2 className="px-2 pt-1 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+          Enregistré aujourd'hui
+        </h2>
+        <ul className="mt-1 divide-y divide-[var(--border)]">
+          <RecapRow
+            label="Pesée"
+            value={todayWeight != null ? `${fmtKg(todayWeight)} kg` : null}
+            onClick={() => {
+              setWeighing(true)
+              setStepping(false)
+            }}
+          />
+          <RecapRow
+            label="Repas"
+            value={
+              dayItems.length
+                ? `${Math.round(totals.kcal.value)} kcal · P ${Math.round(totals.proteinG.value)} g`
+                : null
+            }
+            onClick={() => navigate('/repas')}
+          />
+          <RecapRow
+            label="Séance"
+            value={
+              todayWorkouts.length
+                ? todayWorkouts
+                    .map((w) => {
+                      const { done, total } = sessionProgress(w.entries)
+                      return `Séance ${w.templateId} (${done}/${total})`
+                    })
+                    .join(', ')
+                : null
+            }
+            onClick={() => navigate('/seances')}
+          />
+          <RecapRow
+            label="Pas"
+            value={
+              todaySteps != null
+                ? `${todaySteps.toLocaleString('fr-FR')}${stepGoal ? ` / ${stepGoal.toLocaleString('fr-FR')}` : ''}`
+                : null
+            }
+            onClick={() => {
+              setStepping(true)
+              setWeighing(false)
+            }}
+          />
+        </ul>
       </section>
 
       {/* Semaine et phase. */}
@@ -136,8 +233,29 @@ export function Today() {
           ))}
         </section>
       )}
-
     </section>
+  )
+}
+
+function RecapRow({
+  label,
+  value,
+  onClick,
+}: {
+  label: string
+  value: string | null
+  onClick: () => void
+}) {
+  return (
+    <li>
+      <button type="button" onClick={onClick} className="flex w-full items-center gap-3 px-2 py-2 text-left text-sm">
+        <span className="w-16 shrink-0 text-[var(--text-muted)]">{label}</span>
+        <span className={`flex-1 tabular-nums ${value ? '' : 'text-[var(--text-muted)]'}`}>
+          {value ?? 'non enregistré'}
+        </span>
+        <span className="text-xs text-[var(--text-muted)]">{value ? 'modifier' : '+'}</span>
+      </button>
+    </li>
   )
 }
 

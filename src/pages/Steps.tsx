@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   BarChart,
@@ -9,8 +9,9 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
-import { useSteps, saveSteps } from '../repo/steps'
+import { useSteps } from '../repo/steps'
 import { useProfile } from '../repo/profile'
+import { StepEntryForm } from '../components/StepEntryForm'
 import { todayLocal, addDays, calendarWeek, toDayNumber } from '../domain/dates'
 import { phaseForCalendarWeek } from '../domain/plan'
 
@@ -19,27 +20,22 @@ export function Steps() {
   const profile = useProfile()
   const navigate = useNavigate()
   const today = todayLocal()
-  const [value, setValue] = useState('')
-  const [saved, setSaved] = useState(false)
 
   const week = calendarWeek(profile.startDate, today)
   const phase = phaseForCalendarWeek(profile.plan, week)
   const goal = phase ? profile.plan.stepGoals[phase.id] : undefined
 
   const byDate = useMemo(() => new Map(steps.map((s) => [s.date, s.steps])), [steps])
-  const todayValue = byDate.get(today)
 
-  // 30 derniers jours, barre par jour.
   const chart = useMemo(() => {
-    const rows: { t: number; steps: number; label: string }[] = []
+    const rows: { t: number; steps: number }[] = []
     for (let i = 29; i >= 0; i--) {
       const d = addDays(today, -i)
-      rows.push({ t: toDayNumber(d) * 86_400_000, steps: byDate.get(d) ?? 0, label: d })
+      rows.push({ t: toDayNumber(d) * 86_400_000, steps: byDate.get(d) ?? 0 })
     }
     return rows
   }, [byDate, today])
 
-  // Moyenne des 7 derniers jours (jours saisis uniquement).
   const weekAvg = useMemo(() => {
     const vals: number[] = []
     for (let i = 0; i < 7; i++) {
@@ -48,14 +44,6 @@ export function Steps() {
     }
     return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null
   }, [byDate, today])
-
-  async function save() {
-    const n = parseInt(value.replace(/\s/g, ''), 10)
-    if (!Number.isFinite(n) || n < 0) return
-    await saveSteps(today, n, 'manual')
-    setSaved(true)
-    setValue('')
-  }
 
   const fmtDate = (t: number) => {
     const d = new Date(t)
@@ -71,43 +59,8 @@ export function Steps() {
         </button>
       </div>
 
-      {/* Saisie du jour. */}
       <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
-        <p className="text-sm text-[var(--text-muted)]">
-          Aujourd'hui
-          {goal != null && (
-            <>
-              {' '}
-              · objectif <span className="tabular-nums">{goal.toLocaleString('fr-FR')}</span> pas
-            </>
-          )}
-        </p>
-        {todayValue != null && !saved && (
-          <p className="mt-1 text-sm">
-            Déjà saisi : <span className="font-semibold tabular-nums">{todayValue.toLocaleString('fr-FR')}</span> pas
-            (re-saisir remplace).
-          </p>
-        )}
-        <div className="mt-2 flex gap-2">
-          <input
-            inputMode="numeric"
-            placeholder={todayValue != null ? String(todayValue) : 'ex. 9421'}
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value)
-              setSaved(false)
-            }}
-            className="flex-1 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-3 text-center text-2xl font-semibold tabular-nums"
-          />
-          <button
-            type="button"
-            onClick={save}
-            className="rounded-lg px-4 text-sm font-semibold text-white"
-            style={{ background: 'var(--accent)' }}
-          >
-            {saved ? '✓' : 'OK'}
-          </button>
-        </div>
+        <StepEntryForm />
         {weekAvg != null && (
           <p className="mt-2 text-xs text-[var(--text-muted)]">
             Moyenne 7 jours : <span className="tabular-nums">{weekAvg.toLocaleString('fr-FR')}</span> pas/j
@@ -115,7 +68,6 @@ export function Steps() {
         )}
       </section>
 
-      {/* Graphique 30 jours. */}
       <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
         <h2 className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
           30 derniers jours
