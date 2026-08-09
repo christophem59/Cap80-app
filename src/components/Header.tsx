@@ -9,15 +9,12 @@ export function Header() {
       style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
       <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <span
-            className="inline-flex h-7 w-7 items-center justify-center rounded-md"
-            style={{ background: 'var(--accent)' }}
-            aria-hidden="true"
-          >
-            <span className="block h-3 w-3 rounded-full border-[3px] border-white" />
-          </span>
-          <span className="text-lg font-semibold">Cap80</span>
+        <Link to="/" aria-label="Cap80 — accueil" className="flex items-center">
+          <img
+            src={`${import.meta.env.BASE_URL}logo-cap80.png`}
+            alt="Cap80"
+            className="h-8 w-auto rounded-md"
+          />
         </Link>
         <div className="flex items-center gap-1">
           <ThemeToggle />

@@ -44,7 +44,8 @@ export default defineConfig({
       registerType: 'prompt',
       // Icônes et fichiers statiques à précacher en plus du bundle.
       includeAssets: [
-        'favicon.svg',
+        'favicon-48.png',
+        'logo-cap80.png',
         'icon-192.png',
         'icon-512.png',
         'icon-maskable-192.png',
