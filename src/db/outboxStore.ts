@@ -77,6 +77,22 @@ export async function applyPulledRecords(file: string, records: SyncedRecord[]):
  * donné (§5.3). L'id est déterministe par chemin : re-capturer le même jour/angle
  * remplace l'entrée. Le blob vit dans l'outbox et en sera retiré après succès.
  */
+/**
+ * Met en file la poussée de profile.json ENTIER (§5.4). Id fixe : re-éditer le profil
+ * remplace l'entrée en attente (coalescence — une seule poussée de profil).
+ */
+export async function enqueueProfile(profile: unknown): Promise<void> {
+  await addOutbox({
+    id: 'profile:profile.json',
+    file: 'profile.json',
+    kind: 'profile',
+    recordJson: JSON.stringify(profile),
+    attempts: 0,
+    state: 'pending',
+    createdAt: nowIso(),
+  })
+}
+
 export async function enqueueBinary(path: string, blob: Blob): Promise<void> {
   await addOutbox({
     id: `bin:${path}`,

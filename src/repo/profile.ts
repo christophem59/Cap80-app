@@ -1,8 +1,10 @@
 import { useSyncExternalStore } from 'react'
 import type { Profile } from '../domain/types'
 import { kvGet, kvSet } from '../db/db'
+import { enqueueProfile } from '../db/outboxStore'
 import { buildDefaultProfile } from '../sync/init'
 import { mergeProfile } from '../sync/merge'
+import { refreshPending, sync } from '../sync/manager'
 import { nowIso } from '../domain/dates'
 
 // Profil courant en mémoire (source de vérité UI = IndexedDB kv, §1.3). Par défaut,
@@ -45,9 +47,17 @@ export async function reconcileRemoteProfile(remote: Profile): Promise<{ remoteW
   return { remoteWon }
 }
 
-/** Marque le profil modifié localement (updatedAt). Poussée réelle : lot 7. */
-export async function touchProfile(mutate: (p: Profile) => Profile): Promise<void> {
-  await setProfileLocal({ ...mutate(profile), updatedAt: nowIso() })
+/**
+ * Modifie le profil localement (updatedAt = maintenant) ET le pousse (profile.json
+ * entier, §5.4). Utilisé par l'édition du programme et l'application d'un ajustement.
+ */
+export async function saveProfile(mutate: (p: Profile) => Profile): Promise<Profile> {
+  const next = { ...mutate(profile), updatedAt: nowIso() }
+  await setProfileLocal(next)
+  await enqueueProfile(next)
+  await refreshPending()
+  void sync()
+  return next
 }
 
 function subscribe(cb: () => void) {

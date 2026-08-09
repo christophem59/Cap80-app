@@ -28,6 +28,7 @@ const PULL_FILES = [
   'weights.json',
   'measurements.json',
   'workouts.json',
+  'adjustments.json',
   'photos/index.json',
 ]
 

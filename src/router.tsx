@@ -6,6 +6,7 @@ import { Meals } from './pages/Meals'
 import { Workouts } from './pages/Workouts'
 import { Program } from './pages/Program'
 import { Settings } from './pages/Settings'
+import { AdjustmentScreen } from './pages/AdjustmentScreen'
 import { EnvieFlow } from './pages/EnvieFlow'
 import { NotFound } from './pages/NotFound'
 
@@ -21,6 +22,7 @@ export const router = createHashRouter([
       { path: 'repas', element: <Meals /> },
       { path: 'seances', element: <Workouts /> },
       { path: 'programme', element: <Program /> },
+      { path: 'ajustement', element: <AdjustmentScreen /> },
       { path: 'reglages', element: <Settings /> },
       { path: 'envie', element: <EnvieFlow /> },
       { path: '*', element: <NotFound /> },

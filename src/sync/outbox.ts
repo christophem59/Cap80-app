@@ -1,9 +1,14 @@
-import type { SyncedRecord } from '../domain/types'
+import type { SyncedRecord, Profile } from '../domain/types'
 import type { OutboxEntry } from '../db/db'
 import type { GetFileResult } from './github'
 import { SyncAuthError, SyncConflictError } from './github'
-import { mergeRecords } from './merge'
-import { parseRecordsEnvelope, serializeRecordsEnvelope } from './files'
+import { mergeRecords, mergeProfile } from './merge'
+import {
+  parseRecordsEnvelope,
+  serializeRecordsEnvelope,
+  parseProfileEnvelope,
+  serializeProfileEnvelope,
+} from './files'
 import { utf8ToBase64, bytesToBase64 } from './base64'
 
 // §5.3 — Traitement de l'outbox avec COALESCENCE : dix pesées hors-ligne ne doivent
@@ -53,6 +58,7 @@ function commitMessage(file: string, count: number): string {
   if (file === 'weights.json') return count === 1 ? '1 pesée' : `${count} pesées`
   if (file === 'measurements.json') return `${count} mensuration${count > 1 ? 's' : ''}`
   if (file === 'steps.json') return `${count} saisie(s) de pas`
+  if (file === 'adjustments.json') return `ajustement${count > 1 ? `s (${count})` : ''}`
   const base = file.split('/').pop() ?? file
   return `${base} : ${count} enregistrement(s)`
 }
@@ -91,6 +97,38 @@ async function pushRecordFile(
       if (err instanceof SyncConflictError && attempt < CONFLICT_RETRIES) {
         continue // sha périmé : on refait GET → fusion → PUT
       }
+      throw err
+    }
+  }
+}
+
+/**
+ * Pousse profile.json ENTIER (§5.4 : fichier le plus récent gagne, pas de fusion
+ * enregistrement par enregistrement). Coalescé : une seule entrée 'profile' à la fois.
+ */
+async function pushProfile(
+  client: SyncClient,
+  store: OutboxStore,
+  entry: OutboxEntry,
+): Promise<void> {
+  const local = JSON.parse(entry.recordJson ?? '{}') as Profile
+  for (let attempt = 0; attempt <= CONFLICT_RETRIES; attempt++) {
+    const res = await client.getFile(entry.file)
+    let winner = local
+    let sha: string | undefined
+    if (res.status === 'present') {
+      sha = res.sha
+      const remote = parseProfileEnvelope(res.text) as Profile
+      winner = mergeProfile(local, remote).profile
+    }
+    const body = utf8ToBase64(serializeProfileEnvelope(winner))
+    try {
+      const put = await client.putFile(entry.file, body, 'profil / programme', sha)
+      await store.setSha(entry.file, put.sha)
+      await store.markDone([entry.id])
+      return
+    } catch (err) {
+      if (err instanceof SyncConflictError && attempt < CONFLICT_RETRIES) continue
       throw err
     }
   }
@@ -147,6 +185,8 @@ export async function processOutbox(
           await pushRecordFile(client, store, file, entries)
         } else if (entries[0].kind === 'binary') {
           for (const e of entries) await pushBinary(client, store, e)
+        } else if (entries[0].kind === 'profile') {
+          for (const e of entries) await pushProfile(client, store, e)
         } else {
           for (const e of entries) await pushDeleteFile(client, store, e)
         }

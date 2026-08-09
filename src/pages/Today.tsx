@@ -41,7 +41,7 @@ export function Today() {
   if (!waistThisWeek)
     reminders.push({ text: 'Tour de taille à mesurer cette semaine', to: '/suivi' })
   if (adjustmentAvailable)
-    reminders.push({ text: '3 semaines de données : un ajustement est disponible', to: '/programme' })
+    reminders.push({ text: '3 semaines de données : un ajustement est disponible', to: '/ajustement' })
 
   return (
     <section className="space-y-4">

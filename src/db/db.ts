@@ -10,9 +10,9 @@ import type { SyncedRecord, Timestamp } from '../domain/types'
 export interface OutboxEntry {
   id: string
   file: string // 'weights.json', 'meals/2026-08.json', 'photos/2026-08-17--face.jpg'
-  kind: 'record' | 'binary' | 'delete-file'
+  kind: 'record' | 'binary' | 'delete-file' | 'profile'
   recordId?: string // pour kind 'record'
-  recordJson?: string // l'enregistrement complet, sérialisé
+  recordJson?: string // l'enregistrement complet sérialisé (ou le Profile pour 'profile')
   blob?: Blob // pour kind 'binary' : le JPEG déjà redimensionné
   attempts: number
   lastError?: string
