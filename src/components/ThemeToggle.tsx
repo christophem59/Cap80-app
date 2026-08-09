@@ -1,28 +1,18 @@
 import { setThemePref, useThemePref } from '../theme'
-import type { ThemePref } from '../theme'
-import { SunIcon, MoonIcon, AutoIcon } from './icons'
+import { SunIcon, MoonIcon } from './icons'
 
-// Cycle système → clair → sombre → système. Icône + libellé accessible.
-const NEXT: Record<ThemePref, ThemePref> = {
-  system: 'light',
-  light: 'dark',
-  dark: 'system',
-}
-const LABEL: Record<ThemePref, string> = {
-  system: 'Thème : système',
-  light: 'Thème : clair',
-  dark: 'Thème : sombre',
-}
-
+// Bascule directe clair ↔ sombre (un seul tap, pas de mode « système »).
 export function ThemeToggle() {
   const pref = useThemePref()
-  const Icon = pref === 'light' ? SunIcon : pref === 'dark' ? MoonIcon : AutoIcon
+  const next = pref === 'light' ? 'dark' : 'light'
+  const Icon = pref === 'light' ? SunIcon : MoonIcon
+  const label = pref === 'light' ? 'Passer en thème sombre' : 'Passer en thème clair'
   return (
     <button
       type="button"
-      onClick={() => setThemePref(NEXT[pref])}
-      aria-label={LABEL[pref]}
-      title={LABEL[pref]}
+      onClick={() => setThemePref(next)}
+      aria-label={label}
+      title={label}
       className="flex h-11 w-11 items-center justify-center rounded-full text-[var(--text-muted)] hover:bg-[var(--surface-2)] hover:text-[var(--text)]"
     >
       <Icon width={22} height={22} />

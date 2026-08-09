@@ -3,7 +3,6 @@ import type { ThemePref } from '../theme'
 import { RepoConfigCard } from '../components/RepoConfigCard'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
-  { value: 'system', label: 'Système' },
   { value: 'light', label: 'Clair' },
   { value: 'dark', label: 'Sombre' },
 ]
