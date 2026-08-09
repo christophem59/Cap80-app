@@ -37,6 +37,40 @@ export async function deleteSteps(id: string): Promise<void> {
   void sync()
 }
 
+/**
+ * §9 — Import en masse des totaux journaliers (source 'health-import'). Ne remplace pas
+ * une saisie manuelle sans confirmation explicite (`overwriteManual`). Un seul push
+ * (coalescence sur steps.json).
+ */
+export async function importSteps(
+  daily: { date: LocalDate; steps: number }[],
+  overwriteManual: boolean,
+): Promise<{ imported: number; skipped: number }> {
+  const existing = (await getRecordsByFile(FILE)) as StepEntry[]
+  const manualDates = new Set(
+    existing.filter((e) => !e.deletedAt && e.source === 'manual').map((e) => e.date),
+  )
+  let imported = 0
+  let skipped = 0
+  for (const d of daily) {
+    if (!overwriteManual && manualDates.has(d.date)) {
+      skipped++
+      continue
+    }
+    await enqueueRecord(FILE, {
+      id: stepId(d.date),
+      date: d.date,
+      steps: Math.round(d.steps),
+      source: 'health-import',
+      updatedAt: nowIso(),
+    } as StepEntry)
+    imported++
+  }
+  await refreshPending()
+  void sync()
+  return { imported, skipped }
+}
+
 export function useSteps(): StepEntry[] {
   const [data, setData] = useState<StepEntry[]>([])
   useEffect(() => {

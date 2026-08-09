@@ -12,7 +12,6 @@ import { todayLocal, calendarWeek } from '../domain/dates'
 import { phaseForCalendarWeek } from '../domain/plan'
 import { trailingAvg, weeklyAverages, lossRate } from '../domain/weight'
 import { dailyTotals } from '../domain/nutrition'
-import { sessionProgress } from '../domain/workout'
 
 function fmtKg(n: number) {
   return n.toFixed(1).replace('.', ',')
@@ -43,9 +42,14 @@ export function Today() {
   const todayWeight = weights.find((w) => w.date === today)?.weightKg
   const dayItems = meals.flatMap((m) => m.items)
   const totals = dailyTotals(dayItems, phase ?? profile.plan.phases[0])
-  const todayWorkouts = workouts.filter((w) => w.date === today)
   const todaySteps = steps.find((s) => s.date === today)?.steps
   const stepGoal = phase ? profile.plan.stepGoals[phase.id] : undefined
+  const weeklyWorkouts = workouts.filter(
+    (w) => calendarWeek(profile.startDate, w.date) === week,
+  ).length
+  const workoutTarget = phase?.workoutsPerWeek
+  const kcalTarget = phase && !phase.ramp ? phase.targetKcal : null
+  const proteinTarget = phase?.proteinG ?? null
 
   const joursPeses = new Set(
     weights.filter((w) => calendarWeek(profile.startDate, w.date) === week).map((w) => w.date),
@@ -138,41 +142,49 @@ export function Today() {
         )}
       </section>
 
-      {/* Récap de la journée. */}
+      {/* Récap de la journée, avec valeurs de référence et code couleur. */}
       <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-2">
         <h2 className="px-2 pt-1 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-          Enregistré aujourd'hui
+          Aujourd'hui vs objectifs
         </h2>
         <ul className="mt-1 divide-y divide-[var(--border)]">
           <RecapRow
             label="Pesée"
             value={todayWeight != null ? `${fmtKg(todayWeight)} kg` : null}
+            status="none"
             onClick={() => {
               setWeighing(true)
               setStepping(false)
             }}
           />
           <RecapRow
-            label="Repas"
+            label="Calories"
             value={
-              dayItems.length
-                ? `${Math.round(totals.kcal.value)} kcal · P ${Math.round(totals.proteinG.value)} g`
+              dayItems.length || kcalTarget != null
+                ? `${Math.round(totals.kcal.value)}${kcalTarget != null ? ` / ${kcalTarget}` : ''} kcal`
                 : null
+            }
+            // Plafond : dans les clous tant qu'on est ≤ cible.
+            status={kcalTarget == null ? 'none' : totals.kcal.value <= kcalTarget ? 'ok' : 'warn'}
+            onClick={() => navigate('/repas')}
+          />
+          <RecapRow
+            label="Protéines"
+            value={
+              dayItems.length || proteinTarget != null
+                ? `${Math.round(totals.proteinG.value)}${proteinTarget != null ? ` / ${proteinTarget}` : ''} g`
+                : null
+            }
+            // Objectif à ATTEINDRE : vert seulement si ≥ cible.
+            status={
+              proteinTarget == null ? 'none' : totals.proteinG.value >= proteinTarget ? 'ok' : 'warn'
             }
             onClick={() => navigate('/repas')}
           />
           <RecapRow
-            label="Séance"
-            value={
-              todayWorkouts.length
-                ? todayWorkouts
-                    .map((w) => {
-                      const { done, total } = sessionProgress(w.entries)
-                      return `Séance ${w.templateId} (${done}/${total})`
-                    })
-                    .join(', ')
-                : null
-            }
+            label="Séances"
+            value={workoutTarget != null ? `${weeklyWorkouts} / ${workoutTarget} cette sem.` : `${weeklyWorkouts}`}
+            status={workoutTarget == null ? 'none' : weeklyWorkouts >= workoutTarget ? 'ok' : 'warn'}
             onClick={() => navigate('/seances')}
           />
           <RecapRow
@@ -181,6 +193,9 @@ export function Today() {
               todaySteps != null
                 ? `${todaySteps.toLocaleString('fr-FR')}${stepGoal ? ` / ${stepGoal.toLocaleString('fr-FR')}` : ''}`
                 : null
+            }
+            status={
+              todaySteps == null || stepGoal == null ? 'none' : todaySteps >= stepGoal ? 'ok' : 'warn'
             }
             onClick={() => {
               setStepping(true)
@@ -240,17 +255,28 @@ export function Today() {
 function RecapRow({
   label,
   value,
+  status,
   onClick,
 }: {
   label: string
   value: string | null
+  status: 'ok' | 'warn' | 'none'
   onClick: () => void
 }) {
+  const color = status === 'ok' ? 'var(--ok)' : status === 'warn' ? 'var(--warn)' : undefined
   return (
     <li>
       <button type="button" onClick={onClick} className="flex w-full items-center gap-3 px-2 py-2 text-left text-sm">
+        <span
+          className="h-2 w-2 shrink-0 rounded-full"
+          style={{ background: color ?? 'var(--border)' }}
+          aria-hidden="true"
+        />
         <span className="w-16 shrink-0 text-[var(--text-muted)]">{label}</span>
-        <span className={`flex-1 tabular-nums ${value ? '' : 'text-[var(--text-muted)]'}`}>
+        <span
+          className={`flex-1 tabular-nums ${value ? '' : 'text-[var(--text-muted)]'}`}
+          style={value && color ? { color } : undefined}
+        >
           {value ?? 'non enregistré'}
         </span>
         <span className="text-xs text-[var(--text-muted)]">{value ? 'modifier' : '+'}</span>
