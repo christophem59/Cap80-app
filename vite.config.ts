@@ -70,6 +70,15 @@ export default defineConfig({
             purpose: 'maskable',
           },
         ],
+        // §7.9 / §10 : raccourci pour noter une envie en un tap depuis l'icône (appui long).
+        shortcuts: [
+          {
+            name: 'Noter une envie',
+            short_name: 'Envie',
+            url: `${BASE}#/envie`,
+            icons: [{ src: 'icon-192.png', sizes: '192x192', type: 'image/png' }],
+          },
+        ],
       },
       workbox: {
         // §2.1 : fallback de navigation vers l'index sous le base path.

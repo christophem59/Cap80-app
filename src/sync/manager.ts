@@ -97,13 +97,14 @@ export async function pullAndReconcile(): Promise<void> {
     `${prev.getFullYear()}-${pad(prev.getMonth() + 1)}`,
   ]
   for (const m of months) {
-    const file = `meals/${m}.json`
-    const r = await client.getFile(file)
-    if (r.status === 'present') {
-      const remote = parseRecordsEnvelope(r.text) as SyncedRecord[]
-      const local = await getRecordsByFile(file)
-      await applyPulledRecords(file, mergeRecords(local, remote))
-      await setSha(file, r.sha)
+    for (const file of [`meals/${m}.json`, `snacks/${m}.json`]) {
+      const r = await client.getFile(file)
+      if (r.status === 'present') {
+        const remote = parseRecordsEnvelope(r.text) as SyncedRecord[]
+        const local = await getRecordsByFile(file)
+        await applyPulledRecords(file, mergeRecords(local, remote))
+        await setSha(file, r.sha)
+      }
     }
   }
 }

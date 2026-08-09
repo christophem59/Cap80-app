@@ -6,6 +6,7 @@ import { Meals } from './pages/Meals'
 import { Workouts } from './pages/Workouts'
 import { Program } from './pages/Program'
 import { Settings } from './pages/Settings'
+import { EnvieFlow } from './pages/EnvieFlow'
 import { NotFound } from './pages/NotFound'
 
 // Mode HASH imposé par le §2.1 : le mode history renvoie des 404 au rafraîchissement
@@ -21,6 +22,7 @@ export const router = createHashRouter([
       { path: 'seances', element: <Workouts /> },
       { path: 'programme', element: <Program /> },
       { path: 'reglages', element: <Settings /> },
+      { path: 'envie', element: <EnvieFlow /> },
       { path: '*', element: <NotFound /> },
     ],
   },

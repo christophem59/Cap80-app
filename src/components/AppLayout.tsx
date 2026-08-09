@@ -3,6 +3,7 @@ import { Header } from './Header'
 import { BottomNav } from './BottomNav'
 import { SyncBanner } from './SyncBanner'
 import { ReloadPrompt } from './ReloadPrompt'
+import { FloatingEnvie } from './FloatingEnvie'
 
 export function AppLayout() {
   return (
@@ -12,6 +13,7 @@ export function AppLayout() {
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-4">
         <Outlet />
       </main>
+      <FloatingEnvie />
       <BottomNav />
       <ReloadPrompt />
     </div>

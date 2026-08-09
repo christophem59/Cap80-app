@@ -171,6 +171,43 @@ export interface MealItem {
   fiberG: number
 }
 
+/** L'état interne déclaré au moment d'une envie (§4 bis). */
+export type SnackTrigger =
+  | 'ennui'
+  | 'faim'
+  | 'stress'
+  | 'fatigue'
+  | 'social'
+  | 'habitude'
+  | 'envie'
+/** Le contexte physique (§4 bis). */
+export type SnackContext =
+  | 'bureau'
+  | 'teletravail'
+  | 'ecran-soir'
+  | 'cuisine'
+  | 'transport'
+  | 'autre'
+
+/**
+ * Épisode d'envie (§4 bis / §7.9). Outil d'OBSERVATION : n'alimente PAS les totaux
+ * caloriques du jour. Si l'utilisateur veut compter ce qu'il a mangé, il crée un MealLog
+ * `extra` distinct.
+ */
+export interface SnackLog extends SyncedRecord {
+  id: Id
+  date: LocalDate
+  /** Heure locale HH:MM au moment du 1er tap. Donnée la plus précieuse du modèle. */
+  time: string
+  trigger: SnackTrigger
+  context: SnackContext
+  /** null = l'envie est passée sans choix explicite (règle des 10 min, §7.9). */
+  outcome: 'mange' | 'zone-libre' | 'passe' | null
+  foodLabel?: string
+  estimatedKcal?: number
+  note?: string
+}
+
 export type Recommendation =
   | 'increase'
   | 'hold'
