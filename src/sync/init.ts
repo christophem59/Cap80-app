@@ -32,6 +32,7 @@ export function buildDefaultProfile(): Profile {
     activityFactor: 1.4,
     startDate: todayLocal(),
     plan: defaultPlan,
+    onboarded: false,
     updatedAt: nowIso(),
   }
 }

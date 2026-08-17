@@ -12,7 +12,8 @@ import {
   storageEstimateMb,
 } from '../pwa/install'
 import { exportBackup, importBackup } from '../repo/backup'
-import { clearAllLocal } from '../db/db'
+import { hardReset } from '../sync/reset'
+import { buildDefaultProfile } from '../sync/init'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
   { value: 'light', label: 'Clair' },
@@ -99,11 +100,20 @@ function BackupCard() {
   }
 
   async function reset() {
-    if (!window.confirm('Effacer toutes les données locales ? (Elles restent dans ton dépôt privé et seront retirées à la prochaine synchro.)')) {
+    if (
+      !window.confirm(
+        'Repartir de zéro ? Les données de suivi (pesées, repas, pas, séances, ajustements) seront effacées en local ET dans ton dépôt privé. Ta config de synchro et tes aliments perso sont conservés. Tu repasseras par l’écran de démarrage.',
+      )
+    ) {
       return
     }
-    await clearAllLocal()
-    window.location.reload()
+    setMsg('Réinitialisation…')
+    try {
+      await hardReset({ ...buildDefaultProfile(), onboarded: false })
+      window.location.reload()
+    } catch (err) {
+      setMsg(err instanceof Error ? err.message : 'Échec de la réinitialisation.')
+    }
   }
 
   return (
@@ -120,7 +130,7 @@ function BackupCard() {
           Importer
         </button>
         <button type="button" onClick={() => void reset()} className={btn} style={{ color: 'var(--alert)' }}>
-          Réinitialiser
+          Repartir de zéro
         </button>
       </div>
       <input ref={fileRef} type="file" accept="application/json,.json" onChange={onImport} className="hidden" />

@@ -33,6 +33,9 @@ export interface Profile {
   plan: Plan
   /** Mode « pesée stricte 7 jours » déclenché par la règle audit_journal (§6.7). */
   strictLoggingUntil?: LocalDate
+  /** Passé à true quand l'utilisateur a validé l'écran de démarrage (onboarding).
+   *  Tant que faux/absent, l'app affiche l'onboarding au lieu des écrans de suivi. */
+  onboarded?: boolean
   updatedAt: Timestamp
 }
 

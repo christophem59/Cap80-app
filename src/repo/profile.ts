@@ -11,6 +11,7 @@ import { nowIso } from '../domain/dates'
 // un profil §0 tant que rien n'a été chargé/tiré. Édition/poussée du profil : lot 7.
 
 let profile: Profile = buildDefaultProfile()
+let hydrated = false // true dès que loadProfileFromDb a été tenté (profil local à jour).
 const listeners = new Set<() => void>()
 
 function emit() {
@@ -26,8 +27,9 @@ export async function loadProfileFromDb(): Promise<void> {
   const stored = await kvGet<Profile>('profile')
   if (stored) {
     profile = stored
-    emit()
   }
+  hydrated = true
+  emit()
 }
 
 /** Écrit le profil en local (kv) sans le pousser. Utilisé par le pull et l'init. */
@@ -70,5 +72,15 @@ export function useProfile(): Profile {
     subscribe,
     () => profile,
     () => profile,
+  )
+}
+
+/** true dès que le profil local a été chargé depuis IndexedDB (évite d'afficher
+ *  l'onboarding par erreur pendant l'hydratation au démarrage). */
+export function useProfileHydrated(): boolean {
+  return useSyncExternalStore(
+    subscribe,
+    () => hydrated,
+    () => hydrated,
   )
 }
