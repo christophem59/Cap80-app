@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Profile, Sex } from '../domain/types'
 import { getProfile } from '../repo/profile'
 import { hardReset } from '../sync/reset'
-import { todayLocal } from '../domain/dates'
+import { todayLocal, addDays } from '../domain/dates'
 
 // Écran de démarrage (onboarding). Saisie des infos perso qui manquaient à l'app :
 // taille, naissance, sexe, poids de départ/cible, activité, date de départ. À la
@@ -58,7 +58,10 @@ export function Onboarding() {
       startWeightKg: sw,
       targetWeightKg: tw,
       activityFactor,
-      startDate,
+      // `startDate` = début de la semaine 1. Le programme débute par une semaine de
+      // calibrage (semaine 0 = les 7 jours précédant startDate, §6.3). La date choisie
+      // est ce 1er jour de calibrage → startDate = date + 7 jours pour être en semaine 0.
+      startDate: addDays(startDate, 7),
       strictLoggingUntil: undefined,
       onboarded: true,
       updatedAt: new Date().toISOString(),
@@ -86,9 +89,13 @@ export function Onboarding() {
 
         <form onSubmit={submit} className="mt-6 space-y-4">
           <div>
-            <label className={lbl} htmlFor="ob-date">Date de départ</label>
+            <label className={lbl} htmlFor="ob-date">Date de départ (semaine de calibrage)</label>
             <input id="ob-date" type="date" className={field} value={startDate}
               onChange={(e) => setStartDate(e.target.value)} />
+            <p className="mt-1 text-[11px] text-[var(--text-muted)]">
+              Le programme commence par une semaine d’observation (<strong>semaine 0</strong>) :
+              tu manges normalement et tu pèses. La Phase 1 (semaine 1) démarre 7 jours plus tard.
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
