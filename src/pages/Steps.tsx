@@ -60,7 +60,7 @@ export function Steps() {
       </div>
 
       <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
-        <StepEntryForm />
+        <StepEntryForm withDate />
         {weekAvg != null && (
           <p className="mt-2 text-xs text-[var(--text-muted)]">
             Moyenne 7 jours : <span className="tabular-nums">{weekAvg.toLocaleString('fr-FR')}</span> pas/j
