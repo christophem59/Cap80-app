@@ -14,6 +14,15 @@ import {
 import { exportBackup, importBackup } from '../repo/backup'
 import { hardReset } from '../sync/reset'
 import { buildDefaultProfile } from '../sync/init'
+import {
+  getReminderPrefs,
+  setReminderPrefs,
+  applyReminderPrefs,
+  requestNotificationPermission,
+  notificationPermission,
+  sendTestNotification,
+  type ReminderPrefs,
+} from '../pwa/reminders'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
   { value: 'light', label: 'Clair' },
@@ -78,6 +87,107 @@ function InstallStorageCard() {
           </button>
         )}
       </div>
+    </Card>
+  )
+}
+
+function RemindersCard() {
+  const [prefs, setPrefs] = useState<ReminderPrefs>(() => getReminderPrefs())
+  const [perm, setPerm] = useState(() => notificationPermission())
+  const [msg, setMsg] = useState<string | null>(null)
+
+  function persist(next: ReminderPrefs) {
+    setPrefs(next)
+    setReminderPrefs(next)
+    void applyReminderPrefs()
+  }
+
+  async function toggleEnabled(on: boolean) {
+    setMsg(null)
+    if (on) {
+      const p = await requestNotificationPermission()
+      setPerm(p)
+      if (p !== 'granted') {
+        setMsg(
+          p === 'denied'
+            ? 'Notifications bloquées par le navigateur. Autorise-les dans les paramètres du site, puis réessaie. (Les rappels in-app restent affichés sur l’écran Aujourd’hui.)'
+            : 'Autorisation des notifications refusée.',
+        )
+        persist({ ...prefs, enabled: false })
+        return
+      }
+    }
+    persist({ ...prefs, enabled: on })
+  }
+
+  async function test() {
+    const ok = await sendTestNotification()
+    setMsg(ok ? 'Notification de test envoyée.' : 'Impossible d’envoyer la notification (autorisation ?).')
+  }
+
+  const row = (
+    label: string,
+    onKey: 'weigh' | 'meals' | 'steps',
+    timeKey: 'weighTime' | 'mealsTime' | 'stepsTime',
+  ) => (
+    <div className="flex items-center justify-between gap-3 py-1.5">
+      <label className="flex items-center gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={prefs[onKey]}
+          disabled={!prefs.enabled}
+          onChange={(e) => persist({ ...prefs, [onKey]: e.target.checked })}
+        />
+        {label}
+      </label>
+      <input
+        type="time"
+        value={prefs[timeKey]}
+        disabled={!prefs.enabled || !prefs[onKey]}
+        onChange={(e) => persist({ ...prefs, [timeKey]: e.target.value })}
+        className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2 py-1 text-sm disabled:opacity-50"
+      />
+    </div>
+  )
+
+  return (
+    <Card title="Rappels">
+      {perm === 'unsupported' ? (
+        <p className="text-sm text-[var(--text-muted)]">
+          Les notifications ne sont pas prises en charge par ce navigateur. Les rappels
+          s’afficheront quand même sur l’écran Aujourd’hui.
+        </p>
+      ) : (
+        <>
+          <label className="flex items-center justify-between gap-3">
+            <span className="text-sm font-medium">Activer les rappels</span>
+            <input
+              type="checkbox"
+              checked={prefs.enabled}
+              onChange={(e) => void toggleEnabled(e.target.checked)}
+            />
+          </label>
+
+          <div className="mt-2 border-t border-[var(--border)] pt-2">
+            {row('Pesée du matin', 'weigh', 'weighTime')}
+            {row('Saisie des repas', 'meals', 'mealsTime')}
+            {row('Saisie des pas', 'steps', 'stepsTime')}
+          </div>
+
+          {prefs.enabled && (
+            <button type="button" onClick={() => void test()} className={`${btn} mt-2`}>
+              Tester la notification
+            </button>
+          )}
+
+          <p className="mt-2 text-xs text-[var(--text-muted)]">
+            Rappel affiché sur l’écran Aujourd’hui (toujours) et en notification à l’ouverture
+            si la saisie manque. Les notifications en arrière-plan (app fermée) dépendent du
+            navigateur et ne sont pas garanties sans serveur de push.
+          </p>
+        </>
+      )}
+      {msg && <p className="mt-2 text-sm text-[var(--text-muted)]">{msg}</p>}
     </Card>
   )
 }
@@ -172,6 +282,8 @@ export function Settings() {
       </Card>
 
       <RepoConfigCard />
+
+      <RemindersCard />
 
       <InstallStorageCard />
 
