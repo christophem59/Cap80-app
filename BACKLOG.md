@@ -2,11 +2,9 @@
 
 Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 
-## Rappels / Notifications
-- Notifications PWA (service worker) pour soutenir la régularité (levier d'adhésion #1).
-- Rappel **pesée du matin**.
-- Rappel **saisie des repas** si non renseignés.
-- Rappel **saisie des pas** si non renseignés (relance en fin de journée).
+## Rappels / Notifications — ✅ Fait
+- Bannière in-app (Aujourd'hui) + notification OS à l'ouverture si saisie manquante ; réglages par type (pesée/repas/pas) avec heure ; planification arrière-plan best-effort (Notification Triggers).
+- Reste possible plus tard : vraies notifications en arrière-plan garanties (nécessite un serveur de push web / VAPID) ; gestion du clic sur la notif (focus app) via SW `injectManifest`.
 
 ## Scanner de code-barres
 - Scan produit → log rapide, via base ouverte **OpenFoodFacts** (pas de marques en dur).
