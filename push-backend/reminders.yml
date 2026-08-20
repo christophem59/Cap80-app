@@ -1,0 +1,43 @@
+# Rappels Cap80 par Web Push — À PLACER DANS LE DÉPÔT PRIVÉ sous
+# .github/workflows/reminders.yml
+#
+# Le cron GitHub Actions peut avoir quelques minutes de retard : c'est normal pour des
+# rappels. La fenêtre 05–21 UTC couvre ~06h–23h en France (métropole).
+name: Rappels Cap80
+
+on:
+  schedule:
+    - cron: '*/30 5-21 * * *' # toutes les 30 min sur la plage horaire utile
+  workflow_dispatch: {} # permet de lancer un test manuel depuis l'onglet Actions
+
+permissions:
+  contents: write # pour committer push/sent.json (anti-doublon)
+
+concurrency:
+  group: cap80-reminders
+  cancel-in-progress: false
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install web-push@3 --no-save
+      - run: node .github/scripts/send-reminders.mjs
+        env:
+          VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+          APP_URL: ${{ vars.APP_URL }}
+      - name: Committer le marqueur anti-doublon
+        run: |
+          if [[ -n "$(git status --porcelain push/sent.json)" ]]; then
+            git config user.name "cap80-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add push/sent.json
+            git commit -m "push: marqueur rappels envoyés"
+            git push
+          fi

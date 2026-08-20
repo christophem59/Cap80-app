@@ -42,6 +42,15 @@ export default defineConfig({
     VitePWA({
       // §10 : on propose « nouvelle version, recharger » plutôt qu'un reload forcé.
       registerType: 'prompt',
+      // Service worker custom (nécessaire pour les événements push + notificationclick).
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
+      // En injectManifest, le précache par défaut se limite à js/css/html : on réinclut
+      // polices, icônes et manifeste pour garder le hors-ligne complet (§2).
+      injectManifest: {
+        globPatterns: ['**/*.{js,mjs,css,html,woff2,png,svg,ico,webmanifest}'],
+      },
       // Icônes et fichiers statiques à précacher en plus du bundle.
       includeAssets: [
         'favicon-48.png',

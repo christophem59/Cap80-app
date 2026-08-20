@@ -23,6 +23,15 @@ import {
   sendTestNotification,
   type ReminderPrefs,
 } from '../pwa/reminders'
+import {
+  pushSupported,
+  getVapidPublicKey,
+  setVapidPublicKey,
+  enablePush,
+  disablePush,
+  isPushActive,
+  refreshSubscriptionUpload,
+} from '../pwa/push'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
   { value: 'light', label: 'Clair' },
@@ -95,11 +104,42 @@ function RemindersCard() {
   const [prefs, setPrefs] = useState<ReminderPrefs>(() => getReminderPrefs())
   const [perm, setPerm] = useState(() => notificationPermission())
   const [msg, setMsg] = useState<string | null>(null)
+  const [vapid, setVapid] = useState(() => getVapidPublicKey())
+  const [pushActive, setPushActive] = useState(false)
+  const [pushMsg, setPushMsg] = useState<string | null>(null)
+  const [pushBusy, setPushBusy] = useState(false)
+
+  useEffect(() => {
+    void isPushActive().then(setPushActive)
+  }, [])
 
   function persist(next: ReminderPrefs) {
     setPrefs(next)
     setReminderPrefs(next)
     void applyReminderPrefs()
+    void refreshSubscriptionUpload() // tient le back à jour (horaires/types) si abonné.
+  }
+
+  async function togglePush(on: boolean) {
+    setPushMsg(null)
+    setPushBusy(true)
+    try {
+      if (on) {
+        const err = await enablePush()
+        if (err) {
+          setPushMsg(err)
+        } else {
+          setPushActive(true)
+          setPushMsg('Notifications en arrière-plan activées ✅')
+        }
+      } else {
+        await disablePush()
+        setPushActive(false)
+        setPushMsg('Notifications en arrière-plan désactivées.')
+      }
+    } finally {
+      setPushBusy(false)
+    }
   }
 
   async function toggleEnabled(on: boolean) {
@@ -180,10 +220,59 @@ function RemindersCard() {
             </button>
           )}
 
-          <p className="mt-2 text-xs text-[var(--text-muted)]">
-            Rappel affiché sur l’écran Aujourd’hui (toujours) et en notification à l’ouverture
-            si la saisie manque. Les notifications en arrière-plan (app fermée) dépendent du
-            navigateur et ne sont pas garanties sans serveur de push.
+          {pushSupported() && (
+            <div className="mt-3 border-t border-[var(--border)] pt-3">
+              <p className="text-sm font-medium">Notifications en arrière-plan (app fermée)</p>
+              <p className="mt-1 text-xs text-[var(--text-muted)]">
+                Nécessite la mise en place du back (workflow GitHub Actions du dépôt privé) et la
+                clé publique VAPID ci-dessous. Voir push-backend/README.
+              </p>
+              <label className="mt-2 block text-xs font-medium text-[var(--text-muted)]">
+                Clé publique VAPID
+              </label>
+              <input
+                type="text"
+                value={vapid}
+                placeholder="B*****…"
+                onChange={(e) => {
+                  setVapid(e.target.value)
+                  setVapidPublicKey(e.target.value)
+                }}
+                className="mt-1 w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm"
+              />
+              <div className="mt-2 flex items-center gap-2">
+                {pushActive ? (
+                  <button
+                    type="button"
+                    disabled={pushBusy}
+                    onClick={() => void togglePush(false)}
+                    className={`${btn} disabled:opacity-60`}
+                  >
+                    Désactiver l’arrière-plan
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={pushBusy || !prefs.enabled}
+                    onClick={() => void togglePush(true)}
+                    className={`${btnPrimary} disabled:opacity-60`}
+                    style={{ background: 'var(--accent)' }}
+                  >
+                    {pushBusy ? 'Activation…' : 'Activer l’arrière-plan'}
+                  </button>
+                )}
+                <span className="text-xs" style={{ color: pushActive ? 'var(--ok)' : 'var(--text-muted)' }}>
+                  {pushActive ? 'Abonné' : 'Non abonné'}
+                </span>
+              </div>
+              {pushMsg && <p className="mt-2 text-xs text-[var(--text-muted)]">{pushMsg}</p>}
+            </div>
+          )}
+
+          <p className="mt-3 text-xs text-[var(--text-muted)]">
+            Rappel affiché sur l’écran Aujourd’hui (toujours) et en notification à l’ouverture si
+            la saisie manque. Les notifications en arrière-plan utilisent le Web Push via le
+            workflow du dépôt privé.
           </p>
         </>
       )}
