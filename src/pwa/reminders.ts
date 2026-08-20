@@ -180,6 +180,11 @@ export async function runReminderCheck(): Promise<void> {
 
   const reg = await swReady()
   if (!reg) return
+  // Si le push arrière-plan est configuré (abonnement présent), c'est le workflow git
+  // qui envoie les notifications OS : on évite un doublon côté app. La bannière in-app
+  // reste, elle, le repère visuel dans l'app.
+  const sub = await reg.pushManager.getSubscription().catch(() => null)
+  if (sub) return
   const hm = nowHhmm()
   const today = todayLocal()
   const pend = await pendingToday()
