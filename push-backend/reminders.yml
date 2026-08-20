@@ -8,7 +8,12 @@ name: Rappels Cap80
 on:
   schedule:
     - cron: '*/30 5-21 * * *' # toutes les 30 min sur la plage horaire utile
-  workflow_dispatch: {} # permet de lancer un test manuel depuis l'onglet Actions
+  workflow_dispatch: # lancement manuel depuis l'onglet Actions
+    inputs:
+      force:
+        description: "Test forcé (ignore l'heure et l'anti-doublon)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write # pour committer push/sent.json (anti-doublon)
@@ -32,6 +37,7 @@ jobs:
           VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
           APP_URL: ${{ vars.APP_URL }}
+          FORCE: ${{ inputs.force }}
       - name: Committer le marqueur anti-doublon
         run: |
           if [[ -n "$(git status --porcelain push/sent.json)" ]]; then

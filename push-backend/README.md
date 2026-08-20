@@ -44,9 +44,9 @@ Dans l'app : **Réglages → Rappels**
 
 ## 5) Tester
 
-Dépôt privé → onglet **Actions → Rappels Cap80 → Run workflow** (déclenchement manuel).
-Pour forcer un envoi : ne saisis pas l'item du jour et mets une heure de rappel déjà
-passée dans les réglages (ce qui met à jour `push/subscription.json`), puis relance.
+Dépôt privé → onglet **Actions → Rappels Cap80 → Run workflow**. Coche **« Test forcé »**
+pour ignorer l'heure et l'anti-doublon (envoie tant qu'un item du jour n'est pas saisi).
+Le log détaille, pour chaque item, pourquoi il a été envoyé ou sauté.
 
 ## Notes
 

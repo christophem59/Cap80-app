@@ -26,6 +26,8 @@ if (!VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY || !VAPID_SUBJECT) {
 }
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY)
 
+const FORCE = process.env.FORCE === 'true' // test manuel : ignore heure + anti-doublon
+
 const sub = JSON.parse(readFileSync(SUB_FILE, 'utf8'))
 const prefs = sub.prefs || {}
 const tz = sub.tz || 'Europe/Paris'
@@ -61,6 +63,11 @@ const hasWeigh = datesInFile('weights.json').has(today)
 const hasSteps = datesInFile('steps.json').has(today)
 const hasMeals = datesInFile(`meals/${monthKey}.json`).has(today)
 
+// Contexte, pour diagnostiquer sans deviner.
+console.log(`Contexte : tz=${tz} today=${today} now=${nowHhmm} force=${FORCE}`)
+console.log(`Préférences : ${JSON.stringify(prefs)}`)
+console.log(`Saisi aujourd'hui — pesée:${hasWeigh} repas:${hasMeals} pas:${hasSteps}`)
+
 const items = [
   { key: 'weigh', on: prefs.weigh, time: prefs.weighTime, missing: !hasWeigh,
     title: 'Pesée du matin', body: 'Pense à te peser avant le petit-déj ⚖️', url: `${APP_URL}#/suivi` },
@@ -84,9 +91,22 @@ if (prefs.enabled === false) {
 
 let changed = false
 for (const it of items) {
-  if (!it.on || !it.missing) continue
-  if (nowHhmm < it.time) continue // pas encore l'heure
-  if (sentToday.has(it.key)) continue // déjà envoyé aujourd'hui
+  if (!it.on) {
+    console.log(`skip ${it.key} : rappel désactivé dans les préférences`)
+    continue
+  }
+  if (!it.missing) {
+    console.log(`skip ${it.key} : déjà saisi aujourd'hui`)
+    continue
+  }
+  if (!FORCE && nowHhmm < it.time) {
+    console.log(`skip ${it.key} : pas encore l'heure (${nowHhmm} < ${it.time})`)
+    continue
+  }
+  if (!FORCE && sentToday.has(it.key)) {
+    console.log(`skip ${it.key} : déjà notifié aujourd'hui (push/sent.json)`)
+    continue
+  }
   try {
     await webpush.sendNotification(
       sub.subscription,
