@@ -3,8 +3,9 @@
 Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 
 ## Rappels / Notifications — ✅ Fait
-- Bannière in-app (Aujourd'hui) + notification OS à l'ouverture si saisie manquante ; réglages par type (pesée/repas/pas) avec heure ; planification arrière-plan best-effort (Notification Triggers).
-- Reste possible plus tard : vraies notifications en arrière-plan garanties (nécessite un serveur de push web / VAPID) ; gestion du clic sur la notif (focus app) via SW `injectManifest`.
+- Bannière in-app (Aujourd'hui) + notification OS à l'ouverture si saisie manquante ; réglages par type (pesée/repas/pas) avec heure.
+- **Notifications en arrière-plan (app fermée)** via Web Push : service worker custom (push + clic), abonnement déposé dans le dépôt privé, envoi par workflow GitHub Actions (cf. `push-backend/`). Mise en place = clés VAPID + secrets + copie des 2 fichiers dans le dépôt privé.
+- Clic sur la notif → ouvre/refocalise l'app (SW `injectManifest`).
 
 ## Scanner de code-barres
 - Scan produit → log rapide, via base ouverte **OpenFoodFacts** (pas de marques en dur).
