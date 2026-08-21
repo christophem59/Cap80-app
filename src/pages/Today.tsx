@@ -205,11 +205,15 @@ export function Today() {
         </ul>
       </section>
 
-      {/* Semaine et phase — mène au récap hebdo. */}
+      {/* Semaine et phase — carte de navigation, teintée accent pour la distinguer. */}
       <button
         type="button"
         onClick={() => navigate('/semaine')}
-        className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 text-left"
+        className="w-full rounded-xl border p-4 text-left"
+        style={{
+          borderColor: 'var(--accent)',
+          background: 'color-mix(in srgb, var(--accent) 8%, var(--surface))',
+        }}
       >
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium">
