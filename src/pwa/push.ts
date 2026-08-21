@@ -126,6 +126,7 @@ export interface PushDiagnostics {
   swScript: string
   subscribed: boolean
   endpointHost: string
+  endpointTail: string // 16 derniers caractères de l'endpoint, pour comparer app ↔ serveur
 }
 
 /** État réel du push sur CET appareil (pour diagnostiquer à distance sur mobile). */
@@ -138,6 +139,7 @@ export async function getPushDiagnostics(): Promise<PushDiagnostics> {
     swScript: '',
     subscribed: false,
     endpointHost: '',
+    endpointTail: '',
   }
   if (!('serviceWorker' in navigator)) return out
   const reg = await navigator.serviceWorker.ready.catch(() => null)
@@ -148,6 +150,7 @@ export async function getPushDiagnostics(): Promise<PushDiagnostics> {
   const sub = await reg.pushManager.getSubscription().catch(() => null)
   if (sub) {
     out.subscribed = true
+    out.endpointTail = sub.endpoint.slice(-16)
     try {
       out.endpointHost = new URL(sub.endpoint).host
     } catch {

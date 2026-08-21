@@ -290,6 +290,7 @@ function RemindersCard() {
                       </li>
                     )}
                     <li>Abonnement push : {diag.subscribed ? `oui (${diag.endpointHost})` : 'non'}</li>
+                    {diag.subscribed && <li>Empreinte endpoint : …{diag.endpointTail}</li>}
                   </ul>
                 )}
               </div>

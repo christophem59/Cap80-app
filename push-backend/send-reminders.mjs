@@ -67,6 +67,8 @@ const hasMeals = datesInFile(`meals/${monthKey}.json`).has(today)
 console.log(`Contexte : tz=${tz} today=${today} now=${nowHhmm} force=${FORCE}`)
 console.log(`Préférences : ${JSON.stringify(prefs)}`)
 console.log(`Saisi aujourd'hui — pesée:${hasWeigh} repas:${hasMeals} pas:${hasSteps}`)
+const endpoint = sub.subscription?.endpoint || ''
+console.log(`Cible endpoint : …${endpoint.slice(-16)} (${endpoint.split('/')[2] || '?'})`)
 
 const items = [
   { key: 'weigh', on: prefs.weigh, time: prefs.weighTime, missing: !hasWeigh,
