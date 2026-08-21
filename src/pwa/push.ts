@@ -119,6 +119,44 @@ export async function refreshSubscriptionUpload(): Promise<void> {
   }
 }
 
+export interface PushDiagnostics {
+  permission: string
+  swActive: boolean
+  swWaiting: boolean // une nouvelle version du SW attend d'être activée (→ recharger)
+  swScript: string
+  subscribed: boolean
+  endpointHost: string
+}
+
+/** État réel du push sur CET appareil (pour diagnostiquer à distance sur mobile). */
+export async function getPushDiagnostics(): Promise<PushDiagnostics> {
+  const permission = typeof Notification !== 'undefined' ? Notification.permission : 'unsupported'
+  const out: PushDiagnostics = {
+    permission,
+    swActive: false,
+    swWaiting: false,
+    swScript: '',
+    subscribed: false,
+    endpointHost: '',
+  }
+  if (!('serviceWorker' in navigator)) return out
+  const reg = await navigator.serviceWorker.ready.catch(() => null)
+  if (!reg) return out
+  out.swActive = !!reg.active
+  out.swWaiting = !!reg.waiting
+  out.swScript = reg.active?.scriptURL?.split('/').pop() ?? ''
+  const sub = await reg.pushManager.getSubscription().catch(() => null)
+  if (sub) {
+    out.subscribed = true
+    try {
+      out.endpointHost = new URL(sub.endpoint).host
+    } catch {
+      /* ignore */
+    }
+  }
+  return out
+}
+
 /** Désactive le push : désabonnement + suppression du fichier du dépôt privé. */
 export async function disablePush(): Promise<void> {
   const sub = await currentSubscription()

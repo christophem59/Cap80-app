@@ -31,6 +31,8 @@ import {
   disablePush,
   isPushActive,
   refreshSubscriptionUpload,
+  getPushDiagnostics,
+  type PushDiagnostics,
 } from '../pwa/push'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
@@ -108,9 +110,12 @@ function RemindersCard() {
   const [pushActive, setPushActive] = useState(false)
   const [pushMsg, setPushMsg] = useState<string | null>(null)
   const [pushBusy, setPushBusy] = useState(false)
+  const [diag, setDiag] = useState<PushDiagnostics | null>(null)
 
+  const refreshDiag = () => void getPushDiagnostics().then(setDiag)
   useEffect(() => {
     void isPushActive().then(setPushActive)
+    refreshDiag()
   }, [])
 
   function persist(next: ReminderPrefs) {
@@ -139,6 +144,7 @@ function RemindersCard() {
       }
     } finally {
       setPushBusy(false)
+      refreshDiag()
     }
   }
 
@@ -266,6 +272,27 @@ function RemindersCard() {
                 </span>
               </div>
               {pushMsg && <p className="mt-2 text-xs text-[var(--text-muted)]">{pushMsg}</p>}
+
+              <div className="mt-3 rounded-lg bg-[var(--surface-2)] p-2 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium">Diagnostic (cet appareil)</span>
+                  <button type="button" onClick={refreshDiag} className="underline text-[var(--text-muted)]">
+                    Rafraîchir
+                  </button>
+                </div>
+                {diag && (
+                  <ul className="mt-1 space-y-0.5 text-[var(--text-muted)]">
+                    <li>Autorisation : {diag.permission}</li>
+                    <li>Service worker : {diag.swActive ? `actif (${diag.swScript})` : 'inactif'}</li>
+                    {diag.swWaiting && (
+                      <li style={{ color: 'var(--alert)' }}>
+                        ⚠️ Mise à jour en attente — ferme et rouvre l’app pour l’activer.
+                      </li>
+                    )}
+                    <li>Abonnement push : {diag.subscribed ? `oui (${diag.endpointHost})` : 'non'}</li>
+                  </ul>
+                )}
+              </div>
             </div>
           )}
 
