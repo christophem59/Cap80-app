@@ -14,6 +14,10 @@ on:
         description: "Test forcé (ignore l'heure et l'anti-doublon)"
         type: boolean
         default: false
+      ping:
+        description: "Ping de test (notif sans charge utile, sans chiffrement)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write # pour committer push/sent.json (anti-doublon)
@@ -38,6 +42,7 @@ jobs:
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
           APP_URL: ${{ vars.APP_URL }}
           FORCE: ${{ inputs.force }}
+          PING: ${{ inputs.ping }}
       - name: Committer le marqueur anti-doublon
         run: |
           if [[ -n "$(git status --porcelain push/sent.json)" ]]; then

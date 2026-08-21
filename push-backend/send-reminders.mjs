@@ -27,6 +27,7 @@ if (!VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY || !VAPID_SUBJECT) {
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY)
 
 const FORCE = process.env.FORCE === 'true' // test manuel : ignore heure + anti-doublon
+const PING = process.env.PING === 'true' // test : envoie une notif SANS charge utile (sans chiffrement)
 
 const sub = JSON.parse(readFileSync(SUB_FILE, 'utf8'))
 const prefs = sub.prefs || {}
@@ -69,6 +70,18 @@ console.log(`Préférences : ${JSON.stringify(prefs)}`)
 console.log(`Saisi aujourd'hui — pesée:${hasWeigh} repas:${hasMeals} pas:${hasSteps}`)
 const endpoint = sub.subscription?.endpoint || ''
 console.log(`Cible endpoint : …${endpoint.slice(-16)} (${endpoint.split('/')[2] || '?'})`)
+
+// Mode ping : notification sans charge utile (donc sans chiffrement) pour isoler un
+// problème de payload. Si elle s'affiche (« Cap80 » sans texte), le chiffrement est en cause.
+if (PING) {
+  try {
+    await webpush.sendNotification(sub.subscription)
+    console.log('Ping envoyé (sans charge utile). Si « Cap80 » apparaît sans texte → le souci vient de la charge utile chiffrée.')
+  } catch (err) {
+    console.error('Échec du ping :', err?.statusCode || err?.message || err)
+  }
+  process.exit(0)
+}
 
 const items = [
   { key: 'weigh', on: prefs.weigh, time: prefs.weighTime, missing: !hasWeigh,
