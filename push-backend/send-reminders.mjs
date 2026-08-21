@@ -8,6 +8,7 @@
 //   VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT (mailto:…), APP_URL
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import crypto from 'node:crypto'
 import webpush from 'web-push'
 
 const SUB_FILE = 'push/subscription.json'
@@ -25,6 +26,29 @@ if (!VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY || !VAPID_SUBJECT) {
   process.exit(1)
 }
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY)
+
+// Vérif de cohérence VAPID — cause classique du « 201 mais rien à l'écran » :
+// la clé publique utilisée pour signer DOIT être identique à celle avec laquelle
+// l'app s'est abonnée (champ « Clé publique VAPID »). Une clé publique n'est pas
+// secrète : on peut l'afficher pour comparer.
+try {
+  const b64u = (s) =>
+    Buffer.from(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4), 'base64')
+  const ecdh = crypto.createECDH('prime256v1')
+  ecdh.setPrivateKey(b64u(VAPID_PRIVATE_KEY))
+  const derived = ecdh
+    .getPublicKey()
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '')
+  console.log(`VAPID publique (secret) : ${VAPID_PUBLIC_KEY}`)
+  console.log(`VAPID publique (dérivée de la clé privée) : ${derived}`)
+  console.log(`VAPID cohérent (paire secret valide) : ${derived === VAPID_PUBLIC_KEY}`)
+  console.log('→ Cette clé publique doit être IDENTIQUE au champ « Clé publique VAPID » de l’app.')
+} catch (e) {
+  console.log('Vérif VAPID impossible :', e.message)
+}
 
 const FORCE = process.env.FORCE === 'true' // test manuel : ignore heure + anti-doublon
 const PING = process.env.PING === 'true' // test : envoie une notif SANS charge utile (sans chiffrement)
