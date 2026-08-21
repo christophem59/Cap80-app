@@ -105,6 +105,34 @@ export async function getRecentMealsForSlot(
     .slice(0, limit)
 }
 
+/** Repas visibles entre deux dates incluses (au plus 2 fichiers mensuels). */
+export async function getMealsInRange(start: LocalDate, end: LocalDate): Promise<MealLog[]> {
+  const files = [...new Set([mealFile(start), mealFile(end)])]
+  const rows: MealLog[] = []
+  for (const f of files) rows.push(...((await getRecordsByFile(f)) as MealLog[]))
+  return visibleRecords(rows).filter((m) => m.date >= start && m.date <= end)
+}
+
+export function useMealsInRange(start: LocalDate, end: LocalDate): MealLog[] {
+  const [data, setData] = useState<MealLog[]>([])
+  useEffect(() => {
+    let alive = true
+    const load = () => {
+      void getMealsInRange(start, end).then((m) => {
+        if (alive) setData(m)
+      })
+    }
+    load()
+    const files = [...new Set([mealFile(start), mealFile(end)])]
+    const offs = files.map((f) => onRecordsChanged(f, load))
+    return () => {
+      alive = false
+      offs.forEach((off) => off())
+    }
+  }, [start, end])
+  return data
+}
+
 export function useDayMeals(date: LocalDate): MealLog[] {
   const [data, setData] = useState<MealLog[]>([])
   useEffect(() => {

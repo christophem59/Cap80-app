@@ -205,11 +205,18 @@ export function Today() {
         </ul>
       </section>
 
-      {/* Semaine et phase. */}
-      <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
-        <p className="text-sm font-medium">
-          Semaine {week} {phase ? `· ${phase.label}` : ''}
-        </p>
+      {/* Semaine et phase — mène au récap hebdo. */}
+      <button
+        type="button"
+        onClick={() => navigate('/semaine')}
+        className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 text-left"
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-medium">
+            Semaine {week} {phase ? `· ${phase.label}` : ''}
+          </p>
+          <span className="text-xs text-[var(--accent)]">Ma semaine ›</span>
+        </div>
         {phase && phase.targetKcal != null ? (
           <p className="mt-1 text-sm text-[var(--text-muted)] tabular-nums">
             {phase.ramp ? 'apport progressif' : `${phase.targetKcal} kcal`}
@@ -226,7 +233,7 @@ export function Today() {
         <p className="mt-2 text-xs text-[var(--text-muted)]">
           Jours pesés cette semaine : <span className="tabular-nums">{joursPeses}/7</span>
         </p>
-      </section>
+      </button>
 
       {/* Rappels contextuels. */}
       {reminders.length > 0 && (

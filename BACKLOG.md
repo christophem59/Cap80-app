@@ -12,10 +12,11 @@ Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 - Scan produit → log rapide, via base ouverte **OpenFoodFacts** (pas de marques en dur).
 - Priorité à confirmer : l'utilisateur pèse déjà ses aliments, intérêt réel à valider avant de développer.
 
-## Vue « Ta semaine »
-- Récapitulatif hebdo en un coup d'œil : repas, mensurations, pas.
-- Indicateur clair « critères du programme remplis cette semaine ? » (calories, protéines, séances, pas atteints/objectifs).
-- S'appuie sur l'existant : tableau de bord « aujourd'hui vs objectifs », projection, écran d'ajustement.
+## Vue « Ta semaine » — ✅ Fait (2026-08-21, v0.9.6)
+- Écran `/semaine` (accès via la carte « Semaine » de l'écran Aujourd'hui), navigation semaine ‹/›.
+- Carte « critères du programme remplis cette semaine ? » : calories/protéines (moyennes des jours saisis), séances, pas — avec code couleur + compteur X/Y.
+- Détail jour par jour (poids, kcal, protéines, séance, pas) + jours pesés /7.
+- Reste possible : mensurations dans le récap, variation de poids hebdo vs semaine précédente.
 
 ## TDEE adaptatif (à décider)
 - Estimer l'entretien RÉEL à partir des données (apport moyen + tendance de poids), pas seulement de la formule Mifflin × facteur d'activité.
