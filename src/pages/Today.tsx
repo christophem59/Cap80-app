@@ -8,7 +8,6 @@ import { useSteps } from '../repo/steps'
 import { useProfile } from '../repo/profile'
 import { WeightEntryForm } from '../components/WeightEntryForm'
 import { StepEntryForm } from '../components/StepEntryForm'
-import { ReminderBanner } from '../components/ReminderBanner'
 import { todayLocal, calendarWeek } from '../domain/dates'
 import { phaseForCalendarWeek } from '../domain/plan'
 import { trailingAvg, weeklyAverages, lossRate } from '../domain/weight'
@@ -69,8 +68,6 @@ export function Today() {
   return (
     <section className="space-y-4">
       <h1 className="text-2xl font-semibold tracking-tight">Aujourd'hui</h1>
-
-      <ReminderBanner />
 
       {/* Moyenne mobile 7 j en grand. */}
       <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">

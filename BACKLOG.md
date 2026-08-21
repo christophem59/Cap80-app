@@ -2,10 +2,11 @@
 
 Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 
-## Rappels / Notifications — ✅ Fait
-- Bannière in-app (Aujourd'hui) + notification OS à l'ouverture si saisie manquante ; réglages par type (pesée/repas/pas) avec heure.
-- **Notifications en arrière-plan (app fermée)** via Web Push : service worker custom (push + clic), abonnement déposé dans le dépôt privé, envoi par workflow GitHub Actions (cf. `push-backend/`). Mise en place = clés VAPID + secrets + copie des 2 fichiers dans le dépôt privé.
-- Clic sur la notif → ouvre/refocalise l'app (SW `injectManifest`).
+## Rappels / Notifications — ⏸️ Mis de côté (2026-08-21)
+- Tenté puis **retiré** : bannière in-app + notif à l'ouverture + Web Push (SW custom + workflow GitHub Actions du dépôt privé).
+- Bloqueur : le **web push ne s'affichait pas** sur le Pixel 8 Pro alors que tout était correct (permission, SW à jour, endpoint frais, VAPID cohérent, FCM 201, ping nu KO, autres sites OK). Cause non tranchée (budget push silencieux Chrome / spécificité WebAPK ?) — nécessiterait un débogage USB `chrome://inspect`.
+- Telegram/e-mail écartés (l'utilisateur ne veut pas de nouvelle app ; rappel e-mail non retenu pour l'instant).
+- À reprendre seulement si le besoin se confirme à l'usage. Piste native = débogage USB du web push ; sinon canal e-mail.
 
 ## Scanner de code-barres
 - Scan produit → log rapide, via base ouverte **OpenFoodFacts** (pas de marques en dur).
