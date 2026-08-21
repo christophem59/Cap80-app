@@ -1,8 +1,39 @@
 import { execSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+
+// Content-Security-Policy injectée UNIQUEMENT au build de prod (via <meta>), pour
+// durcir l'app sans casser le HMR du serveur de dev. Politique : tout en 'self',
+// seul l'API GitHub est autorisée en connexion sortante ; 'unsafe-inline' limité aux
+// styles (attributs style de React/recharts) — jamais pour les scripts.
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "connect-src 'self' https://api.github.com",
+  "manifest-src 'self'",
+  "worker-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+].join('; ')
+
+const cspPlugin: Plugin = {
+  name: 'cap80-csp-meta',
+  apply: 'build',
+  transformIndexHtml() {
+    return [
+      {
+        tag: 'meta',
+        attrs: { 'http-equiv': 'Content-Security-Policy', content: CSP },
+        injectTo: 'head-prepend',
+      },
+    ]
+  },
+}
 
 // GitHub Pages sert le dépôt public Cap80-app sous /Cap80-app/ (§2.1). Sans ce base
 // path, le SW, le manifest et les assets sont demandés à la racine → 404 et PWA non
@@ -39,6 +70,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    cspPlugin,
     VitePWA({
       // §10 : on propose « nouvelle version, recharger » plutôt qu'un reload forcé.
       registerType: 'prompt',
