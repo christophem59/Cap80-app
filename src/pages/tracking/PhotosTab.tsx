@@ -66,10 +66,13 @@ export function PhotosTab() {
   const photos = usePhotos()
   const weights = useWeights()
   const [angle, setAngle] = useState<PhotoAngle>('face')
+  const [date, setDate] = useState(todayLocal())
   const [mode, setMode] = useState<'grille' | 'comparer'>('grille')
   const cameraRef = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
+
+  const today = todayLocal()
 
   async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -77,9 +80,10 @@ export function PhotosTab() {
     if (!file) return
     setBusy(true)
     try {
-      const today = todayLocal()
-      const w = trailingAvg(weights, today) ?? weights[0]?.weightKg ?? null
-      await savePhoto(today, angle, file, w == null ? null : Math.round(w * 10) / 10)
+      // Poids associé = moyenne mobile à la date choisie, sinon la pesée de ce jour.
+      const w =
+        trailingAvg(weights, date) ?? weights.find((x) => x.date === date)?.weightKg ?? null
+      await savePhoto(date, angle, file, w == null ? null : Math.round(w * 10) / 10)
     } finally {
       setBusy(false)
     }
@@ -118,6 +122,19 @@ export function PhotosTab() {
             </button>
           ))}
         </div>
+        <div className="mt-3">
+          <label htmlFor="photo-date" className="mb-1 block text-xs font-medium text-[var(--text-muted)]">
+            Jour {date === today ? '(aujourd’hui)' : ''}
+          </label>
+          <input
+            id="photo-date"
+            type="date"
+            value={date}
+            max={today}
+            onChange={(e) => setDate(e.target.value || today)}
+            className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm"
+          />
+        </div>
         {/* Caméra (capture) et galerie/fichiers (sans capture) : deux entrées distinctes
             pour laisser le choix sur mobile. */}
         <input
@@ -136,7 +153,7 @@ export function PhotosTab() {
           className="hidden"
         />
         <p className="mt-3 mb-1 text-xs text-[var(--text-muted)]">
-          Angle : <strong>{ANGLE_LABELS[angle]}</strong>
+          Angle : <strong>{ANGLE_LABELS[angle]}</strong> · Jour : <strong>{frDate(date)}</strong>
         </p>
         <div className="flex gap-2">
           <button
