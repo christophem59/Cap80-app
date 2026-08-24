@@ -7,8 +7,12 @@ import { useFoods, useRecipes } from '../../repo/catalogFood'
 import {
   useShopping,
   setSelection,
+  setServings,
   clearSelection,
   toggleChecked,
+  clearChecked,
+  addFreeItem,
+  removeFreeItem,
 } from '../../repo/shoppingList'
 
 const lineKey = (l: ShoppingLineItem) => l.foodId ?? l.label
@@ -16,15 +20,37 @@ const lineKey = (l: ShoppingLineItem) => l.foodId ?? l.label
 export function CoursesTab() {
   const foods = useFoods()
   const recipes = useRecipes()
-  const { selection, checked } = useShopping()
+  const { selection, freeItems, checked } = useShopping()
   const foodsById = useMemo(() => new Map<string, Food>(foods.map((f) => [f.id, f])), [foods])
   const recipeById = useMemo(() => new Map<string, Recipe>(recipes.map((r) => [r.id, r])), [recipes])
   const [shareMsg, setShareMsg] = useState<string | null>(null)
+  const [freeLabel, setFreeLabel] = useState('')
+  const [freeQty, setFreeQty] = useState('')
 
   const groups = useMemo(
-    () => buildShoppingList(selection, [], { recipes: recipeById, foods: foodsById }),
-    [selection, recipeById, foodsById],
+    () => buildShoppingList(selection, freeItems, { recipes: recipeById, foods: foodsById }),
+    [selection, freeItems, recipeById, foodsById],
   )
+
+  const totalLines = groups.reduce((s, g) => s + g.items.length, 0)
+  const checkedCount = groups.reduce(
+    (s, g) => s + g.items.filter((it) => checked.has(lineKey(it))).length,
+    0,
+  )
+
+  async function submitFreeItem(e: React.FormEvent) {
+    e.preventDefault()
+    const label = freeLabel.trim()
+    if (!label) return
+    const n = parseFloat(freeQty.replace(',', '.'))
+    await addFreeItem({
+      label,
+      category: 'autre',
+      ...(Number.isFinite(n) && n > 0 ? { count: n } : {}),
+    })
+    setFreeLabel('')
+    setFreeQty('')
+  }
 
   function shareText(): string {
     const lines: string[] = ['Liste de courses', '']
@@ -58,41 +84,134 @@ export function CoursesTab() {
     }
   }
 
-  if (selection.length === 0) {
+  const empty = selection.length === 0 && freeItems.length === 0
+
+  const freeItemForm = (
+    <form onSubmit={submitFreeItem} className="flex gap-2">
+      <input
+        value={freeLabel}
+        onChange={(e) => setFreeLabel(e.target.value)}
+        placeholder="Ajouter un article (café, PQ…)"
+        className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm"
+      />
+      <input
+        value={freeQty}
+        onChange={(e) => setFreeQty(e.target.value)}
+        inputMode="decimal"
+        placeholder="qté"
+        aria-label="Quantité (optionnel)"
+        className="w-16 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2 py-2 text-center text-sm tabular-nums"
+      />
+      <button
+        type="submit"
+        className="shrink-0 rounded-lg px-3 py-2 text-sm font-semibold text-white"
+        style={{ background: 'var(--accent)' }}
+      >
+        +
+      </button>
+    </form>
+  )
+
+  if (empty) {
     return (
-      <p className="rounded-xl border border-dashed border-[var(--border)] p-6 text-center text-sm text-[var(--text-muted)]">
-        Aucune recette sélectionnée. Va dans l'onglet <strong>Recettes</strong>, coche celles que
-        tu vas cuisiner et ajuste les portions, puis « Ajouter aux courses ».
-      </p>
+      <div className="space-y-3">
+        <p className="rounded-xl border border-dashed border-[var(--border)] p-6 text-center text-sm text-[var(--text-muted)]">
+          Aucune recette sélectionnée. Va dans l'onglet <strong>Recettes</strong>, coche celles que
+          tu vas cuisiner et ajuste les portions, puis « Ajouter aux courses ».
+        </p>
+        <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
+          <h2 className="mb-2 text-sm font-semibold">Article hors recette</h2>
+          {freeItemForm}
+        </section>
+      </div>
     )
   }
 
   return (
     <div className="space-y-4">
-      {/* Recettes sélectionnées. */}
+      {/* Recettes sélectionnées, portions ajustables. */}
+      {selection.length > 0 && (
+        <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
+          <div className="mb-2 flex items-center justify-between">
+            <h2 className="text-sm font-semibold">Recettes ({selection.length})</h2>
+            <button type="button" onClick={() => void clearSelection()} className="text-xs text-[var(--text-muted)] underline">
+              Tout effacer
+            </button>
+          </div>
+          <ul className="space-y-1.5 text-sm">
+            {selection.map((s) => (
+              <li key={s.recipeId} className="flex items-center gap-2">
+                <span className="flex-1">{recipeById.get(s.recipeId)?.label ?? s.recipeId}</span>
+                <button
+                  type="button"
+                  onClick={() => void setServings(s.recipeId, s.servings - 1)}
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--border)] text-xs"
+                  aria-label="Moins de portions"
+                >
+                  −
+                </button>
+                <span className="w-10 text-center tabular-nums text-[var(--text-muted)]">
+                  {s.servings} p.
+                </span>
+                <button
+                  type="button"
+                  onClick={() => void setServings(s.recipeId, s.servings + 1)}
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--border)] text-xs"
+                  aria-label="Plus de portions"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void setSelection(selection.filter((x) => x.recipeId !== s.recipeId))}
+                  className="text-xs text-[var(--text-muted)] underline"
+                  aria-label="Retirer la recette"
+                >
+                  ×
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Articles hors recette. */}
       <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
-        <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-sm font-semibold">Recettes ({selection.length})</h2>
-          <button type="button" onClick={() => void clearSelection()} className="text-xs text-[var(--text-muted)] underline">
-            Tout effacer
-          </button>
-        </div>
-        <ul className="space-y-1 text-sm">
-          {selection.map((s) => (
-            <li key={s.recipeId} className="flex items-center gap-2">
-              <span className="flex-1">{recipeById.get(s.recipeId)?.label ?? s.recipeId}</span>
-              <span className="tabular-nums text-[var(--text-muted)]">{s.servings} port.</span>
-              <button
-                type="button"
-                onClick={() => void setSelection(selection.filter((x) => x.recipeId !== s.recipeId))}
-                className="text-xs text-[var(--text-muted)] underline"
-              >
-                ×
-              </button>
-            </li>
-          ))}
-        </ul>
+        <h2 className="mb-2 text-sm font-semibold">Article hors recette</h2>
+        {freeItemForm}
+        {freeItems.length > 0 && (
+          <ul className="mt-2 space-y-1 text-sm">
+            {freeItems.map((it, i) => (
+              <li key={`${it.label}-${i}`} className="flex items-center gap-2">
+                <span className="flex-1">{it.label}</span>
+                {it.count != null && (
+                  <span className="tabular-nums text-[var(--text-muted)]">×{it.count}</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => void removeFreeItem(i)}
+                  className="text-xs text-[var(--text-muted)] underline"
+                  aria-label="Retirer l'article"
+                >
+                  ×
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
+
+      {/* Progression du remplissage du panier. */}
+      <div className="flex items-center justify-between px-1 text-xs text-[var(--text-muted)]">
+        <span className="tabular-nums">
+          {checkedCount} / {totalLines} article{totalLines > 1 ? 's' : ''} pris
+        </span>
+        {checkedCount > 0 && (
+          <button type="button" onClick={() => void clearChecked()} className="underline">
+            Tout décocher
+          </button>
+        )}
+      </div>
 
       {/* Liste cochable, groupée par rayon. */}
       {groups.map((g) => (
