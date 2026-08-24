@@ -1,5 +1,6 @@
 {
   "source": "Valeurs pour 100 g du produit tel que pesé, d'après les tables Ciqual (ANSES) et USDA, arrondies. À affiner pour un usage critique. Enrichissable via custom-foods.json (dépôt privé) ou l'app.",
+  "version": "4f934e6f4ad9",
   "foods": [
     { "id": "poulet-blanc-cru", "label": "Blanc de poulet, cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 121, "proteinG": 23, "fatG": 2.6, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.7, "servings": [{ "label": "1 blanc (~150 g)", "grams": 150 }] },
     { "id": "dinde-escalope-crue", "label": "Escalope de dinde, crue", "category": "proteines", "state": "cru", "per100g": { "kcal": 110, "proteinG": 24, "fatG": 1.5, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 escalope (~120 g)", "grams": 120 }] },
