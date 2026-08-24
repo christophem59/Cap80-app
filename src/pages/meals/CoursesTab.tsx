@@ -3,7 +3,6 @@ import type { Food, Recipe } from '../../domain/types'
 import { buildShoppingList } from '../../domain/shopping'
 import type { ShoppingLineItem } from '../../domain/shopping'
 import { FOOD_CATEGORY_LABELS } from '../../domain/labels'
-import weekJson from '../../data/week.default.json'
 import { useFoods, useRecipes } from '../../repo/catalogFood'
 import {
   useShopping,
@@ -26,15 +25,6 @@ export function CoursesTab() {
     () => buildShoppingList(selection, [], { recipes: recipeById, foods: foodsById }),
     [selection, recipeById, foodsById],
   )
-
-  async function addWeek() {
-    // Agrège la semaine type : 1 portion par proposition.
-    const counts = new Map<string, number>()
-    for (const day of weekJson.days as { slots: Record<string, string> }[]) {
-      for (const id of Object.values(day.slots)) counts.set(id, (counts.get(id) ?? 0) + 1)
-    }
-    await setSelection([...counts].map(([recipeId, servings]) => ({ recipeId, servings })))
-  }
 
   function shareText(): string {
     const lines: string[] = ['Liste de courses', '']
@@ -70,20 +60,10 @@ export function CoursesTab() {
 
   if (selection.length === 0) {
     return (
-      <div className="space-y-3">
-        <p className="rounded-xl border border-dashed border-[var(--border)] p-6 text-center text-sm text-[var(--text-muted)]">
-          Aucune recette sélectionnée. Ajoute des recettes depuis « Propositions » / une recette
-          (bouton « Ajouter à la liste de courses »), ou pars de la semaine type.
-        </p>
-        <button
-          type="button"
-          onClick={() => void addWeek()}
-          className="w-full rounded-lg py-2.5 text-sm font-semibold text-white"
-          style={{ background: 'var(--accent)' }}
-        >
-          Générer depuis la semaine type
-        </button>
-      </div>
+      <p className="rounded-xl border border-dashed border-[var(--border)] p-6 text-center text-sm text-[var(--text-muted)]">
+        Aucune recette sélectionnée. Va dans l'onglet <strong>Recettes</strong>, coche celles que
+        tu vas cuisiner et ajuste les portions, puis « Ajouter aux courses ».
+      </p>
     )
   }
 
@@ -112,14 +92,6 @@ export function CoursesTab() {
             </li>
           ))}
         </ul>
-        <button
-          type="button"
-          onClick={() => void addWeek()}
-          className="mt-2 text-xs underline"
-          style={{ color: 'var(--accent)' }}
-        >
-          Repartir de la semaine type
-        </button>
       </section>
 
       {/* Liste cochable, groupée par rayon. */}
