@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { JournalTab } from './meals/JournalTab'
 import { PropositionsTab } from './meals/PropositionsTab'
 import { CoursesTab } from './meals/CoursesTab'
-import { BatchTab } from './meals/BatchTab'
+import { RecipesTab } from './meals/RecipesTab'
 import { RestitutionTab } from './meals/RestitutionTab'
 import { RecipeView } from './meals/RecipeView'
 
-type Tab = 'journal' | 'semaine' | 'courses' | 'batch' | 'envies'
+type Tab = 'journal' | 'semaine' | 'courses' | 'recettes' | 'envies'
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'journal', label: 'Journal' },
   { id: 'semaine', label: 'Semaine' },
   { id: 'courses', label: 'Courses' },
-  { id: 'batch', label: 'Batch' },
+  { id: 'recettes', label: 'Recettes' },
   { id: 'envies', label: 'Envies' },
 ]
 
@@ -58,7 +58,7 @@ export function Meals() {
       {tab === 'journal' && <JournalTab />}
       {tab === 'semaine' && <PropositionsTab onOpenRecipe={setRecipeId} />}
       {tab === 'courses' && <CoursesTab />}
-      {tab === 'batch' && <BatchTab onOpenRecipe={setRecipeId} />}
+      {tab === 'recettes' && <RecipesTab onOpenRecipe={setRecipeId} />}
       {tab === 'envies' && <RestitutionTab />}
     </section>
   )
