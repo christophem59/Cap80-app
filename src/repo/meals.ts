@@ -88,6 +88,22 @@ export async function removeMealItem(
 }
 
 /**
+ * Remplace un item par des valeurs éditées (ajustement one-shot des macros, §« le
+ * journal fige »). N'affecte que ce repas de ce jour ; le catalogue n'est pas touché.
+ */
+export async function updateMealItem(
+  date: LocalDate,
+  slot: MealSlot,
+  index: number,
+  item: MealItem,
+): Promise<void> {
+  const existing = await slotLog(date, slot)
+  if (!existing) return
+  const items = existing.items.map((it, i) => (i === index ? item : it))
+  await saveSlot(date, slot, items)
+}
+
+/**
  * §7.3 — Repas récents d'un créneau, pour « refaire un repas d'hier / de la semaine
  * dernière ». Cherche dans le mois courant et le précédent, hors date du jour.
  */
