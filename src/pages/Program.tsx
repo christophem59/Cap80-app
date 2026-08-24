@@ -51,7 +51,12 @@ export function Program() {
   return (
     <section className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold tracking-tight">Programme</h1>
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Programme</h1>
+          <p className="mt-0.5 text-sm text-[var(--text-muted)]">
+            Semaine {week} en cours{current ? ` · ${current.label}` : ''}
+          </p>
+        </div>
         <button
           type="button"
           onClick={() => setEditing(true)}
@@ -76,15 +81,20 @@ export function Program() {
         return (
           <section
             key={p.id}
-            className="rounded-xl border bg-[var(--surface)] p-4"
-            style={{ borderColor: isCurrent ? 'var(--accent)' : 'var(--border)' }}
+            className="rounded-xl border p-4"
+            style={{
+              borderColor: isCurrent ? 'var(--accent)' : 'var(--border)',
+              background: isCurrent
+                ? 'color-mix(in srgb, var(--accent) 8%, var(--surface))'
+                : 'var(--surface)',
+            }}
           >
             <div className="flex items-baseline justify-between">
               <h2 className="text-sm font-semibold">
                 {p.label}
                 {isCurrent && (
                   <span className="ml-2 text-[10px] uppercase" style={{ color: 'var(--accent)' }}>
-                    en cours
+                    en cours · sem. {week}
                   </span>
                 )}
               </h2>
