@@ -78,11 +78,13 @@ if (foodsFile.version !== currentFoodsVersion) {
       `calculée « ${currentFoodsVersion} ». Lance : node scripts/foods-version.mjs --stamp`,
   )
 }
-if (!bundle.foodsVersion) {
+// Tolérance de forme : `foodsVersion` accepté à la racine ou dans `meta`.
+const declaredFoodsVersion = bundle.foodsVersion ?? bundle.meta?.foodsVersion
+if (!declaredFoodsVersion) {
   warn(`bundle sans « foodsVersion » — impossible de vérifier la base utilisée (attendu : ${currentFoodsVersion}).`)
-} else if (bundle.foodsVersion !== currentFoodsVersion) {
+} else if (declaredFoodsVersion !== currentFoodsVersion) {
   err(
-    `Bundle calculé sur une base d'aliments DIFFÉRENTE : bundle « ${bundle.foodsVersion} » ` +
+    `Bundle calculé sur une base d'aliments DIFFÉRENTE : bundle « ${declaredFoodsVersion} » ` +
       `vs base actuelle « ${currentFoodsVersion} ».\n` +
       "    → Ce n'est pas une erreur de calcul : régénère le bundle avec le foods.json à jour\n" +
       '      (https://raw.githubusercontent.com/christophem59/Cap80-app/main/src/data/foods.json).',
@@ -134,7 +136,10 @@ for (const [base, fc] of cru) {
 for (const r of bundle.recipes ?? []) {
   const at = `recipes[${r?.id ?? '?'}]`
   if (!r.id || !r.label) err(`${at} : id et label requis.`)
-  if (!Array.isArray(r.slot) || r.slot.some((s) => !RECIPE_SLOTS.includes(s))) err(`${at} : slot invalide (${JSON.stringify(r.slot)}).`)
+  // Tolérance de forme : slot accepté en chaîne unique, normalisé en tableau.
+  const slots = typeof r.slot === 'string' ? [r.slot] : r.slot
+  if (!Array.isArray(slots) || slots.length === 0 || slots.some((s) => !RECIPE_SLOTS.includes(s)))
+    err(`${at} : slot invalide (${JSON.stringify(r.slot)}) — attendu parmi ${RECIPE_SLOTS.join('|')}.`)
   if (!Number.isInteger(r.servings) || r.servings <= 0) err(`${at} : servings doit être un entier > 0.`)
   if ('cookedYieldG' in r && (!isNum(r.cookedYieldG) || r.cookedYieldG <= 0)) err(`${at} : cookedYieldG doit être un nombre > 0.`)
   if (!Array.isArray(r.ingredients) || r.ingredients.length === 0) err(`${at} : ingredients requis.`)
@@ -288,7 +293,7 @@ function report() {
     `Contenu : ${(bundle.foods ?? []).length} aliment(s), ${(bundle.recipes ?? []).length} recette(s), ` +
       `${bundle.week ? (bundle.week.days ?? []).length + ' jour(s)' : 'pas de semaine'}.`,
   )
-  console.log(`Base d'aliments : ${currentFoodsVersion}${bundle.foodsVersion ? ` (bundle : ${bundle.foodsVersion})` : ''}`)
+  console.log(`Base d'aliments : ${currentFoodsVersion}${declaredFoodsVersion ? ` (bundle : ${declaredFoodsVersion})` : ''}`)
   if (bundle.target) {
     const t = bundle.target
     console.log(`Cible déclarée : S${t.calendarWeek ?? '?'} · ${t.phaseId ?? '?'} · ${t.targetKcal ?? '?'} kcal · P${t.targetProteinG ?? '?'}`)

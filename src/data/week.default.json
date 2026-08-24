@@ -1,33 +1,227 @@
 {
-  "note": "Semaine type de propositions (§7.3). Un repas par créneau, réutilise les 10 recettes. Modifiable / enrichissable comme les autres catalogues.",
+  "note": "Semaine planifiée, injectée via un bundle (docs/injection-repas.md). Format days[].meals[].",
   "days": [
     {
       "label": "Lundi",
-      "slots": { "petit-dej": "shaker-matin", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "cabillaud-courgettes-quinoa" }
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "skyr-du-matin"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "gamelle-poulet-riz-legumes"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "boite-crudites"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-cabillaud-courgettes-quinoa"
+        },
+        {
+          "slot": "extra",
+          "recipeId": "dessert-fb-cacao",
+          "note": "Dessert du soir — dispositif anti-grignotage."
+        }
+      ]
     },
     {
       "label": "Mardi",
-      "slots": { "petit-dej": "muffins-oeufs", "dejeuner": "poulet-roti-epices", "collation": "shaker-matin", "diner": "steak-haricots-patate-douce" }
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "skyr-du-matin"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "gamelle-poulet-lentilles-crudites"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "boite-crudites"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-steak-haricots-patate-douce"
+        },
+        {
+          "slot": "extra",
+          "recipeId": "dessert-fb-fruits-rouges"
+        }
+      ]
     },
     {
       "label": "Mercredi",
-      "slots": { "petit-dej": "shaker-matin", "dejeuner": "lentilles-oignon-carotte", "collation": "oeufs-durs", "diner": "cabillaud-courgettes-quinoa" }
+      "isRestaurantDay": true,
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "skyr-du-matin"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "gamelle-poulet-riz-legumes"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "boite-crudites"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "18:30",
+          "note": "Avant de partir : ne jamais arriver au restaurant en ayant faim."
+        },
+        {
+          "slot": "diner",
+          "estimated": {
+            "kcal": 1200,
+            "proteinG": 45
+          },
+          "note": "Restaurant — estimation à remplacer par la saisie réelle."
+        }
+      ]
     },
     {
       "label": "Jeudi",
-      "slots": { "petit-dej": "muffins-oeufs", "dejeuner": "poulet-roti-epices", "collation": "shaker-matin", "diner": "steak-haricots-patate-douce" }
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "skyr-du-matin"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "gamelle-poulet-lentilles-crudites"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "boite-crudites"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-dinde-puree-epinards"
+        },
+        {
+          "slot": "extra",
+          "recipeId": "dessert-fb-cacao"
+        }
+      ]
     },
     {
       "label": "Vendredi",
-      "slots": { "petit-dej": "shaker-matin", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "cabillaud-courgettes-quinoa" }
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "skyr-du-matin"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "gamelle-poulet-riz-legumes"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "collation-fb-amandes"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-omelette-champignons"
+        },
+        {
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120
+        }
+      ]
     },
     {
       "label": "Samedi",
-      "slots": { "petit-dej": "muffins-oeufs", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "steak-haricots-patate-douce" }
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "muffins-oeufs",
+          "portions": 3
+        },
+        {
+          "slot": "petit-dej",
+          "foodId": "pain-complet",
+          "grams": 40
+        },
+        {
+          "slot": "petit-dej",
+          "foodId": "pomme",
+          "grams": 150
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "salade-complete"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-saumon-pdt-poireaux"
+        },
+        {
+          "slot": "extra",
+          "recipeId": "dessert-fb-fruits-rouges"
+        }
+      ]
     },
     {
       "label": "Dimanche",
-      "slots": { "petit-dej": "shaker-matin", "dejeuner": "poulet-roti-epices", "collation": "oeufs-durs", "diner": "lentilles-oignon-carotte" }
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "muffins-oeufs",
+          "portions": 3
+        },
+        {
+          "slot": "petit-dej",
+          "foodId": "pain-complet",
+          "grams": 40
+        },
+        {
+          "slot": "petit-dej",
+          "foodId": "banane",
+          "grams": 120
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "salade-complete"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "boite-crudites"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "collation-fb-amandes"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "soupe-legumes-vide-frigo",
+          "portions": 2
+        },
+        {
+          "slot": "diner",
+          "foodId": "oeuf-dur",
+          "grams": 150,
+          "note": "3 œufs durs."
+        },
+        {
+          "slot": "diner",
+          "foodId": "pain-complet",
+          "grams": 60
+        },
+        {
+          "slot": "extra",
+          "recipeId": "dessert-fb-cacao"
+        }
+      ]
     }
   ]
 }
