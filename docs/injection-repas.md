@@ -1,176 +1,204 @@
-# Cap80 — injection recettes & semaine
+# Cap80 — injection recettes & semaine (format v2)
 
-Ce document décrit le **fichier unique** (« bundle ») qui permet d'alimenter, enrichir ou
-remplacer les **aliments**, les **recettes** et la **semaine** de Cap80, sans coder.
+Chaque semaine : tu prépares le contenu **avec Cowork**, tu me pousses le **bundle JSON**
+produit, je le passe au validateur (`node scripts/validate-bundle.mjs <fichier>`) et,
+s'il est accepté, je l'applique aux fichiers publics
+(`src/data/foods.json`, `recipes.json`, `week.default.json`) en **un seul commit**.
 
-Flux prévu : tu prépares le contenu **avec Cowork**, tu me pousses le fichier JSON produit,
-je l'applique au dépôt public (`src/data/foods.json`, `recipes.json`, `week.default.json`),
-je commit + push, et l'app se met à jour au prochain rechargement.
+> **Le validateur refuse tout bundle incohérent.** Il n'y a pas de « importer quand même ».
+> Si un écart est signalé, c'est le bundle qu'il faut corriger.
 
 ---
 
 ## 1. Le bundle
 
-Un seul objet JSON. Les trois sections sont **facultatives** — n'inclus que ce que tu veux
-changer.
-
-```json
+```jsonc
 {
-  "foods":   [ /* aliments à ajouter/remplacer (optionnel) */ ],
-  "recipes": [ /* recettes à ajouter/remplacer (optionnel) */ ],
-  "week":    { "days": [ /* la semaine, remplace TOUT (optionnel) */ ] }
+  "foods":   [ /* aliments à ajouter/remplacer — optionnel */ ],
+  "recipes": [ /* recettes à ajouter/remplacer — optionnel */ ],
+  "week":    { "days": [ /* les 7 jours — optionnel */ ] },
+  "expectedTotals": { /* OBLIGATOIRE dès que `week` est présent */ }
 }
 ```
 
-### Règles d'application (ce que je fais à la réception)
-- **`foods`** : fusion **par `id`**. Un id déjà présent est **remplacé**, un nouvel id est **ajouté**. Les autres aliments ne bougent pas.
-- **`recipes`** : fusion **par `id`**, même logique.
-- **`week`** : **remplacement complet** de la semaine (c'est un planning, pas un cumul).
-
-> Donc : « enrichir » = envoyer seulement les nouveautés ; « remplacer une recette » = renvoyer le même `id` ; « refaire la semaine » = envoyer une section `week` complète.
+Règles d'application :
+- **`foods`** / **`recipes`** : fusion **par `id`** (id connu = remplacé, nouvel id = ajouté).
+- **`week`** : **remplacement complet** du planning.
+- **Idempotence** : réappliquer un bundle identique ne réécrit rien.
 
 ---
 
-## 2. Schéma des `foods` (aliments)
+## 2. `foods` — aliments
 
-N'ajoute un aliment **que s'il manque** dans `foods.json`. Valeurs **pour 100 g du produit tel que pesé**.
+À n'inclure que si l'aliment **manque**. Valeurs **pour 100 g dans l'état déclaré**.
 
-```json
+```jsonc
 {
-  "id": "kebab-maison",                 // kebab-case, unique, stable
-  "label": "Kebab maison",              // sans marque
-  "category": "proteines",              // legumes|fruits|proteines|laitiers|feculents|gras|epices|boissons|autre
-  "per100g": { "kcal": 215, "proteinG": 12, "fatG": 9, "carbsG": 22, "fiberG": 2 },
-  "servings": [{ "label": "1 portion (250 g)", "grams": 250 }]  // optionnel : portions usuelles
+  "id": "haricots-verts-crus",
+  "label": "Haricots verts, crus",
+  "category": "legumes",          // legumes|fruits|proteines|laitiers|feculents|gras|epices|boissons|autre
+  "state": "cru",                 // OBLIGATOIRE : cru | cuit | tel-quel
+  "per100g": { "kcal": 31, "proteinG": 1.8, "fatG": 0.1, "carbsG": 5, "fiberG": 3.2 },
+  "cookedFactor": 0.9,            // UNIQUEMENT si state = "cru" ; poids cuit = poids cru × facteur
+  "servings": [{ "label": "1 portion (150 g)", "grams": 150 }]   // optionnel
 }
 ```
-Contraintes : **pas de marques**, `kcal`/macros cohérents (≈ 4·prot + 4·gluc + 9·lip), `fiberG` ≥ 0.
+
+- **`cru`** : pesé avant cuisson — le libellé doit contenir « cru/crue/crus/crues ».
+- **`cuit`** : pesé après cuisson — le libellé doit contenir « cuit/cuite/cuits/cuites ».
+- **`tel-quel`** : pas de cuisson en jeu (laitiers, poudres, pain, conserves, huiles, fruits frais, plats).
+- `cookedFactor` est **interdit** sur `cuit` et `tel-quel`.
+- **Pas de marques**, ni dans `id` ni dans `label`.
 
 ---
 
-## 3. Schéma des `recipes` (recettes)
+## 3. `recipes` — recettes
 
-Une recette = une **composition d'aliments** pesés **crus** (poids mis dans la casserole),
-pour un **nombre de portions produites** (`servings`). Les macros sont **recalculées par l'app**
-depuis les ingrédients — ne les mets pas à la main.
+Les macros **ne sont jamais stockées** : l'app les recalcule depuis les ingrédients.
 
-```json
+```jsonc
 {
-  "id": "diner-cabillaud-courgettes-quinoa",   // kebab-case, unique
+  "id": "diner-cabillaud-courgettes-quinoa",
   "label": "Cabillaud, courgettes, quinoa",
-  "slot": ["diner"],                            // 1+ créneaux : petit-dej | dejeuner | collation | diner
-  "servings": 1,                                // nb de portions produites par la recette
+  "slot": ["diner"],              // petit-dej | dejeuner | collation | diner (1 ou +)
+  "servings": 1,                  // portions produites (entier > 0)
   "prepMin": 10,
   "cookMin": 15,
-  "batchFriendly": true,                        // true = préparable à l'avance (picto 🍲 dans l'app)
+  "batchFriendly": true,          // préparable à l'avance → picto 🍲 dans l'app
+  "cookedYieldG": 620,            // optionnel : poids total APRÈS cuisson, si mesuré
   "ingredients": [
-    { "foodId": "cabillaud-cru", "grams": 250 },   // foodId DOIT exister dans foods.json
+    { "foodId": "cabillaud-cru", "grams": 250 },
     { "foodId": "courgette",     "grams": 250 },
     { "foodId": "quinoa-cru",    "grams": 90 }
   ],
-  "steps": ["Quinoa 15 min.", "Cabillaud 12-15 min à 200 °C — ne pas trop cuire."]
+  "steps": ["Quinoa 15 min.", "Cabillaud 12-15 min à 200 °C — sel, poivre, herbes."]
 }
 ```
 
-Contraintes clés :
-- **`foodId` doit exister** dans `foods.json` (sinon l'ingrédient est ignoré et les macros sont fausses). Si un aliment manque, ajoute-le dans la section `foods`.
-- **`grams` = poids CRU**, tel que pesé avant cuisson.
-- `servings` = portions produites (une recette « batch » en produit plusieurs ; un plat individuel = 1).
+Règles :
+- **`grams` s'exprime dans l'état déclaré (`state`) de l'aliment** — jamais de conversion implicite.
+  (Un aliment `cuit` se pèse cuit : `pois-chiches-cuits` 150 g = 150 g égouttés.)
+- **`foodId` doit exister** (catalogue ou section `foods` du même bundle).
+- **Épices, aromates, sel, poivre, citron, bouillon : PAS dans `ingredients`** → dans `steps`.
+  En dessous de ~5 kcal/portion, c'est du bruit.
 
 ---
 
-## 4. Schéma de la `week` (semaine)
+## 4. `week` — le planning
 
-7 jours, **un id de recette par créneau**. Les recettes référencées doivent exister
-(dans `recipes.json` ou dans la section `recipes` du même bundle).
-
-```json
-{
-  "days": [
-    { "label": "Lundi", "slots": {
-        "petit-dej": "shaker-matin",
-        "dejeuner":  "gamelle-poulet-riz-legumes",
-        "collation": "oeufs-durs",
-        "diner":     "diner-cabillaud-courgettes-quinoa" } },
-    { "label": "Mardi", "slots": { "petit-dej": "…", "dejeuner": "…", "collation": "…", "diner": "…" } }
-    // … Mercredi → Dimanche
-  ]
-}
+```jsonc
+{ "days": [
+  { "label": "Mercredi",
+    "isRestaurantDay": true,
+    "meals": [
+      { "slot": "petit-dej", "recipeId": "shaker-matin" },
+      { "slot": "dejeuner",  "recipeId": "gamelle-poulet-riz-legumes", "portions": 1 },
+      { "slot": "collation", "recipeId": "shaker-eau", "time": "18:30",
+        "note": "avant de partir au restaurant" },
+      { "slot": "diner", "estimated": { "kcal": 1200, "proteinG": 45 },
+        "note": "Resto — estimation, dessert compris" },
+      { "slot": "extra", "foodId": "kiwi", "grams": 75, "note": "dessert" }
+    ] }
+] }
 ```
-Un créneau peut être omis (rien de prévu). Un seul plat par créneau (une recette peut elle-même
-être une composition).
+
+- 7 jours, `label` de **Lundi** à **Dimanche**.
+- `meals` est un **tableau** : plusieurs entrées peuvent partager le même `slot`
+  (2 collations, un `diner` + un `extra` pour le dessert).
+- `slot` ∈ `petit-dej | dejeuner | collation | diner | extra`.
+- Chaque repas porte **exactement un** de : `recipeId` (+ `portions`, défaut 1, décimales OK),
+  `foodId` + `grams`, ou `estimated` `{kcal, proteinG}`.
+- `time` (`"HH:MM"`) facultatif : sert au tri d'affichage.
 
 ---
 
-## 5. Checklist de validation (avant de me l'envoyer)
-- [ ] JSON valide (une seule accolade englobante).
-- [ ] Tous les `foodId` des recettes existent dans `foods.json` **ou** sont fournis dans `foods`.
-- [ ] Tous les `recipeId` de `week` existent dans `recipes.json` **ou** dans `recipes`.
-- [ ] `slot` uniquement parmi : `petit-dej`, `dejeuner`, `collation`, `diner`.
-- [ ] `category` (foods) parmi la liste autorisée. Pas de marque dans les libellés.
-- [ ] Grammages des recettes = **crus**.
+## 5. `expectedTotals` — le contrôle croisé (obligatoire avec `week`)
 
-À la réception je revérifie tout ça et je te signale toute référence manquante avant d'appliquer.
+Le bundle **déclare** ce que chaque jour doit totaliser ; l'app **recalcule** depuis ses tables.
+Si ça diverge au-delà de la tolérance, **l'import est refusé** en désignant le jour fautif.
 
----
-
-## 6. Exemple minimal complet
-
-```json
-{
-  "recipes": [
-    {
-      "id": "diner-omelette-champignons",
-      "label": "Omelette aux champignons",
-      "slot": ["diner"], "servings": 1, "prepMin": 5, "cookMin": 10, "batchFriendly": false,
-      "ingredients": [
-        { "foodId": "oeuf-entier",   "grams": 220 },
-        { "foodId": "champignons",   "grams": 250 },
-        { "foodId": "salade-verte",  "grams": 100 },
-        { "foodId": "pain-complet",  "grams": 100 },
-        { "foodId": "huile-olive",   "grams": 5 }
-      ],
-      "steps": ["Champignons à sec d'abord (évacuer l'eau), puis l'huile.", "4 œufs."]
-    }
+```jsonc
+"expectedTotals": {
+  "perDay": [
+    { "label": "Lundi",  "kcal": 2240, "proteinG": 186 },
+    { "label": "Mardi",  "kcal": 2210, "proteinG": 191 }
+    // … les 7 jours
   ],
-  "week": {
-    "days": [
-      { "label": "Lundi", "slots": { "petit-dej": "shaker-matin", "dejeuner": "salade-complete", "collation": "oeufs-durs", "diner": "diner-omelette-champignons" } }
-    ]
-  }
+  "weekAvgKcal": 2265,
+  "weekAvgProteinG": 188,
+  "toleranceKcal": 20,        // optionnel (défaut 20)
+  "toleranceProteinG": 3      // optionnel (défaut 3)
 }
 ```
 
 ---
 
-## 7. Flux à donner à Cowork
+## 6. Checklist avant envoi
+- [ ] JSON valide, un seul objet englobant.
+- [ ] `state` présent et valide sur **chaque** aliment ajouté ; `cookedFactor` seulement sur `cru`.
+- [ ] Tous les `foodId` / `recipeId` existent (catalogue ou bundle).
+- [ ] `week` ⇒ `expectedTotals` avec **les 7 jours** + moyennes.
+- [ ] Grammages exprimés **dans l'état de l'aliment**.
+- [ ] Aucune épice/aromate dans `ingredients`.
+- [ ] Aucune marque.
 
-Copie-colle ce prompt dans Cowork (et joins-lui le contenu à jour de
-`foods.json` — brut : `https://raw.githubusercontent.com/christophem59/Cap80-app/main/src/data/foods.json`) :
+---
 
-> **Rôle.** Tu prépares un « bundle » JSON pour mon app de suivi Cap80. Objectif : définir mes
-> recettes de la semaine à venir et le planning des 7 jours.
->
-> **Source de vérité des aliments.** Utilise **uniquement** les `id` présents dans le `foods.json`
-> que je te fournis. Si un aliment nécessaire manque, ajoute-le dans une section `foods`
-> (valeurs pour 100 g, catégorie parmi legumes|fruits|proteines|laitiers|feculents|gras|epices|boissons|autre,
-> **sans marque**).
->
-> **Sortie.** Un **seul** objet JSON, sans texte autour, de la forme :
-> `{ "foods"?: [...], "recipes"?: [...], "week"?: { "days": [...] } }`.
->
-> **Recettes.** Chaque recette : `id` (kebab-case), `label`, `slot` (parmi petit-dej|dejeuner|collation|diner),
-> `servings` (portions produites), `prepMin`, `cookMin`, `batchFriendly` (true si préparable à
-> l'avance), `ingredients` (`{foodId, grams}` avec **grammes CRUS** et `foodId` existant), `steps`.
-> Ne calcule pas les calories : l'app le fait depuis les ingrédients.
->
-> **Semaine.** `week.days` = 7 jours (`label` Lundi→Dimanche), chaque jour `slots` avec
-> `petit-dej`, `dejeuner`, `collation`, `diner` → un `id` de recette (existant ou défini dans `recipes`).
->
-> **Contexte nutritionnel** (à respecter au mieux) : perte de poids, environ **2200 kcal/j** et
-> **~180 g de protéines/j**, fibres ≥ 30 g. Un jour peut être plus haut (repas au restaurant).
->
-> **Avant de finir**, vérifie : JSON valide, tous les `foodId` existent (ou sont dans `foods`),
-> tous les `recipeId` de `week` existent (ou sont dans `recipes`), pas de marque.
+## 7. Le prompt à donner à Cowork
 
-Le fichier produit par Cowork, tu me le pousses tel quel : je le valide et je l'applique.
+Copie ce bloc dans Cowork, **et joins-lui le `foods.json` à jour** :
+`https://raw.githubusercontent.com/christophem59/Cap80-app/main/src/data/foods.json`
+
+```text
+Rôle. Tu produis un « bundle » JSON hebdomadaire pour mon app de suivi Cap80 : mes recettes et le planning des 7 jours.
+
+SORTIE : un SEUL objet JSON, sans texte autour :
+{ "foods"?: [...], "recipes"?: [...], "week"?: { "days": [...] }, "expectedTotals": {...} }
+
+ALIMENTS (foods) — n'en ajoute que si nécessaire, en utilisant en priorité les id du foods.json fourni.
+Chaque aliment ajouté : id (kebab-case, sans marque), label (sans marque), category parmi
+legumes|fruits|proteines|laitiers|feculents|gras|epices|boissons|autre,
+state OBLIGATOIRE parmi cru|cuit|tel-quel,
+per100g {kcal, proteinG, fatG, carbsG, fiberG} dans l'état déclaré,
+cookedFactor UNIQUEMENT si state="cru" (poids cuit = poids cru × facteur),
+servings optionnel.
+- state "cru"/"cuit" => le libellé doit contenir « cru… »/« cuit… ».
+- "tel-quel" pour tout ce qui ne se cuisine pas (laitiers, poudres, pain, conserves, huiles, fruits frais).
+
+RECETTES (recipes) : id, label, slot (petit-dej|dejeuner|collation|diner), servings (portions produites),
+prepMin, cookMin, batchFriendly, ingredients [{foodId, grams}], steps, cookedYieldG optionnel
+(poids total après cuisson si mesuré).
+- RÈGLE CLÉ : les grammes sont exprimés DANS L'ÉTAT DÉCLARÉ de l'aliment (state), jamais convertis.
+  Un aliment "cuit" se pèse cuit ; un aliment "cru" se pèse cru.
+- Les épices, aromates, sel, poivre, jus de citron et bouillons NE FIGURENT PAS dans ingredients :
+  mets-les dans steps.
+- Ne calcule aucune macro dans la recette : l'app les recalcule depuis les ingrédients.
+
+SEMAINE (week.days) : 7 jours, label Lundi→Dimanche, chacun avec "meals" = TABLEAU de repas.
+Plusieurs repas peuvent partager le même slot (2 collations, dîner + extra pour le dessert).
+Chaque repas : slot parmi petit-dej|dejeuner|collation|diner|extra, et EXACTEMENT un de :
+  - recipeId (+ portions, défaut 1, décimales acceptées)
+  - foodId + grams
+  - estimated {kcal, proteinG}   (repas non décomposé, ex. restaurant)
+time "HH:MM" et note sont facultatifs ; isRestaurantDay: true sur un jour de restaurant.
+
+CONTRÔLE CROISÉ (expectedTotals) — OBLIGATOIRE dès que week est présent :
+{ "perDay": [{label, kcal, proteinG} × 7], "weekAvgKcal": n, "weekAvgProteinG": n,
+  "toleranceKcal"?: 20, "toleranceProteinG"?: 3 }
+Calcule ces totaux TOI-MÊME depuis les grammages et le foods.json fourni. Mon app recalcule de son
+côté et REFUSE l'import si un jour dépasse la tolérance. Sois rigoureux : c'est une somme de contrôle.
+
+CIBLES : environ 2200 kcal/j, ~180 g de protéines/j, fibres ≥ 30 g/j. Un jour de restaurant peut
+être plus élevé.
+
+AVANT DE FINIR, vérifie : JSON valide ; state sur chaque aliment ajouté ; cookedFactor seulement sur
+"cru" ; tous les foodId/recipeId existent (catalogue ou bundle) ; expectedTotals couvre les 7 jours ;
+aucune épice dans ingredients ; aucune marque.
+```
+
+---
+
+## 8. Ce qui ne change pas
+Aucune macro n'est stockée sur une `Recipe` — tout se recalcule depuis `foods.json`.
+Seule exception : `MealItem`, qui **fige** ses valeurs à la saisie pour qu'un repas déjà mangé
+ne change pas rétroactivement. **Le catalogue calcule, le journal fige.**

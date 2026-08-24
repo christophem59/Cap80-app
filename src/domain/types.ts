@@ -282,11 +282,38 @@ export interface Recipe {
   servings: number // nombre de portions produites
   prepMin: number
   cookMin: number
-  batchFriendly: boolean // apparaît dans l'écran Batch cooking
+  batchFriendly: boolean // préparable à l'avance : picto 🍲 dans l'onglet Recettes
   ingredients: { foodId: string; grams: number }[]
+  /** Poids total obtenu APRÈS cuisson, quand il a été mesuré. Permet d'afficher
+   *  « 1 portion ≈ N g cuits ». Facultatif. */
+  cookedYieldG?: number
   steps: string[] // instructions, une par étape
   /** Calculé à partir des ingrédients, jamais saisi à la main. */
   tags?: string[]
+}
+
+// ---- Planning de la semaine (bundle injecté, cf. docs/injection-repas.md) ----
+
+/** Un repas planifié : une recette, OU un aliment simple, OU une estimation libre. */
+export interface PlannedMeal {
+  slot: MealSlot
+  recipeId?: string
+  /** Nombre de portions de la recette (défaut 1, décimales acceptées). */
+  portions?: number
+  foodId?: string
+  grams?: number
+  /** Repas non décomposé (restaurant) : macros estimées, figées telles quelles. */
+  estimated?: { kcal: number; proteinG: number }
+  /** 'HH:MM' — ordre d'affichage et repères (ex. shaker pré-restaurant). */
+  time?: string
+  note?: string
+}
+
+export interface PlannedDay {
+  label: string // Lundi … Dimanche
+  isRestaurantDay?: boolean
+  /** Plusieurs entrées peuvent partager le même créneau (2 collations, dîner + extra). */
+  meals: PlannedMeal[]
 }
 
 export type ExercisePattern =
