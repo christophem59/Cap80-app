@@ -254,15 +254,23 @@ export interface Macros {
   fiberG: number
 }
 
+/** État dans lequel l'aliment est pesé (les grammes s'expriment dans cet état). */
+export type FoodState = 'cru' | 'cuit' | 'tel-quel'
+
 export interface Food {
   id: string // 'poulet-blanc-cru'
   label: string // 'Blanc de poulet, cru'
   category: FoodCategory
-  /** Toutes les valeurs pour 100 g du produit tel que pesé (cru sauf mention). */
+  /** État de pesée. 'cru'/'cuit' : le libellé le mentionne ; 'tel-quel' : sans cuisson
+   *  pertinente (laitiers, poudres, conserves, pain, plats…). Les grammes d'une recette
+   *  sont TOUJOURS dans cet état, sans conversion implicite. */
+  state: FoodState
+  /** Toutes les valeurs pour 100 g du produit tel que pesé, dans l'état `state`. */
   per100g: Macros
   /** Portions usuelles, pour saisir en 1 tap. */
   servings?: { label: string; grams: number }[]
-  /** Coefficient cru → cuit, quand pertinent (riz 1 → 2,8). Informatif. */
+  /** Uniquement si `state: 'cru'`. poids cuit = poids cru × cookedFactor
+   *  (0,7 poulet qui rend de l'eau ; 2,8 riz qui en absorbe). Informatif. */
   cookedFactor?: number
   barcode?: string
 }

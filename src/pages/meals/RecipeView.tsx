@@ -105,14 +105,18 @@ export function RecipeView({ recipeId, onBack }: { recipeId: string; onBack: () 
       <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
         <h2 className="mb-2 text-sm font-semibold">Ingrédients ({servings} portions)</h2>
         <ul className="space-y-1 text-sm">
-          {recipe.ingredients.map((ing) => (
-            <li key={ing.foodId} className="flex justify-between">
-              <span>{foodsById.get(ing.foodId)?.label ?? ing.foodId}</span>
-              <span className="tabular-nums text-[var(--text-muted)]">
-                {Math.round(ing.grams * factor)} g
-              </span>
-            </li>
-          ))}
+          {recipe.ingredients.map((ing) => {
+            const st = foodsById.get(ing.foodId)?.state
+            const stSuffix = st === 'cru' ? ' cru' : st === 'cuit' ? ' cuit' : ''
+            return (
+              <li key={ing.foodId} className="flex justify-between">
+                <span>{foodsById.get(ing.foodId)?.label ?? ing.foodId}</span>
+                <span className="tabular-nums text-[var(--text-muted)]">
+                  {Math.round(ing.grams * factor)} g{stSuffix}
+                </span>
+              </li>
+            )
+          })}
         </ul>
       </section>
 

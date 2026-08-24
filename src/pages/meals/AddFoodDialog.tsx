@@ -182,6 +182,7 @@ export function AddFoodDialog({
           )}
           <label className="block text-xs text-[var(--text-muted)]">
             Quantité (g)
+            {selected.state === 'cru' ? ' — pesé cru' : selected.state === 'cuit' ? ' — pesé cuit' : ''}
             <input
               className={input}
               inputMode="decimal"
