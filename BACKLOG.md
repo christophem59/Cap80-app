@@ -18,12 +18,18 @@ Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 - Détail jour par jour (poids, kcal, protéines, séance, pas) + jours pesés /7.
 - Reste possible : mensurations dans le récap, variation de poids hebdo vs semaine précédente.
 
-## Recettes & semaine (en cours)
-- ✅ Onglet « Batch » renommé « Recettes » : liste toutes les recettes, picto 🍲 = préparable à l'avance.
-- ✅ Format d'injection + flux Cowork : `docs/injection-repas.md` (bundle foods/recipes/week, appliqué au dépôt public par Claude Code).
-- À faire : onglet « Semaine » = affichage du planning injecté + « + auj. » par repas ET par jour (remplacer la semaine type statique).
-- À faire : Courses depuis les recettes (bouton « ajouter aux courses » + portions), retirer « générer depuis la semaine type ».
-- Plus tard (optionnel) : éditeur de recettes in-app ; import du bundle directement dans l'app (au lieu de passer par Claude Code).
+## Recettes & semaine — ✅ Fait (2026-08-24, v0.9.11 → v0.9.17)
+- Journal : édition des macros d'un item + saisie libre (ajustement one-shot).
+- Onglet « Batch » → « Recettes » : toutes les recettes, picto 🍲 = préparable à l'avance.
+- Onglet « Semaine » : format `days[].meals[]` (plusieurs repas/créneau, `time`, `extra`,
+  `estimated` resto), « + auj. » par repas et « + tout le jour ».
+- Courses : sélection multiple depuis Recettes avec portions ; « semaine type » retirée.
+- Aliments : `state` (cru/cuit/tel-quel) sur les 498 + `foodsVersion` (empreinte de base).
+- Injection : `docs/injection-repas.md` (format v3 + prompt Cowork) et
+  `scripts/validate-bundle.mjs` (refus si base différente / totaux hors tolérance ;
+  `target` et fibres contrôlés) + `scripts/foods-version.mjs --stamp`.
+- Plus tard (optionnel) : éditeur de recettes in-app ; import du bundle directement dans
+  l'app ; planning éditable à la main dans l'app.
 
 ## TDEE adaptatif (à décider)
 - Estimer l'entretien RÉEL à partir des données (apport moyen + tendance de poids), pas seulement de la formule Mifflin × facteur d'activité.
