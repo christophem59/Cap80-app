@@ -14,16 +14,19 @@
         },
         {
           "slot": "collation",
-          "recipeId": "boite-crudites"
+          "recipeId": "collation-fb-amandes",
+          "note": "16 h"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-cabillaud-courgettes-quinoa"
+          "recipeId": "diner-cabillaud-courgettes-quinoa",
+          "note": "Colin cette semaine : loguer colin-cru."
         },
         {
           "slot": "extra",
-          "recipeId": "dessert-fb-cacao",
-          "note": "Dessert du soir — dispositif anti-grignotage."
+          "foodId": "the-nature",
+          "grams": 200,
+          "note": "Infusion — clôt le repas sans calories."
         }
       ]
     },
@@ -32,7 +35,12 @@
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "skyr-du-matin"
+          "recipeId": "petit-dej-muffins"
+        },
+        {
+          "slot": "petit-dej",
+          "foodId": "kiwi",
+          "grams": 75
         },
         {
           "slot": "dejeuner",
@@ -40,7 +48,8 @@
         },
         {
           "slot": "collation",
-          "recipeId": "boite-crudites"
+          "recipeId": "collation-oeufs-crudites",
+          "note": "16 h"
         },
         {
           "slot": "diner",
@@ -48,7 +57,8 @@
         },
         {
           "slot": "extra",
-          "recipeId": "dessert-fb-fruits-rouges"
+          "foodId": "kiwi",
+          "grams": 75
         }
       ]
     },
@@ -66,13 +76,14 @@
         },
         {
           "slot": "collation",
-          "recipeId": "boite-crudites"
+          "recipeId": "collation-fb-amandes",
+          "note": "16 h"
         },
         {
           "slot": "collation",
           "recipeId": "shaker-whey-eau",
           "time": "18:30",
-          "note": "Avant de partir : ne jamais arriver au restaurant en ayant faim."
+          "note": "Avant de partir."
         },
         {
           "slot": "diner",
@@ -80,7 +91,7 @@
             "kcal": 1200,
             "proteinG": 45
           },
-          "note": "Restaurant — estimation à remplacer par la saisie réelle."
+          "note": "Restaurant, dessert compris."
         }
       ]
     },
@@ -89,7 +100,12 @@
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "skyr-du-matin"
+          "recipeId": "petit-dej-muffins"
+        },
+        {
+          "slot": "petit-dej",
+          "foodId": "pomme",
+          "grams": 150
         },
         {
           "slot": "dejeuner",
@@ -97,7 +113,8 @@
         },
         {
           "slot": "collation",
-          "recipeId": "boite-crudites"
+          "recipeId": "collation-oeufs-crudites",
+          "note": "16 h"
         },
         {
           "slot": "diner",
@@ -105,7 +122,8 @@
         },
         {
           "slot": "extra",
-          "recipeId": "dessert-fb-cacao"
+          "foodId": "banane",
+          "grams": 120
         }
       ]
     },
@@ -122,16 +140,17 @@
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-amandes"
+          "recipeId": "collation-fb-amandes",
+          "note": "16 h"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-omelette-champignons"
+          "recipeId": "diner-saumon-pdt-poireaux"
         },
         {
           "slot": "extra",
-          "foodId": "banane",
-          "grams": 120
+          "foodId": "kiwi",
+          "grams": 75
         }
       ]
     },
@@ -140,34 +159,27 @@
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "muffins-oeufs",
-          "portions": 3
-        },
-        {
-          "slot": "petit-dej",
-          "foodId": "pain-complet",
-          "grams": 40
-        },
-        {
-          "slot": "petit-dej",
-          "foodId": "pomme",
-          "grams": 150
+          "recipeId": "skyr-du-matin"
         },
         {
           "slot": "dejeuner",
-          "recipeId": "salade-complete"
+          "recipeId": "salade-thon-oeufs"
         },
         {
           "slot": "collation",
-          "recipeId": "shaker-whey-eau"
+          "recipeId": "muffins-oeufs",
+          "portions": 3,
+          "note": "16 h"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-pdt-poireaux"
+          "recipeId": "diner-omelette-champignons",
+          "note": "Dîner récupéré du mercredi."
         },
         {
           "slot": "extra",
-          "recipeId": "dessert-fb-fruits-rouges"
+          "foodId": "pomme",
+          "grams": 150
         }
       ]
     },
@@ -176,50 +188,30 @@
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "muffins-oeufs",
-          "portions": 3
+          "recipeId": "petit-dej-muffins"
         },
         {
           "slot": "petit-dej",
-          "foodId": "pain-complet",
-          "grams": 40
-        },
-        {
-          "slot": "petit-dej",
-          "foodId": "banane",
-          "grams": 120
+          "foodId": "kiwi",
+          "grams": 75
         },
         {
           "slot": "dejeuner",
-          "recipeId": "salade-complete"
+          "recipeId": "gamelle-poulet-riz-legumes",
+          "note": "6e portion de poulet + riz et légumes restants."
         },
         {
           "slot": "collation",
-          "recipeId": "boite-crudites"
-        },
-        {
-          "slot": "collation",
-          "recipeId": "collation-fb-amandes"
+          "recipeId": "dessert-fb-fruits-rouges",
+          "note": "16 h"
         },
         {
           "slot": "diner",
-          "recipeId": "soupe-legumes-vide-frigo",
-          "portions": 2
-        },
-        {
-          "slot": "diner",
-          "foodId": "oeuf-dur",
-          "grams": 150,
-          "note": "3 œufs durs."
-        },
-        {
-          "slot": "diner",
-          "foodId": "pain-complet",
-          "grams": 60
+          "recipeId": "diner-soupe-oeufs-pain"
         },
         {
           "slot": "extra",
-          "recipeId": "dessert-fb-cacao"
+          "recipeId": "dessert-fb-cacao-amandes"
         }
       ]
     }

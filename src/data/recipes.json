@@ -817,6 +817,197 @@
         "Si tu changes les légumes, ajuste les grammages."
       ],
       "cookedYieldG": 1800
+    },
+    {
+      "id": "salade-thon-oeufs",
+      "label": "Salade complète thon et œufs",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "thon-naturel-egoutte",
+          "grams": 112
+        },
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "pois-chiches-cuits",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 100
+        },
+        {
+          "foodId": "tomate",
+          "grams": 150
+        },
+        {
+          "foodId": "concombre",
+          "grams": 100
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "1 boîte de thon égouttée, 2 œufs durs.",
+        "Huile d'olive et citron, ou la sauce fromage blanc."
+      ]
+    },
+    {
+      "id": "petit-dej-muffins",
+      "label": "Petit-déjeuner muffins et pain",
+      "slot": [
+        "petit-dej"
+      ],
+      "servings": 1,
+      "prepMin": 3,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 165
+        },
+        {
+          "foodId": "poivron",
+          "grams": 25
+        },
+        {
+          "foodId": "epinards-crus",
+          "grams": 25
+        },
+        {
+          "foodId": "feta",
+          "grams": 20
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 60
+        }
+      ],
+      "steps": [
+        "3 muffins réchauffés 40 s + 60 g de pain complet. Le fruit se logue à part."
+      ]
+    },
+    {
+      "id": "collation-oeufs-crudites",
+      "label": "Collation œufs durs et crudités",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "prepMin": 1,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "carotte",
+          "grams": 57
+        },
+        {
+          "foodId": "concombre",
+          "grams": 43
+        },
+        {
+          "foodId": "poivron",
+          "grams": 43
+        },
+        {
+          "foodId": "radis",
+          "grams": 29
+        },
+        {
+          "foodId": "celeri",
+          "grams": 21
+        }
+      ],
+      "steps": [
+        "2 œufs durs + une portion de la boîte de crudités."
+      ]
+    },
+    {
+      "id": "dessert-fb-cacao-amandes",
+      "label": "Fromage blanc cacao et amandes",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "prepMin": 1,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 250
+        },
+        {
+          "foodId": "cacao-degraisse",
+          "grams": 5
+        },
+        {
+          "foodId": "amandes",
+          "grams": 20
+        }
+      ],
+      "steps": []
+    },
+    {
+      "id": "diner-soupe-oeufs-pain",
+      "label": "Soupe, œufs durs, pain",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "carotte",
+          "grams": 250
+        },
+        {
+          "foodId": "poireau-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "oignon",
+          "grams": 50
+        },
+        {
+          "foodId": "celeri",
+          "grams": 50
+        },
+        {
+          "foodId": "brocoli",
+          "grams": 25
+        },
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 80
+        }
+      ],
+      "steps": [
+        "2 portions de soupe vide-frigo (~900 ml), 2 œufs durs, 80 g de pain complet."
+      ]
     }
   ]
 }

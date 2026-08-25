@@ -137,7 +137,13 @@ for (const r of bundle.recipes ?? []) {
   const at = `recipes[${r?.id ?? '?'}]`
   if (!r.id || !r.label) err(`${at} : id et label requis.`)
   // Tolérance de forme : slot accepté en chaîne unique, normalisé en tableau.
-  const slots = typeof r.slot === 'string' ? [r.slot] : r.slot
+  // 'extra' n'existe pas au niveau recette (il sert à POSER le repas dans la semaine) :
+  // on le retire avec un avertissement plutôt que de refuser tout le bundle.
+  let slots = typeof r.slot === 'string' ? [r.slot] : r.slot
+  if (Array.isArray(slots) && slots.includes('extra')) {
+    warn(`${at} : slot « extra » retiré — au niveau recette, un dessert se déclare « collation » et se place en « extra » dans la semaine.`)
+    slots = slots.filter((s) => s !== 'extra')
+  }
   if (!Array.isArray(slots) || slots.length === 0 || slots.some((s) => !RECIPE_SLOTS.includes(s)))
     err(`${at} : slot invalide (${JSON.stringify(r.slot)}) — attendu parmi ${RECIPE_SLOTS.join('|')}.`)
   if (!Number.isInteger(r.servings) || r.servings <= 0) err(`${at} : servings doit être un entier > 0.`)
