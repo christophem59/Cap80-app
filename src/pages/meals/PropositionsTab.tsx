@@ -24,6 +24,33 @@ function readWeek(): PlannedDay[] {
 
 const r1 = (x: number) => Math.round(x * 10) / 10
 
+const DAY_LABELS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
+
+/** Libellé du jour courant, tel qu'écrit dans la semaine planifiée. */
+function todayDayLabel(): string {
+  return DAY_LABELS[new Date(`${todayLocal()}T00:00:00`).getDay()]
+}
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="shrink-0 text-[var(--text-muted)] transition-transform duration-150"
+      style={{ transform: open ? 'rotate(90deg)' : 'none' }}
+    >
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  )
+}
+
 export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) => void }) {
   const foods = useFoods()
   const recipes = useRecipes()
@@ -31,6 +58,16 @@ export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) =
   const recipeById = useMemo(() => new Map<string, Recipe>(recipes.map((r) => [r.id, r])), [recipes])
   const week = useMemo(readWeek, [])
   const [added, setAdded] = useState<string | null>(null)
+  // Replier/déplier par jour : seul le jour courant est ouvert au départ.
+  const [openDays, setOpenDays] = useState<Set<string>>(() => new Set([todayDayLabel()]))
+
+  const toggleDay = (label: string) =>
+    setOpenDays((prev) => {
+      const next = new Set(prev)
+      if (next.has(label)) next.delete(label)
+      else next.add(label)
+      return next
+    })
 
   const flash = (key: string) => {
     setAdded(key)
@@ -145,6 +182,7 @@ export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) =
         du jour, ou « + tout le jour » pour la journée entière.
       </p>
       {week.map((day) => {
+        const isOpen = openDays.has(day.label)
         const meals = sortMeals(day.meals)
         const dayKcal = meals.reduce((s, m) => {
           const it = toItem(m)
@@ -152,20 +190,28 @@ export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) =
         }, 0)
         return (
           <section key={day.label} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <h2 className="text-sm font-semibold">
-                {day.label}
-                {day.isRestaurantDay && (
-                  <span className="ml-1.5" title="Jour restaurant" aria-label="Jour restaurant">
-                    🍴
-                  </span>
-                )}
-                {dayKcal > 0 && (
-                  <span className="ml-2 text-[11px] font-normal tabular-nums text-[var(--text-muted)]">
-                    {dayKcal} kcal
-                  </span>
-                )}
-              </h2>
+            <div className="flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onClick={() => toggleDay(day.label)}
+                aria-expanded={isOpen}
+                className="flex min-w-0 flex-1 items-center gap-2 text-left"
+              >
+                <Chevron open={isOpen} />
+                <h2 className="truncate text-sm font-semibold">
+                  {day.label}
+                  {day.isRestaurantDay && (
+                    <span className="ml-1.5" title="Jour restaurant" aria-label="Jour restaurant">
+                      🍴
+                    </span>
+                  )}
+                  {dayKcal > 0 && (
+                    <span className="ml-2 text-[11px] font-normal tabular-nums text-[var(--text-muted)]">
+                      {dayKcal} kcal
+                    </span>
+                  )}
+                </h2>
+              </button>
               <button
                 type="button"
                 onClick={() => void logDay(day)}
@@ -177,7 +223,8 @@ export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) =
                 {added === `day-${day.label}` ? '✓ ajouté' : '+ tout le jour'}
               </button>
             </div>
-            <ul className="space-y-2">
+            {isOpen && (
+            <ul className="mt-2 space-y-2">
               {meals.map((m, i) => {
                 const d = describe(m)
                 const key = `${day.label}-${i}`
@@ -209,6 +256,7 @@ export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) =
                 )
               })}
             </ul>
+            )}
           </section>
         )
       })}
