@@ -41,6 +41,7 @@ function ProfileHeader({
   /** Moyenne mobile 7 j si elle existe, sinon null. */
   currentWeightKg: number | null
 }) {
+  const [open, setOpen] = useState(false)
   const age = ageFromBirthYear(profile.birthYear, new Date().getFullYear())
   // La dépense est calculée au poids ACTUEL quand on le connaît : à 101 kg et à 95 kg
   // ce n'est pas le même chiffre, et c'est le chiffre du jour qui sert de repère.
@@ -62,25 +63,48 @@ function ProfileHeader({
     ['Départ', `${frDate(profile.startDate)} · S${week}`],
   ]
 
+  // Replié par défaut : c'est un repère de contrôle, pas une information de tous les
+  // jours. Le résumé d'une ligne suffit à voir d'un coup d'œil que le bon profil est
+  // chargé — ce qui est précisément ce qui manquait quand un profil erroné a pris la main.
+  const resume = `${fmtKg(profile.startWeightKg)} → ${fmtKg(profile.targetWeightKg)} kg · départ ${frDate(profile.startDate)} · S${week}`
+
   return (
-    <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
-      <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-        Tes données de départ
-      </h2>
-      <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm">
-        {rows.map(([label, value]) => (
-          <div key={label} className="col-span-2 flex items-baseline justify-between gap-3">
-            <dt className="text-[var(--text-muted)]">{label}</dt>
-            <dd className="text-right font-medium tabular-nums">{value}</dd>
-          </div>
-        ))}
-      </dl>
-      <p className="mt-2 border-t border-[var(--border)] pt-2 text-xs text-[var(--text-muted)]">
-        Dépense estimée {currentWeightKg == null ? 'au poids de départ' : 'à ton poids actuel'}{' '}
-        ({fmtKg(poidsRef)} kg) : <strong>{entretien} kcal/jour</strong>, Mifflin-St Jeor ×{' '}
-        {String(profile.activityFactor).replace('.', ',')}. C’est la référence dont découlent
-        les cibles des phases.
-      </p>
+    <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)]">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+      >
+        <span className="min-w-0">
+          <span className="block text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+            Tes données de départ
+          </span>
+          <span className="block truncate text-sm tabular-nums">{resume}</span>
+        </span>
+        <span aria-hidden="true" className="shrink-0 text-[var(--text-muted)]">
+          {open ? '−' : '+'}
+        </span>
+      </button>
+
+      {open && (
+        <div className="border-t border-[var(--border)] px-4 pb-4 pt-3">
+          <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm">
+            {rows.map(([label, value]) => (
+              <div key={label} className="col-span-2 flex items-baseline justify-between gap-3">
+                <dt className="text-[var(--text-muted)]">{label}</dt>
+                <dd className="text-right font-medium tabular-nums">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-2 border-t border-[var(--border)] pt-2 text-xs text-[var(--text-muted)]">
+            Dépense estimée {currentWeightKg == null ? 'au poids de départ' : 'à ton poids actuel'}{' '}
+            ({fmtKg(poidsRef)} kg) : <strong>{entretien} kcal/jour</strong>, Mifflin-St Jeor ×{' '}
+            {String(profile.activityFactor).replace('.', ',')}. C’est la référence dont découlent
+            les cibles des phases.
+          </p>
+        </div>
+      )}
     </section>
   )
 }

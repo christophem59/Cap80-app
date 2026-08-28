@@ -6,9 +6,17 @@
     <link rel="apple-touch-icon" href="icon-192.png" />
     <!-- viewport-fit=cover : indispensable pour que env(safe-area-inset-*) soit non nul
          sous la barre de navigation gestuelle d'Android (§11). -->
+    <!-- user-scalable=no / maximum-scale=1 : bloque le zoom par pincement et le double
+         tap, pour éviter les zooms accidentels en cours de saisie sur téléphone.
+         DEUX RÉSERVES ASSUMÉES :
+          - c'est une régression d'accessibilité (WCAG 1.4.4 attend un agrandissement
+            jusqu'à 200 %). Acceptable ici : app privée, utilisateurs connus, corps de
+            texte déjà en 14-16 px et cibles tactiles ≥ 48 px ;
+          - iOS Safari IGNORE délibérément user-scalable=no depuis iOS 10. La consigne ne
+            vaut donc que sur Android, seule plateforme utilisée. -->
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no"
     />
     <meta name="theme-color" content="#059669" />
     <title>Cap80 — perte de poids</title>
