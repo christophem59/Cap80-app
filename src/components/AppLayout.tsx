@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom'
 import { Header } from './Header'
 import { BottomNav } from './BottomNav'
 import { SyncBanner } from './SyncBanner'
-import { ReloadPrompt } from './ReloadPrompt'
 import { FloatingEnvie } from './FloatingEnvie'
 import { Onboarding } from '../pages/Onboarding'
 import { useProfile, useProfileHydrated } from '../repo/profile'
@@ -31,7 +30,6 @@ export function AppLayout() {
       </main>
       <FloatingEnvie />
       <BottomNav />
-      <ReloadPrompt />
     </div>
   )
 }

@@ -7,6 +7,9 @@ export function ReloadPrompt() {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
   } = useRegisterSW({
+    // `immediate` : enregistrer sans attendre l'événement `load` de la page. Sinon
+    // l'enregistrement dépend du moment où ce composant monte, ce qui est fragile.
+    immediate: true,
     // Détecte les nouveaux déploiements sans attendre un redémarrage complet :
     // on redemande au SW de se mettre à jour à l'ouverture, périodiquement, et au
     // retour au premier plan.
