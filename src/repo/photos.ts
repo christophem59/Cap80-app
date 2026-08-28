@@ -95,16 +95,62 @@ export function usePhotos(): PhotoEntry[] {
   return data
 }
 
-export function useThumbnail(id: string): string | undefined {
+/**
+ * Reconstruit la vignette d'une photo à partir de l'ORIGINAL du dépôt, et la range en
+ * local. Les vignettes ne sont jamais synchronisées (§1.3/§5.5) : après une
+ * réinstallation, l'index des photos revient mais la grille reste vide alors que les
+ * images sont bien dans git. C'est ce trou que cette fonction comble.
+ *
+ * Une passe par chemin à la fois : la grille monte des dizaines de vignettes d'un coup,
+ * et sans cette garde on lancerait autant d'appels concurrents à l'API pour rien.
+ */
+const rebuilding = new Map<string, Promise<string | undefined>>()
+
+async function rebuildThumbnail(id: string, path: string): Promise<string | undefined> {
+  const running = rebuilding.get(id)
+  if (running) return running
+  const task = (async () => {
+    const cfg = getRepoConfig()
+    const token = getToken()
+    if (!cfg || !token) return undefined
+    try {
+      const bytes = await new GitHubClient({ ...cfg, token }).getFileBytes(path)
+      if (!bytes) return undefined
+      const thumb = await makeThumbnail(new Blob([bytes], { type: 'image/jpeg' }))
+      await putThumbnail(id, thumb)
+      return thumb
+    } catch {
+      return undefined // hors-ligne ou token expiré : on réessaiera au prochain affichage
+    } finally {
+      rebuilding.delete(id)
+    }
+  })()
+  rebuilding.set(id, task)
+  return task
+}
+
+/**
+ * Vignette d'une photo. `path` permet de la reconstruire depuis le dépôt quand elle
+ * manque en local — c'est le cas sur un appareil fraîchement installé.
+ */
+export function useThumbnail(id: string, path?: string): string | undefined {
   const [url, setUrl] = useState<string>()
   useEffect(() => {
     let alive = true
-    void getThumbnail(id).then((t) => {
-      if (alive) setUrl(t)
-    })
+    void (async () => {
+      const local = await getThumbnail(id)
+      if (!alive) return
+      if (local) {
+        setUrl(local)
+        return
+      }
+      if (!path) return
+      const rebuilt = await rebuildThumbnail(id, path)
+      if (alive && rebuilt) setUrl(rebuilt)
+    })()
     return () => {
       alive = false
     }
-  }, [id])
+  }, [id, path])
   return url
 }

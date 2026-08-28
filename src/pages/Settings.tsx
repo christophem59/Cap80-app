@@ -14,6 +14,8 @@ import {
 import { exportBackup, importBackup } from '../repo/backup'
 import { hardReset } from '../sync/reset'
 import { buildDefaultProfile } from '../sync/init'
+import { adoptRemoteProfile } from '../repo/profile'
+import { calendarWeek, todayLocal } from '../domain/dates'
 
 const THEME_OPTIONS: { value: ThemePref; label: string }[] = [
   { value: 'light', label: 'Clair' },
@@ -33,6 +35,50 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
 
 const btn = 'rounded-xl border border-[var(--border)] px-3 py-2 text-sm font-medium'
 const btnPrimary = 'rounded-xl px-3 py-2 text-sm font-semibold text-white'
+
+/**
+ * Réapplique le profil (programme, phases, date de départ) tel qu'il est dans le dépôt.
+ *
+ * Utile après une réinstallation : si l'app est repassée par l'écran de démarrage, le
+ * profil local recréé est plus RÉCENT que celui du dépôt, donc la fusion automatique le
+ * garde — et le vrai programme reste invisible alors qu'il est intact côté dépôt.
+ */
+function ProfileRestoreCard() {
+  const [busy, setBusy] = useState(false)
+  const [msg, setMsg] = useState<string | null>(null)
+
+  async function restore() {
+    setBusy(true)
+    setMsg('Récupération…')
+    try {
+      const profile = await adoptRemoteProfile()
+      if (!profile) {
+        setMsg("Aucun profil dans le dépôt, ou dépôt non configuré.")
+        return
+      }
+      const week = calendarWeek(profile.startDate, todayLocal())
+      setMsg(`Profil récupéré — départ le ${profile.startDate}, semaine ${week} en cours.`)
+    } catch {
+      setMsg('Échec de la récupération. Vérifie la connexion et le token.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <Card title="Profil et programme">
+      <p className="mb-3 text-xs leading-relaxed text-[var(--text-muted)]">
+        Réapplique le profil enregistré dans le dépôt : date de départ, phases, objectifs.
+        À utiliser si l'app est repartie sur un programme neuf après une réinstallation —
+        ton programme réel, lui, n'a pas bougé côté dépôt.
+      </p>
+      <button type="button" className={btn} disabled={busy} onClick={() => void restore()}>
+        Récupérer le profil du dépôt
+      </button>
+      {msg && <p className="mt-2 text-xs text-[var(--text-muted)]">{msg}</p>}
+    </Card>
+  )
+}
 
 function InstallStorageCard() {
   const canInstall = useCanInstall()
@@ -172,6 +218,8 @@ export function Settings() {
       </Card>
 
       <RepoConfigCard />
+
+      <ProfileRestoreCard />
 
       <InstallStorageCard />
 

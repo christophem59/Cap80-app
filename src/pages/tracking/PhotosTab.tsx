@@ -25,14 +25,14 @@ function monthLabel(ym: string) {
   return `${mois[Number(m) - 1]} ${y}`
 }
 
-function Thumb({ id, className }: { id: string; className?: string }) {
-  const url = useThumbnail(id)
+function Thumb({ id, path, className }: { id: string; path: string; className?: string }) {
+  const url = useThumbnail(id, path)
   if (!url)
     return (
       <div
         className={`flex items-center justify-center bg-[var(--surface-2)] text-[10px] text-[var(--text-muted)] ${className ?? ''}`}
       >
-        (sur un autre appareil)
+        (chargement…)
       </div>
     )
   return <img src={url} alt="" className={`object-cover ${className ?? ''}`} />
@@ -40,7 +40,7 @@ function Thumb({ id, className }: { id: string; className?: string }) {
 
 /** Affiche la pleine résolution si le dépôt est configuré, sinon la vignette. */
 function FullOrThumb({ entry }: { entry: PhotoEntry }) {
-  const thumb = useThumbnail(entry.id)
+  const thumb = useThumbnail(entry.id, entry.path)
   const [full, setFull] = useState<string | null>(null)
   useEffect(() => {
     let alive = true
@@ -211,7 +211,7 @@ export function PhotosTab() {
             <div className="grid grid-cols-3 gap-2">
               {list.map((p) => (
                 <div key={p.id} className="overflow-hidden rounded-lg border border-[var(--border)]">
-                  <Thumb id={p.id} className="aspect-[3/4] w-full" />
+                  <Thumb id={p.id} path={p.path} className="aspect-[3/4] w-full" />
                   <div className="flex items-center justify-between px-1.5 py-1 text-[10px]">
                     <span>
                       {ANGLE_LABELS[p.angle]} · {p.date.slice(8)}/{p.date.slice(5, 7)}

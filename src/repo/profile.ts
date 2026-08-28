@@ -6,6 +6,9 @@ import { buildDefaultProfile } from '../sync/init'
 import { mergeProfile } from '../sync/merge'
 import { refreshPending, sync } from '../sync/manager'
 import { nowIso } from '../domain/dates'
+import { getRepoConfig, getToken } from '../sync/config'
+import { GitHubClient } from '../sync/github'
+import { parseProfileEnvelope } from '../sync/files'
 
 // Profil courant en mémoire (source de vérité UI = IndexedDB kv, §1.3). Par défaut,
 // un profil §0 tant que rien n'a été chargé/tiré. Édition/poussée du profil : lot 7.
@@ -60,6 +63,27 @@ export async function saveProfile(mutate: (p: Profile) => Profile): Promise<Prof
   await refreshPending()
   void sync()
   return next
+}
+
+/**
+ * Réapplique le profil du dépôt EN IGNORANT la règle « le plus récent gagne ».
+ *
+ * Porte de sortie pour le cas où un profil local plus récent mais faux masque le vrai —
+ * typiquement après une réinstallation qui a fait repasser par l'écran de démarrage.
+ * Volontairement manuelle et explicite : la fusion automatique ne doit pas décider
+ * toute seule d'écraser un profil local.
+ *
+ * Ne pousse rien : on adopte le distant tel quel, le dépôt reste la référence.
+ */
+export async function adoptRemoteProfile(): Promise<Profile | null> {
+  const cfg = getRepoConfig()
+  const token = getToken()
+  if (!cfg || !token) return null
+  const res = await new GitHubClient({ ...cfg, token }).getFile('profile.json')
+  if (res.status !== 'present') return null
+  const remote = parseProfileEnvelope(res.text) as Profile
+  await setProfileLocal(remote)
+  return remote
 }
 
 function subscribe(cb: () => void) {

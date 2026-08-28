@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import type { WeightEntry, Profile } from '../domain/types'
 import { mergeRecords, visibleRecords, mergeProfile } from './merge'
+import { buildDefaultProfile } from './init'
 
 function w(id: string, kg: number, updatedAt: string, deletedAt?: string): WeightEntry {
   return { id, date: id.slice(0, 10), weightKg: kg, updatedAt, ...(deletedAt ? { deletedAt } : {}) }
@@ -73,6 +74,37 @@ describe('mergeProfile (§5.4)', () => {
   it('profil local plus récent conservé', () => {
     const local = { ...base, updatedAt: '2026-08-20T07:00:00Z' }
     const remote = { ...base, updatedAt: '2026-08-19T07:00:00Z' }
+    expect(mergeProfile(local, remote).remoteWon).toBe(false)
+  })
+})
+
+describe('le profil placeholder ne masque jamais le vrai profil', () => {
+  // Régression vécue : sur un appareil fraîchement installé, buildDefaultProfile()
+  // horodatait à `nowIso()`. Le placeholder était donc plus RÉCENT que le profil du
+  // dépôt, la fusion le gardait, l'app affichait l'écran de démarrage et le programme
+  // réel finissait écrasé à la première poussée. Le placeholder est daté de l'époque.
+  it('un profil distant, même ancien, gagne contre le placeholder', () => {
+    const placeholder = buildDefaultProfile()
+    const reel: Profile = {
+      ...placeholder,
+      startDate: '2026-08-24',
+      onboarded: true,
+      updatedAt: '2026-08-17T19:43:15.613Z',
+    }
+    const r = mergeProfile(placeholder, reel)
+    expect(r.remoteWon).toBe(true)
+    expect(r.profile.startDate).toBe('2026-08-24')
+    expect(r.profile.onboarded).toBe(true)
+  })
+
+  it('le placeholder est daté de l’époque, jamais de maintenant', () => {
+    expect(buildDefaultProfile().updatedAt).toBe('1970-01-01T00:00:00.000Z')
+    expect(new Date(buildDefaultProfile().updatedAt).getTime()).toBe(0)
+  })
+
+  it('mais un profil local RÉEL n’est pas écrasé par un profil distant plus ancien', () => {
+    const local: Profile = { ...buildDefaultProfile(), updatedAt: '2026-08-28T09:00:00.000Z' }
+    const remote: Profile = { ...buildDefaultProfile(), updatedAt: '2026-08-17T19:43:15.613Z' }
     expect(mergeProfile(local, remote).remoteWon).toBe(false)
   })
 })

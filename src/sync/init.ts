@@ -1,6 +1,6 @@
 import type { Profile } from '../domain/types'
 import { defaultPlan } from '../data/catalog'
-import { todayLocal, nowIso } from '../domain/dates'
+import { todayLocal } from '../domain/dates'
 import { serializeProfileEnvelope, serializeRecordsEnvelope } from './files'
 import { utf8ToBase64 } from './base64'
 import type { GitHubClient } from './github'
@@ -15,6 +15,21 @@ const EMPTY_RECORD_FILES = [
   'custom-foods.json',
   'custom-recipes.json',
 ]
+
+/**
+ * Horodatage du profil PLACEHOLDER. Volontairement l'époque, et non `nowIso()`.
+ *
+ * §5.4 résout les conflits de profile.json par « le fichier le plus récent gagne ». Or
+ * ce placeholder est construit au CHARGEMENT DU MODULE : avec `nowIso()`, un appareil
+ * fraîchement installé se retrouvait avec un profil daté de maintenant, donc plus récent
+ * que le vrai profil du dépôt — qui n'était alors JAMAIS appliqué. L'app affichait
+ * l'écran de démarrage, l'utilisateur ressaisissait tout, et son programme réel se
+ * faisait écraser à la première poussée.
+ *
+ * Avec l'époque, n'importe quel profil distant réel gagne, ce qui est le seul
+ * comportement correct : un placeholder n'a rien à défendre.
+ */
+export const PLACEHOLDER_UPDATED_AT = '1970-01-01T00:00:00.000Z'
 
 /**
  * Profil par défaut GÉNÉRIQUE (placeholder). Aucune donnée personnelle en dur : ce
@@ -33,7 +48,7 @@ export function buildDefaultProfile(): Profile {
     startDate: todayLocal(),
     plan: defaultPlan,
     onboarded: false,
-    updatedAt: nowIso(),
+    updatedAt: PLACEHOLDER_UPDATED_AT,
   }
 }
 
