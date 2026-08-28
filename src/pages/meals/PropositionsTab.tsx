@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { Food, MealItem, PlannedDay, PlannedMeal, Recipe } from '../../domain/types'
 import weekJson from '../../data/week.default.json'
+import { CafeRapide } from '../../components/CafeRapide'
 import { useFoods, useRecipes } from '../../repo/catalogFood'
 import { recipeMacrosPerServing, macrosForGrams } from '../../domain/recipe'
 import { addMealItem, SLOT_LABELS } from '../../repo/meals'
@@ -177,6 +178,7 @@ export function PropositionsTab({ onOpenRecipe }: { onOpenRecipe: (id: string) =
 
   return (
     <div className="space-y-4">
+      <CafeRapide />
       <p className="text-xs text-[var(--text-muted)]">
         Ta semaine préparée. Touche un plat pour la recette, « + auj. » pour l'ajouter au journal
         du jour, ou « + tout le jour » pour la journée entière.
