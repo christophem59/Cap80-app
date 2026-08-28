@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import type { Phase, Plan } from '../domain/types'
+import type { Phase, Plan, Profile, Sex } from '../domain/types'
 import { useProfile, saveProfile } from '../repo/profile'
 import { useWeights } from '../repo/weights'
 import { todayLocal, calendarWeek, ageFromBirthYear } from '../domain/dates'
@@ -8,6 +8,82 @@ import { phaseForCalendarWeek } from '../domain/plan'
 import { projectTrajectory } from '../domain/projection'
 import { trailingAvg } from '../domain/weight'
 import { MIN_KCAL } from '../domain/adjustment'
+import { tdee } from '../domain/metabolism'
+
+const SEXE_LABELS: Record<Sex, string> = { male: 'Homme', female: 'Femme' }
+
+function fmtKg(n: number): string {
+  return n.toFixed(1).replace('.', ',')
+}
+
+function frDate(d: string): string {
+  return `${d.slice(8)}/${d.slice(5, 7)}/${d.slice(0, 4)}`
+}
+
+/**
+ * Les données de départ, EN LECTURE SEULE.
+ *
+ * Elles ne servaient jusqu'ici qu'aux calculs (métabolisme, projection, ligne d'objectif)
+ * sans jamais être affichées : un profil erroné pouvait donc prendre la main sans que
+ * rien ne le signale — c'est exactement ce qui est arrivé après une réinstallation, et
+ * seule la semaine affichée l'a trahi. Les montrer ici rend le contrôle immédiat.
+ *
+ * Pour les modifier, c'est « Modifier » ; pour les récupérer depuis le dépôt, c'est
+ * Réglages → Profil et programme.
+ */
+function ProfileHeader({
+  profile,
+  week,
+  currentWeightKg,
+}: {
+  profile: Profile
+  week: number
+  /** Moyenne mobile 7 j si elle existe, sinon null. */
+  currentWeightKg: number | null
+}) {
+  const age = ageFromBirthYear(profile.birthYear, new Date().getFullYear())
+  // La dépense est calculée au poids ACTUEL quand on le connaît : à 101 kg et à 95 kg
+  // ce n'est pas le même chiffre, et c'est le chiffre du jour qui sert de repère.
+  const poidsRef = currentWeightKg ?? profile.startWeightKg
+  const entretien = tdee(poidsRef, {
+    heightCm: profile.heightCm,
+    ageYears: age,
+    sex: profile.sex,
+    activityFactor: profile.activityFactor,
+  })
+
+  const rows: [string, string][] = [
+    ['Taille', `${profile.heightCm} cm`],
+    ['Âge', `${age} ans (${profile.birthYear})`],
+    ['Sexe', SEXE_LABELS[profile.sex]],
+    ['Poids de départ', `${fmtKg(profile.startWeightKg)} kg`],
+    ['Poids cible', `${fmtKg(profile.targetWeightKg)} kg`],
+    ['Facteur d’activité', String(profile.activityFactor).replace('.', ',')],
+    ['Départ', `${frDate(profile.startDate)} · S${week}`],
+  ]
+
+  return (
+    <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
+      <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+        Tes données de départ
+      </h2>
+      <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm">
+        {rows.map(([label, value]) => (
+          <div key={label} className="col-span-2 flex items-baseline justify-between gap-3">
+            <dt className="text-[var(--text-muted)]">{label}</dt>
+            <dd className="text-right font-medium tabular-nums">{value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-2 border-t border-[var(--border)] pt-2 text-xs text-[var(--text-muted)]">
+        Dépense estimée {currentWeightKg == null ? 'au poids de départ' : 'à ton poids actuel'}{' '}
+        ({fmtKg(poidsRef)} kg) : <strong>{entretien} kcal/jour</strong>, Mifflin-St Jeor ×{' '}
+        {String(profile.activityFactor).replace('.', ',')}. C’est la référence dont découlent
+        les cibles des phases.
+      </p>
+    </section>
+  )
+}
 
 function fmtWeeks(p: Phase): string {
   return p.endCalendarWeek == null
@@ -65,6 +141,12 @@ export function Program() {
           Modifier
         </button>
       </div>
+
+      <ProfileHeader
+        profile={profile}
+        week={week}
+        currentWeightKg={trailingAvg(weights, today) ?? null}
+      />
 
       <button
         type="button"
