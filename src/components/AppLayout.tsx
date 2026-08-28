@@ -25,7 +25,14 @@ export function AppLayout() {
     <div className="flex min-h-[100svh] flex-col bg-[var(--bg)]">
       <Header />
       <SyncBanner />
-      <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-4">
+      {/* Le padding bas réserve la place du bouton « Envie », qui est en position fixe :
+          sans lui, il recouvre la fin du contenu et rend intouchable ce qui s'y trouve
+          (constaté sur le bouton « suppr. » du dernier item d'un repas).
+          --envie-space est publiée par FloatingEnvie, et vaut 0 quand il est masqué. */}
+      <main
+        className="mx-auto w-full max-w-2xl flex-1 px-4 pt-4"
+        style={{ paddingBottom: 'calc(1rem + var(--envie-space, 96px))' }}
+      >
         <Outlet />
       </main>
       <FloatingEnvie />
