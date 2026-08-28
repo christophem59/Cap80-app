@@ -40,7 +40,9 @@ function verdict(perte: number | null): { text: string; color: string } {
 export function PoidsTab() {
   const weights = useWeights()
   const profile = useProfile()
-  const [period, setPeriod] = useState<Period>(90)
+  // 30 jours par défaut : la fenêtre où la moyenne mobile se lit vraiment. Sur 90 j,
+  // les variations du jour s'écrasent et la courbe paraît plate.
+  const [period, setPeriod] = useState<Period>(30)
   const [showEntry, setShowEntry] = useState(false)
 
   const weekly = weeklyAverages(weights, profile.startDate, 1)
