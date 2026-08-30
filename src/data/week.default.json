@@ -1,5 +1,5 @@
 {
-  "note": "Semaine planifiée, injectée via un bundle (docs/injection-repas.md). Format days[].meals[].",
+  "note": "Semaine S2 — injectée depuis le bundle du 2026-08-28. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -10,7 +10,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes"
+          "recipeId": "gamelle-poulet-riz-legumes-s2"
         },
         {
           "slot": "collation",
@@ -19,14 +19,12 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-cabillaud-courgettes-quinoa",
-          "note": "Colin cette semaine : loguer colin-cru."
+          "recipeId": "diner-saumon-keta-poireaux-pdt"
         },
         {
           "slot": "extra",
-          "foodId": "the-nature",
-          "grams": 200,
-          "note": "Infusion — clôt le repas sans calories."
+          "foodId": "kiwi",
+          "grams": 75
         }
       ]
     },
@@ -35,36 +33,37 @@
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "petit-dej-muffins"
+          "recipeId": "muffins-oeufs-s2",
+          "portions": 3
         },
         {
           "slot": "petit-dej",
-          "foodId": "kiwi",
-          "grams": 75
+          "foodId": "pain-complet",
+          "grams": 30
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-lentilles-crudites"
+          "recipeId": "gamelle-chili-riz-crudites"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-oeufs-crudites",
+          "recipeId": "collation-oeufs-crudites-amandes",
           "note": "16 h"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-steak-haricots-patate-douce"
+          "recipeId": "diner-bavette-champignons-pdt"
         },
         {
           "slot": "extra",
-          "foodId": "kiwi",
-          "grams": 75
+          "foodId": "the-nature",
+          "grams": 200,
+          "note": "Infusion."
         }
       ]
     },
     {
       "label": "Mercredi",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -72,7 +71,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes"
+          "recipeId": "gamelle-poulet-riz-legumes-s2"
         },
         {
           "slot": "collation",
@@ -80,18 +79,13 @@
           "note": "16 h"
         },
         {
-          "slot": "collation",
-          "recipeId": "shaker-whey-eau",
-          "time": "18:30",
-          "note": "Avant de partir."
+          "slot": "diner",
+          "recipeId": "diner-dinde-endives-quinoa"
         },
         {
-          "slot": "diner",
-          "estimated": {
-            "kcal": 1200,
-            "proteinG": 45
-          },
-          "note": "Restaurant, dessert compris."
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120
         }
       ]
     },
@@ -100,30 +94,32 @@
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "petit-dej-muffins"
+          "recipeId": "muffins-oeufs-s2",
+          "portions": 3
         },
         {
           "slot": "petit-dej",
-          "foodId": "pomme",
-          "grams": 150
+          "foodId": "pain-complet",
+          "grams": 30
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-lentilles-crudites"
+          "recipeId": "gamelle-chili-riz-crudites",
+          "note": "Sortie du congélateur la veille au soir."
         },
         {
           "slot": "collation",
-          "recipeId": "collation-oeufs-crudites",
+          "recipeId": "collation-oeufs-crudites-amandes",
           "note": "16 h"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-dinde-puree-epinards"
+          "recipeId": "diner-colin-haricots-patate-douce"
         },
         {
           "slot": "extra",
-          "foodId": "banane",
-          "grams": 120
+          "foodId": "kiwi",
+          "grams": 75
         }
       ]
     },
@@ -136,7 +132,8 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes"
+          "recipeId": "gamelle-poulet-riz-legumes-s2",
+          "note": "Sortie du congélateur la veille au soir."
         },
         {
           "slot": "collation",
@@ -145,36 +142,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-pdt-poireaux"
-        },
-        {
-          "slot": "extra",
-          "foodId": "kiwi",
-          "grams": 75
-        }
-      ]
-    },
-    {
-      "label": "Samedi",
-      "meals": [
-        {
-          "slot": "petit-dej",
-          "recipeId": "skyr-du-matin"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "salade-thon-oeufs"
-        },
-        {
-          "slot": "collation",
-          "recipeId": "muffins-oeufs",
-          "portions": 3,
-          "note": "16 h"
-        },
-        {
-          "slot": "diner",
-          "recipeId": "diner-omelette-champignons",
-          "note": "Dîner récupéré du mercredi."
+          "recipeId": "diner-omelette-champignons"
         },
         {
           "slot": "extra",
@@ -184,21 +152,56 @@
       ]
     },
     {
+      "label": "Samedi",
+      "isRestaurantDay": true,
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "skyr-du-matin"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "salade-thon-avocat"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "muffins-oeufs-s2",
+          "portions": 3,
+          "note": "16 h"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "18:30",
+          "note": "Avant de partir. Ne jamais arriver au restaurant en ayant faim."
+        },
+        {
+          "slot": "diner",
+          "estimated": {
+            "kcal": 1200,
+            "proteinG": 45
+          },
+          "note": "Restaurant, dessert compris. À remplacer par la saisie réelle."
+        }
+      ]
+    },
+    {
       "label": "Dimanche",
       "meals": [
         {
           "slot": "petit-dej",
-          "recipeId": "petit-dej-muffins"
+          "recipeId": "muffins-oeufs-s2",
+          "portions": 3
         },
         {
           "slot": "petit-dej",
-          "foodId": "kiwi",
-          "grams": 75
+          "foodId": "pain-complet",
+          "grams": 30
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes",
-          "note": "6e portion de poulet + riz et légumes restants."
+          "recipeId": "gamelle-poulet-riz-legumes-s2",
+          "note": "Sortie du congélateur la veille au soir."
         },
         {
           "slot": "collation",
@@ -211,7 +214,7 @@
         },
         {
           "slot": "extra",
-          "recipeId": "dessert-fb-cacao-amandes"
+          "recipeId": "dessert-fb-cacao"
         }
       ]
     }

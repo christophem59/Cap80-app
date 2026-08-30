@@ -92,26 +92,25 @@
       "slot": [
         "dejeuner"
       ],
-      "servings": 6,
+      "servings": 4,
       "prepMin": 10,
       "cookMin": 25,
       "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "poulet-blanc-cru",
-          "grams": 1200
+          "grams": 800
         },
         {
           "foodId": "huile-olive",
-          "grams": 20
+          "grams": 15
         }
       ],
       "steps": [
         "Mariner : huile, paprika fumé, cumin, ail, jus de citron, sel, poivre.",
-        "Aplatir les blancs trop épais pour une cuisson homogène.",
-        "25 min à 200 °C. Vérifier 74 °C à cœur. Peser 6 portions de 150 g cuits."
-      ],
-      "cookedYieldG": 900
+        "Aplatir les blancs trop épais. 25 min à 200 °C, 74 °C à cœur.",
+        "Repos 5 min, puis peser 4 portions de 150 g cuits."
+      ]
     },
     {
       "id": "legumes-rotis",
@@ -511,10 +510,9 @@
         }
       ],
       "steps": [
-        "DANS UN BOL, pas au shaker : 250 g de skyr + 40 g de flocons ne se secouent pas.",
+        "DANS UN BOL, pas au shaker.",
         "Délayer la whey avec 2-3 c. à s. d'eau AVANT d'incorporer le skyr, sinon grumeaux.",
-        "Fruits rouges 30-40 s au micro-ondes avant de les ajouter.",
-        "Préparé la VEILLE au soir : les flocons ramollissent, le matin devient sans effort."
+        "Préparé la VEILLE au soir : les flocons ramollissent. Créatine ajoutée le matin."
       ]
     },
     {
@@ -524,7 +522,7 @@
         "collation"
       ],
       "servings": 1,
-      "prepMin": 1,
+      "prepMin": 0,
       "cookMin": 0,
       "batchFriendly": false,
       "ingredients": [
@@ -539,12 +537,12 @@
     },
     {
       "id": "collation-fb-amandes",
-      "label": "Collation fromage blanc et amandes",
+      "label": "Fromage blanc et amandes",
       "slot": [
         "collation"
       ],
       "servings": 1,
-      "prepMin": 1,
+      "prepMin": 0,
       "cookMin": 0,
       "batchFriendly": false,
       "ingredients": [
@@ -566,7 +564,7 @@
         "collation"
       ],
       "servings": 1,
-      "prepMin": 1,
+      "prepMin": 0,
       "cookMin": 0,
       "batchFriendly": false,
       "ingredients": [
@@ -580,7 +578,7 @@
         }
       ],
       "steps": [
-        "+ édulcorant selon le goût. Dessert du soir : clôt le repas et protège le créneau 21 h 30."
+        "+ édulcorant selon le goût. Clôt le repas et protège le créneau de 21 h 30."
       ]
     },
     {
@@ -590,7 +588,7 @@
         "collation"
       ],
       "servings": 1,
-      "prepMin": 1,
+      "prepMin": 0,
       "cookMin": 0,
       "batchFriendly": false,
       "ingredients": [
@@ -682,7 +680,7 @@
       ],
       "servings": 1,
       "prepMin": 5,
-      "cookMin": 10,
+      "cookMin": 15,
       "batchFriendly": false,
       "ingredients": [
         {
@@ -699,15 +697,17 @@
         },
         {
           "foodId": "pain-complet",
-          "grams": 100
+          "grams": 60
         },
         {
           "foodId": "huile-olive",
-          "grams": 5
+          "grams": 12
         }
       ],
       "steps": [
-        "4 œufs. Faire suer les champignons à sec d'abord pour évacuer l'eau, puis l'huile."
+        "Champignons À SEC d'abord pour évacuer l'eau, puis l'huile.",
+        "4 œufs battus juste ce qu'il faut. Feu moyen-doux.",
+        "Plier quand le dessus est encore légèrement baveux : elle finit de cuire dans l'assiette."
       ]
     },
     {
@@ -972,8 +972,8 @@
         "diner"
       ],
       "servings": 1,
-      "prepMin": 2,
-      "cookMin": 0,
+      "prepMin": 15,
+      "cookMin": 25,
       "batchFriendly": false,
       "ingredients": [
         {
@@ -989,12 +989,8 @@
           "grams": 50
         },
         {
-          "foodId": "celeri",
-          "grams": 50
-        },
-        {
-          "foodId": "brocoli",
-          "grams": 25
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
         },
         {
           "foodId": "oeuf-dur",
@@ -1002,11 +998,577 @@
         },
         {
           "foodId": "pain-complet",
+          "grams": 40
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "2 portions de soupe (~900 ml), 2 œufs durs, 40 g de pain complet.",
+        "Filet d'huile d'olive dans l'assiette, hors du feu."
+      ]
+    },
+    {
+      "id": "legumes-rotis-s2",
+      "label": "Légumes rôtis (pommes de terre, courgette, poivron)",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 4,
+      "prepMin": 15,
+      "cookMin": 40,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 500
+        },
+        {
+          "foodId": "courgette",
+          "grams": 300
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 35
+        }
+      ],
+      "steps": [
+        "Pommes de terre en cubes de 2 cm, 20 g d'huile, plaque seule, 40 min à 200 °C.",
+        "Courgette, poivron, oignon en gros dés, 15 g d'huile, seconde plaque, 30 min.",
+        "UNE SEULE COUCHE par plaque. Mélanger les deux plaques à la sortie."
+      ]
+    },
+    {
+      "id": "riz-basmati-batch-s2",
+      "label": "Riz basmati (lot de 6 portions)",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 6,
+      "prepMin": 3,
+      "cookMin": 16,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 290
+        }
+      ],
+      "steps": [
+        "290 g de riz rincé + 460 ml d'eau, à couvert, 11 min, puis 5 min hors du feu."
+      ]
+    },
+    {
+      "id": "chili-lentilles-boeuf",
+      "label": "Chili lentilles et bœuf haché",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 2,
+      "prepMin": 10,
+      "cookMin": 40,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "lentilles-vertes-crues",
+          "grams": 150
+        },
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 375
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 400
+        },
+        {
+          "foodId": "oignon",
+          "grams": 100
+        },
+        {
+          "foodId": "epinards-crus",
+          "grams": 125
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Lentilles 25 min à frémissement, sans sel ni tomate. Égoutter.",
+        "Faire suer l'oignon, colorer le haché émietté.",
+        "Ajouter tomates, lentilles, épinards, cumin, paprika, origan. 15 min à découvert."
+      ]
+    },
+    {
+      "id": "muffins-oeufs-s2",
+      "label": "Muffins aux œufs",
+      "slot": [
+        "petit-dej",
+        "collation"
+      ],
+      "servings": 12,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 660
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "courgette",
+          "grams": 100
+        },
+        {
+          "foodId": "feta",
           "grams": 80
         }
       ],
       "steps": [
-        "2 portions de soupe vide-frigo (~900 ml), 2 œufs durs, 80 g de pain complet."
+        "Battre les œufs, ajouter légumes en petits dés et feta émiettée. Sel, poivre, herbes.",
+        "GRAISSER le moule ou utiliser des caissettes. 25 min à 180 °C.",
+        "Tiennent 5 jours au frigo, se congèlent très bien."
+      ]
+    },
+    {
+      "id": "boite-crudites-s2",
+      "label": "Boîte de crudités (endives, tomates, carottes, concombre)",
+      "slot": [
+        "collation"
+      ],
+      "servings": 5,
+      "prepMin": 15,
+      "cookMin": 0,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "endive",
+          "grams": 300
+        },
+        {
+          "foodId": "tomate",
+          "grams": 250
+        },
+        {
+          "foodId": "carotte",
+          "grams": 300
+        },
+        {
+          "foodId": "concombre",
+          "grams": 200
+        }
+      ],
+      "steps": [
+        "En bâtonnets, boîte hermétique avec un fond d'eau. Tient 5 jours.",
+        "À ranger à HAUTEUR DES YEUX dans le frigo, devant tout le reste."
+      ]
+    },
+    {
+      "id": "sauce-fromage-blanc-s2",
+      "label": "Sauce fromage blanc citron-herbes",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 6,
+      "prepMin": 5,
+      "cookMin": 0,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 360
+        }
+      ],
+      "steps": [
+        "Ail râpé, jus de citron, moutarde, herbes, poivre (non comptés, moins de 5 kcal par portion).",
+        "Toujours dans un pot À PART : sinon la gamelle se détrempe."
+      ]
+    },
+    {
+      "id": "gamelle-poulet-riz-legumes-s2",
+      "label": "Gamelle poulet, riz, légumes rôtis",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 3,
+      "cookMin": 0,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 125
+        },
+        {
+          "foodId": "courgette",
+          "grams": 75
+        },
+        {
+          "foodId": "poivron",
+          "grams": 38
+        },
+        {
+          "foodId": "oignon",
+          "grams": 38
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 48
+        },
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 60
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 13
+        }
+      ],
+      "steps": [
+        "Assemblage : 150 g de poulet cuit + 1/4 des légumes rôtis + 1/6 du riz + 1 pot de sauce.",
+        "Sauce dans un pot séparé."
+      ]
+    },
+    {
+      "id": "gamelle-chili-riz-crudites",
+      "label": "Gamelle chili, riz, crudités",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 3,
+      "cookMin": 0,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "lentilles-vertes-crues",
+          "grams": 75
+        },
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 188
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 200
+        },
+        {
+          "foodId": "oignon",
+          "grams": 50
+        },
+        {
+          "foodId": "epinards-crus",
+          "grams": 63
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 48
+        },
+        {
+          "foodId": "endive",
+          "grams": 60
+        },
+        {
+          "foodId": "tomate",
+          "grams": 50
+        },
+        {
+          "foodId": "carotte",
+          "grams": 60
+        },
+        {
+          "foodId": "concombre",
+          "grams": 40
+        },
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 60
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 5
+        }
+      ],
+      "steps": [
+        "Assemblage : 1/2 du chili + 1/6 du riz + 1/5 de la boîte de crudités + 1 pot de sauce.",
+        "La sauce sert de trempette pour les crudités."
+      ]
+    },
+    {
+      "id": "collation-oeufs-crudites-amandes",
+      "label": "Œufs durs, crudités et amandes",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "prepMin": 0,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "endive",
+          "grams": 60
+        },
+        {
+          "foodId": "tomate",
+          "grams": 50
+        },
+        {
+          "foodId": "carotte",
+          "grams": 60
+        },
+        {
+          "foodId": "concombre",
+          "grams": 40
+        },
+        {
+          "foodId": "amandes",
+          "grams": 20
+        }
+      ],
+      "steps": [
+        "2 œufs durs + 1 portion de la boîte de crudités + 20 g d'amandes."
+      ]
+    },
+    {
+      "id": "salade-thon-avocat",
+      "label": "Salade complète thon, œufs, pois chiches, avocat",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "thon-naturel-egoutte",
+          "grams": 140
+        },
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "pois-chiches-cuits",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 100
+        },
+        {
+          "foodId": "tomate",
+          "grams": 150
+        },
+        {
+          "foodId": "concombre",
+          "grams": 100
+        },
+        {
+          "foodId": "avocat",
+          "grams": 60
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "1 boîte de thon bien égouttée, 2 œufs durs, pois chiches RINCÉS.",
+        "Assaisonner au dernier moment."
+      ]
+    },
+    {
+      "id": "diner-saumon-keta-poireaux-pdt",
+      "label": "Saumon kéta, poireaux fondus, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "saumon-keta-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "poireau-cru",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 8
+        }
+      ],
+      "steps": [
+        "Laver les poireaux en écartant les couches. Fondue à couvert, fond d'eau, 15 min.",
+        "Kéta plus maigre que le saumon atlantique : 3 à 4 g d'huile dans la poêle, il ne s'auto-arrose pas.",
+        "4 min côté peau, 1 min côté chair. Prêt quand la chair se sépare en flocons mais reste corail au centre."
+      ]
+    },
+    {
+      "id": "diner-bavette-champignons-pdt",
+      "label": "Bavette, champignons poêlés, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "boeuf-steak-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "champignons",
+          "grams": 250
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 18
+        }
+      ],
+      "steps": [
+        "Champignons À SEC d'abord, feu vif, jusqu'à évaporation complète. PUIS l'huile et l'ail.",
+        "Bavette salée au moment de la poser. 3 min par face, repos 3 min avant de trancher.",
+        "Trancher PERPENDICULAIREMENT aux fibres, sinon elle est dure."
+      ]
+    },
+    {
+      "id": "diner-dinde-endives-quinoa",
+      "label": "Dinde, endives braisées, quinoa",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "endive",
+          "grams": 200
+        },
+        {
+          "foodId": "quinoa-cru",
+          "grams": 70
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 18
+        }
+      ],
+      "steps": [
+        "Quinoa rincé, 2 fois son volume d'eau, 15 min.",
+        "Endives fendues en deux, face coupée vers le bas, 15 min à couvert. Une pincée de sucre coupe l'amertume.",
+        "Dinde 2-3 min par face MAXIMUM, elle sèche très vite."
+      ]
+    },
+    {
+      "id": "diner-colin-haricots-patate-douce",
+      "label": "Colin, haricots verts, patate douce",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 300
+        },
+        {
+          "foodId": "patate-douce-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 18
+        }
+      ],
+      "steps": [
+        "Colin surgelé : décongelé au frigo la veille, PESÉ décongelé et épongé.",
+        "Patate douce en cubes, 25 min à 200 °C. Colin 10-12 min, ne pas trop cuire."
+      ]
+    },
+    {
+      "id": "soupe-legumes-vide-frigo-s2",
+      "label": "Soupe de légumes vide-frigo",
+      "slot": [
+        "diner"
+      ],
+      "servings": 2,
+      "prepMin": 15,
+      "cookMin": 25,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "carotte",
+          "grams": 250
+        },
+        {
+          "foodId": "poireau-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "oignon",
+          "grams": 50
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        }
+      ],
+      "steps": [
+        "Recette de RÉFÉRENCE : la composition varie selon ce qui reste.",
+        "Couvrir d'eau, 25 min, mixer. La pomme de terre sert d'épaississant."
       ]
     }
   ]
