@@ -280,9 +280,12 @@ export interface Recipe {
   label: string
   slot: ('petit-dej' | 'dejeuner' | 'collation' | 'diner')[]
   servings: number // nombre de portions produites
-  prepMin: number
-  cookMin: number
-  batchFriendly: boolean // préparable à l'avance : picto 🍲 dans l'onglet Recettes
+  /** Durées et « batch cooking » : FACULTATIFS. Un bundle d'injection décrit la
+   *  composition (c'est elle qui porte les macros) et ne connaît pas toujours le temps
+   *  passé en cuisine. Plutôt qu'inventer une durée, on n'en affiche aucune. */
+  prepMin?: number
+  cookMin?: number
+  batchFriendly?: boolean // préparable à l'avance : picto 🍲 dans l'onglet Recettes
   ingredients: { foodId: string; grams: number }[]
   /** Poids total obtenu APRÈS cuisson, quand il a été mesuré. Permet d'afficher
    *  « 1 portion ≈ N g cuits ». Facultatif. */

@@ -84,9 +84,9 @@ Les macros **ne sont jamais stockées** : l'app les recalcule depuis les ingréd
   "label": "Cabillaud, courgettes, quinoa",
   "slot": ["diner"],              // petit-dej | dejeuner | collation | diner (1 ou +)
   "servings": 1,                  // portions produites (entier > 0)
-  "prepMin": 10,
-  "cookMin": 15,
-  "batchFriendly": true,          // préparable à l'avance → picto 🍲 dans l'app
+  "prepMin": 10,                  // optionnel — omis = aucune durée affichée
+  "cookMin": 15,                  // optionnel
+  "batchFriendly": true,          // optionnel : préparable à l'avance → picto 🍲 dans l'app
   "cookedYieldG": 620,            // optionnel : poids total APRÈS cuisson, si mesuré
   "ingredients": [
     { "foodId": "cabillaud-cru", "grams": 250 },
@@ -214,8 +214,12 @@ servings optionnel.
 RECETTES (recipes) : id, label, slot (petit-dej|dejeuner|collation|diner — PAS "extra" : le slot de la
 recette dit à quoi elle sert ; un dessert se déclare "collation" et se place en "extra" dans la semaine),
 servings (portions produites),
-prepMin, cookMin, batchFriendly, ingredients [{foodId, grams}], steps, cookedYieldG optionnel
+ingredients [{foodId, grams}], steps,
+prepMin / cookMin / batchFriendly optionnels (omis = l'app n'affiche pas de durée ; sur une
+recette déjà connue, les valeurs en place sont CONSERVÉES), cookedYieldG optionnel
 (poids total après cuisson si mesuré).
+- `steps` : de vraies instructions. Un mot isolé ("Four.", "Mixer.") est signalé par le
+  validateur — la recette s'affiche, mais elle ne sert à rien en cuisine.
 - RÈGLE CLÉ : les grammes sont exprimés DANS L'ÉTAT DÉCLARÉ de l'aliment (state), jamais convertis.
   Un aliment "cuit" se pèse cuit ; un aliment "cru" se pèse cru.
 - Les épices, aromates, sel, poivre, jus de citron et bouillons NE FIGURENT PAS dans ingredients :

@@ -62,11 +62,166 @@ try {
   process.exit(1)
 }
 
+/* ---------------------------------------------------------------------------
+   Normalisation des variantes de format.
+
+   Les generateurs de bundle ne produisent pas tous exactement la forme canonique :
+   certains ecrivent `perDay` en objet indexe par jour plutot qu'en tableau,
+   `weekAverage` au lieu de `weekAvgKcal`, `day` au lieu de `label`, `servings` au lieu
+   de `portions`, ou des creneaux plus bavards (`petit-dejeuner`, `dessert`).
+
+   On les accepte ET on les SIGNALE, plutot que de planter ou de refuser : le contenu
+   nutritionnel est la partie couteuse a refaire, le nommage des champs ne l'est pas.
+   Chaque conversion produit un avertissement nommant la forme canonique, pour que la
+   derive reste visible au lieu de s'installer.
+   --------------------------------------------------------------------------- */
+
+/* Creneaux de l'app. `dessert` et `accompagnement` n'en sont pas : ce sont des ROLES,
+   et leur traduction depend du contexte.
+
+   Dans la SEMAINE, un dessert occupe le creneau « extra » — c'est un repas en plus.
+   Dans une RECETTE, « extra » n'existe pas : une recette declare ou elle peut servir, et
+   un dessert se declare « collation ». C'est la meme convention que les avertissements
+   deja emis par ce validateur. */
+const SLOT_ALIAS_SEMAINE = {
+  'petit-dejeuner': 'petit-dej',
+  'petit-déjeuner': 'petit-dej',
+  dessert: 'extra',
+  accompagnement: 'dejeuner',
+  gouter: 'collation',
+}
+const SLOT_ALIAS_RECETTE = {
+  ...SLOT_ALIAS_SEMAINE,
+  dessert: 'collation',
+  extra: 'collation',
+}
+
+function normaliserBundle(b) {
+  const vus = new Set()
+  const signale = (m) => {
+    if (!vus.has(m)) {
+      vus.add(m)
+      warn(m)
+    }
+  }
+
+  // --- expectedTotals ---
+  const et = b.expectedTotals
+  if (et) {
+    if (et.perDay && !Array.isArray(et.perDay)) {
+      signale(
+        'expectedTotals.perDay est un OBJET indexe par jour — converti en tableau. ' +
+          'Forme canonique : [{ "label": "Lundi", "kcal": …, "proteinG": …, "fiberG": … }].',
+      )
+      et.perDay = Object.entries(et.perDay).map(([k, v]) => ({ ...v, label: canonJour(k) }))
+    } else if (Array.isArray(et.perDay)) {
+      for (const x of et.perDay) if (x.label) x.label = canonJour(x.label)
+    }
+    if (et.weekAverage) {
+      signale(
+        'expectedTotals.weekAverage — forme canonique : weekAvgKcal, weekAvgProteinG, weekAvgFiberG.',
+      )
+      et.weekAvgKcal ??= et.weekAverage.kcal
+      et.weekAvgProteinG ??= et.weekAverage.proteinG
+      et.weekAvgFiberG ??= et.weekAverage.fiberG
+    }
+    if (et.tolerances) {
+      signale(
+        'expectedTotals.tolerances — forme canonique : toleranceKcal, toleranceProteinG, toleranceFiberG.',
+      )
+      et.toleranceKcal ??= et.tolerances.kcal
+      et.toleranceProteinG ??= et.tolerances.proteinG
+      et.toleranceFiberG ??= et.tolerances.fiberG
+    }
+  }
+
+  // --- week ---
+  for (const d of b.week?.days ?? []) {
+    if (d.label == null && d.day != null) {
+      signale('week.days[].day — forme canonique : « label », avec la majuscule (« Lundi »).')
+      d.label = d.day
+    }
+    if (d.label) {
+      const canon = canonJour(d.label)
+      if (canon !== d.label) {
+        signale(
+          `week.days[].label « ${d.label} » — l'app compare au jour courant avec une ` +
+            'majuscule initiale ; sans elle, le jour ne s\'ouvre pas automatiquement.',
+        )
+        d.label = canon
+      }
+    }
+    if (d.training != null && d.isTrainingDay == null) d.isTrainingDay = d.training
+    for (const m of d.meals ?? []) {
+      if (m.portions == null && m.servings != null) {
+        signale('week.days[].meals[].servings — forme canonique : « portions ».')
+        m.portions = m.servings
+      }
+      if (m.slot && SLOT_ALIAS_SEMAINE[m.slot]) {
+        signale(
+          `creneau « ${m.slot} » inconnu de l'app — converti en « ${SLOT_ALIAS_SEMAINE[m.slot]} ». ` +
+            `Creneaux valides dans la semaine : ${MEAL_SLOTS.join(', ')}.`,
+        )
+        m.slot = SLOT_ALIAS_SEMAINE[m.slot]
+      }
+    }
+  }
+
+  // --- recipes : creneaux et ingredients en doublon ---
+  for (const r of b.recipes ?? []) {
+    if (Array.isArray(r.slot)) {
+      const avant = r.slot.join(',')
+      r.slot = [...new Set(r.slot.map((sl) => SLOT_ALIAS_RECETTE[sl] ?? sl))]
+      if (r.slot.join(',') !== avant) {
+        // Le motif de la traduction depend du creneau d'origine : un message generique
+        // parlant de dessert pour un accompagnement serait trompeur.
+        const pourquoi = avant.includes('dessert')
+          ? 'au niveau recette un dessert se declare « collation » et se place en « extra » dans la semaine'
+          : avant.includes('accompagnement')
+            ? 'un accompagnement n\'est pas un creneau : il se declare sur le repas ou il sert'
+            : `creneaux valides dans une recette : ${RECIPE_SLOTS.join(', ')}`
+        signale(`recipes[${r.id}] : creneau(x) « ${avant} » traduit(s) en « ${r.slot.join(',')} » — ${pourquoi}.`)
+      }
+      for (const sl of r.slot) {
+        if (!MEAL_SLOTS.includes(sl)) {
+          signale(`recipes[${r.id}] : creneau « ${sl} » inconnu — verifier.`)
+        }
+      }
+    }
+    // Deux entrees pour le meme aliment : les totaux les additionnent bien, mais c'est
+    // fragile a relire. On les fusionne et on le dit.
+    const parId = new Map()
+    let doublon = false
+    for (const ing of r.ingredients ?? []) {
+      if (parId.has(ing.foodId)) {
+        parId.get(ing.foodId).grams += ing.grams
+        doublon = true
+      } else parId.set(ing.foodId, { ...ing })
+    }
+    if (doublon) {
+      signale(
+        `recipes[${r.id}] : le meme aliment apparait plusieurs fois — entrees fusionnees ` +
+          '(les grammages sont additionnes, le total ne change pas).',
+      )
+      r.ingredients = [...parId.values()]
+    }
+  }
+  return b
+}
+
+/** « lundi » → « Lundi ». L'app compare au jour courant, majuscule comprise. */
+function canonJour(j) {
+  if (typeof j !== 'string' || !j) return j
+  return j.charAt(0).toUpperCase() + j.slice(1).toLowerCase()
+}
+
 const readData = (f) => JSON.parse(readFileSync(join(DATA, f), 'utf8'))
 const foodsFile = readData('foods.json')
 const baseFoods = foodsFile.foods
 const baseRecipes = readData('recipes.json').recipes
 const basePlan = readData('plan.default.json')
+
+normaliserBundle(bundle)
 
 // ---- 0. Empreinte de la base d'aliments (AVANT tout contrôle de totaux) ----
 // Un bundle calculé sur une base antérieure produirait des écarts caloriques
@@ -149,6 +304,27 @@ for (const r of bundle.recipes ?? []) {
   if (!Number.isInteger(r.servings) || r.servings <= 0) err(`${at} : servings doit être un entier > 0.`)
   if ('cookedYieldG' in r && (!isNum(r.cookedYieldG) || r.cookedYieldG <= 0)) err(`${at} : cookedYieldG doit être un nombre > 0.`)
   if (!Array.isArray(r.ingredients) || r.ingredients.length === 0) err(`${at} : ingredients requis.`)
+
+  /* Durees et batch cooking : signales, jamais bloquants. Ils ne portent aucune macro,
+     l'app sait afficher une recette sans eux, et une duree inventee vaudrait moins que
+     pas de duree du tout. Sur une recette DEJA connue, l'application conserve les
+     valeurs en place — le bundle ne les efface pas en restant muet. */
+  const absents = ['prepMin', 'cookMin', 'batchFriendly'].filter((k) => r[k] === undefined)
+  if (absents.length) warn(`${at} : ${absents.join(', ')} non declare(s) — non affiche(s) dans l'app.`)
+  for (const k of ['prepMin', 'cookMin']) {
+    if (r[k] !== undefined && (!isNum(r[k]) || r[k] < 0)) err(`${at} : ${k} doit etre un nombre >= 0.`)
+  }
+  if (r.batchFriendly !== undefined && typeof r.batchFriendly !== 'boolean')
+    err(`${at} : batchFriendly doit etre un booleen.`)
+
+  /* Etapes : une recette sans instruction utilisable s'affiche, mais ne sert a rien en
+     cuisine. Un mot isole (« Colin. », « Four. ») est le symptome d'un bundle genere
+     sans les etapes — on le dit, plutot que de le decouvrir devant les fourneaux. */
+  const etapes = Array.isArray(r.steps) ? r.steps : []
+  if (!etapes.length) warn(`${at} : aucune etape.`)
+  else if (etapes.join(' ').trim().split(/\s+/).length < 4)
+    warn(`${at} : etapes reduites a « ${etapes.join(' ')} » — instructions probablement manquantes.`)
+
   for (const ing of r.ingredients ?? []) {
     if (!foodsById.has(ing.foodId)) err(`${at} : foodId introuvable « ${ing.foodId} » (ni catalogue ni bundle).`)
     if (!isNum(ing.grams) || ing.grams <= 0) err(`${at} : grams invalide pour « ${ing.foodId} ».`)
@@ -227,7 +403,9 @@ if (bundle.week) {
   if (et) {
     const tolK = et.toleranceKcal ?? 20
     const tolP = et.toleranceProteinG ?? 3
-    const declByDay = new Map((et.perDay ?? []).map((x) => [x.label, x]))
+    const perDay = Array.isArray(et.perDay) ? et.perDay : []
+    if (et.perDay && !Array.isArray(et.perDay)) err('expectedTotals.perDay : forme non reconnue.')
+    const declByDay = new Map(perDay.map((x) => [x.label, x]))
     for (const dc of dayComputed) {
       const decl = declByDay.get(dc.label)
       if (!decl) { err(`expectedTotals.perDay manque le jour « ${dc.label} ».`); continue }

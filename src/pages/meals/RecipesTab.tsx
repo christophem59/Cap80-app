@@ -87,8 +87,17 @@ export function RecipesTab({ onOpenRecipe }: { onOpenRecipe: (id: string) => voi
                   {r.label}
                 </span>
                 <span className="mt-0.5 block text-xs text-[var(--text-muted)]">
-                  {r.servings} portion{r.servings > 1 ? 's' : ''} · {r.prepMin + r.cookMin} min ·{' '}
-                  {m.kcal} kcal/portion · P {m.proteinG}
+                  {[
+                    `${r.servings} portion${r.servings > 1 ? 's' : ''}`,
+                    // Durées facultatives : sans elles, pas de « NaN min ».
+                    r.prepMin != null || r.cookMin != null
+                      ? `${(r.prepMin ?? 0) + (r.cookMin ?? 0)} min`
+                      : null,
+                    `${m.kcal} kcal/portion`,
+                    `P ${m.proteinG}`,
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
                 </span>
               </button>
             </div>

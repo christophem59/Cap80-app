@@ -187,22 +187,19 @@
       "slot": [
         "dejeuner"
       ],
-      "servings": 10,
+      "servings": 6,
       "prepMin": 2,
       "cookMin": 0,
       "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "fromage-blanc-0",
-          "grams": 300
+          "grams": 360
         }
       ],
       "steps": [
-        "Ajouter ail râpé, jus de citron, herbes, poivre.",
-        "Toujours dans un pot À PART : sinon la gamelle se détrempe.",
-        "Moutarde, ail, jus de citron, herbes, sel, poivre selon le goût (non comptés)."
-      ],
-      "cookedYieldG": 310
+        "6 pots de 60 g."
+      ]
     },
     {
       "id": "cabillaud-courgettes-quinoa",
@@ -517,7 +514,7 @@
     },
     {
       "id": "shaker-whey-eau",
-      "label": "Shaker whey à l'eau",
+      "label": "Shaker de whey à l'eau",
       "slot": [
         "collation"
       ],
@@ -527,12 +524,12 @@
       "batchFriendly": false,
       "ingredients": [
         {
-          "foodId": "whey-neutre",
+          "foodId": "whey",
           "grams": 30
         }
       ],
       "steps": [
-        "30 g dans 300 ml d'eau. Usage : 18 h 30 avant de partir au restaurant."
+        "300 ml d'eau."
       ]
     },
     {
@@ -552,10 +549,12 @@
         },
         {
           "foodId": "amandes",
-          "grams": 20
+          "grams": 25
         }
       ],
-      "steps": []
+      "steps": [
+        "250 g."
+      ]
     },
     {
       "id": "dessert-fb-cacao",
@@ -674,7 +673,7 @@
     },
     {
       "id": "diner-omelette-champignons",
-      "label": "Omelette aux champignons",
+      "label": "Omelette aux champignons, salade, pain",
       "slot": [
         "diner"
       ],
@@ -689,7 +688,7 @@
         },
         {
           "foodId": "champignons",
-          "grams": 250
+          "grams": 300
         },
         {
           "foodId": "salade-verte",
@@ -697,17 +696,15 @@
         },
         {
           "foodId": "pain-complet",
-          "grams": 60
+          "grams": 45
         },
         {
           "foodId": "huile-olive",
-          "grams": 12
+          "grams": 10
         }
       ],
       "steps": [
-        "Champignons À SEC d'abord pour évacuer l'eau, puis l'huile.",
-        "4 œufs battus juste ce qu'il faut. Feu moyen-doux.",
-        "Plier quand le dessus est encore légèrement baveux : elle finit de cuire dans l'assiette."
+        "Champignons."
       ]
     },
     {
@@ -967,7 +964,7 @@
     },
     {
       "id": "diner-soupe-oeufs-pain",
-      "label": "Soupe, œufs durs, pain",
+      "label": "Soupe de légumes, 2 œufs durs, pain",
       "slot": [
         "diner"
       ],
@@ -977,12 +974,16 @@
       "batchFriendly": false,
       "ingredients": [
         {
-          "foodId": "carotte",
-          "grams": 250
+          "foodId": "courgette",
+          "grams": 150
         },
         {
           "foodId": "poireau-cru",
-          "grams": 200
+          "grams": 100
+        },
+        {
+          "foodId": "carotte",
+          "grams": 75
         },
         {
           "foodId": "oignon",
@@ -990,7 +991,11 @@
         },
         {
           "foodId": "pomme-de-terre-crue",
-          "grams": 250
+          "grams": 75
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 5
         },
         {
           "foodId": "oeuf-dur",
@@ -998,16 +1003,11 @@
         },
         {
           "foodId": "pain-complet",
-          "grams": 40
-        },
-        {
-          "foodId": "huile-olive",
-          "grams": 10
+          "grams": 45
         }
       ],
       "steps": [
-        "2 portions de soupe (~900 ml), 2 œufs durs, 40 g de pain complet.",
-        "Filet d'huile d'olive dans l'assiette, hors du feu."
+        "Mixer."
       ]
     },
     {
@@ -1569,6 +1569,518 @@
       "steps": [
         "Recette de RÉFÉRENCE : la composition varie selon ce qui reste.",
         "Couvrir d'eau, 25 min, mixer. La pomme de terre sert d'épaississant."
+      ]
+    },
+    {
+      "id": "gamelle-poulet-legumes-riz",
+      "label": "Gamelle poulet rôti, légumes rôtis, riz",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 3,
+      "ingredients": [
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 225
+        },
+        {
+          "foodId": "courgette",
+          "grams": 300
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "oignon",
+          "grams": 115
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 38
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 125
+        }
+      ],
+      "steps": [
+        "Four 200 °C."
+      ]
+    },
+    {
+      "id": "gamelle-chili-riz",
+      "label": "Gamelle chili lentilles-bœuf et riz",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 3,
+      "ingredients": [
+        {
+          "foodId": "lentilles-vertes-crues",
+          "grams": 262.5
+        },
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 450
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 600
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 15
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 125
+        }
+      ],
+      "steps": [
+        "Lentilles rincées."
+      ]
+    },
+    {
+      "id": "salade-endive-carotte",
+      "label": "Salade endive-carotte",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 3,
+      "ingredients": [
+        {
+          "foodId": "endive",
+          "grams": 300
+        },
+        {
+          "foodId": "carotte",
+          "grams": 360
+        }
+      ],
+      "steps": [
+        "Endive émincée."
+      ]
+    },
+    {
+      "id": "crudites-concombre-tomate",
+      "label": "Crudités concombre-tomate",
+      "slot": [
+        "collation"
+      ],
+      "servings": 2,
+      "ingredients": [
+        {
+          "foodId": "concombre",
+          "grams": 240
+        },
+        {
+          "foodId": "tomate",
+          "grams": 200
+        }
+      ],
+      "steps": [
+        "Bâtonnets."
+      ]
+    },
+    {
+      "id": "petit-dej-shaker-skyr",
+      "label": "Bol skyr, whey, flocons, fruits rouges",
+      "slot": [
+        "petit-dej"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "skyr-0",
+          "grams": 250
+        },
+        {
+          "foodId": "whey",
+          "grams": 30
+        },
+        {
+          "foodId": "flocons-avoine",
+          "grams": 40
+        },
+        {
+          "foodId": "fruits-rouges-surgeles",
+          "grams": 100
+        }
+      ],
+      "steps": [
+        "Mélanger."
+      ]
+    },
+    {
+      "id": "petit-dej-oeufs-pain",
+      "label": "3 œufs durs et pain complet",
+      "slot": [
+        "petit-dej"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "oeuf-dur",
+          "grams": 165
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 45
+        }
+      ],
+      "steps": [
+        "3 œufs durs."
+      ]
+    },
+    {
+      "id": "collation-oeufs-amandes",
+      "label": "2 œufs durs et amandes",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "amandes",
+          "grams": 20
+        }
+      ],
+      "steps": [
+        "2 œufs."
+      ]
+    },
+    {
+      "id": "diner-colin-courgettes-quinoa",
+      "label": "Colin, courgettes poêlées, quinoa",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "courgette",
+          "grams": 300
+        },
+        {
+          "foodId": "quinoa-cru",
+          "grams": 60
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Colin."
+      ]
+    },
+    {
+      "id": "diner-dinde-haricots-patate-douce",
+      "label": "Dinde, haricots verts, patate douce",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 300
+        },
+        {
+          "foodId": "patate-douce-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Four."
+      ]
+    },
+    {
+      "id": "diner-chili-salade-pain",
+      "label": "Chili (4e portion), salade verte, pain",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "lentilles-vertes-crues",
+          "grams": 87.5
+        },
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 150
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 200
+        },
+        {
+          "foodId": "oignon",
+          "grams": 50
+        },
+        {
+          "foodId": "poivron",
+          "grams": 50
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 13
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 100
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 45
+        }
+      ],
+      "steps": [
+        "4e portion."
+      ]
+    },
+    {
+      "id": "diner-saumon-poireaux-pdt",
+      "label": "Saumon kéta, fondue de poireaux, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "saumon-keta-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "poireau-cru",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Saumon."
+      ]
+    },
+    {
+      "id": "dejeuner-salade-thon-pois-chiches",
+      "label": "Salade thon, œufs, pois chiches, avocat",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "thon-naturel-egoutte",
+          "grams": 140
+        },
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "pois-chiches-cuits",
+          "grams": 150
+        },
+        {
+          "foodId": "avocat",
+          "grams": 100
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 100
+        },
+        {
+          "foodId": "tomate",
+          "grams": 100
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 5
+        }
+      ],
+      "steps": [
+        "Rincer."
+      ]
+    },
+    {
+      "id": "collation-fb-fruits-rouges",
+      "label": "Fromage blanc et fruits rouges",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 250
+        },
+        {
+          "foodId": "fruits-rouges-surgeles",
+          "grams": 150
+        }
+      ],
+      "steps": [
+        "Mélanger."
+      ]
+    },
+    {
+      "id": "collation-fb-cacao-amandes",
+      "label": "Fromage blanc au cacao et amandes",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 250
+        },
+        {
+          "foodId": "cacao-degraisse",
+          "grams": 10
+        },
+        {
+          "foodId": "amandes",
+          "grams": 25
+        }
+      ],
+      "steps": [
+        "Mélanger."
+      ]
+    },
+    {
+      "id": "resto-forfait-dejeuner",
+      "label": "Restaurant — forfait déjeuner (estimation)",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "resto-fajitas",
+          "grams": 300
+        },
+        {
+          "foodId": "pain-blanc-baguette",
+          "grams": 60
+        },
+        {
+          "foodId": "biere-blonde",
+          "grams": 500
+        },
+        {
+          "foodId": "tarte-pommes",
+          "grams": 120
+        }
+      ],
+      "steps": [
+        "Forfait."
+      ]
+    },
+    {
+      "id": "dessert-kiwi",
+      "label": "2 kiwis",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "kiwi",
+          "grams": 150
+        }
+      ],
+      "steps": [
+        "2 kiwis."
+      ]
+    },
+    {
+      "id": "dessert-banane",
+      "label": "1 banane",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "banane",
+          "grams": 120
+        }
+      ],
+      "steps": [
+        "1 banane."
+      ]
+    },
+    {
+      "id": "dessert-pomme",
+      "label": "1 pomme",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "pomme",
+          "grams": 150
+        }
+      ],
+      "steps": [
+        "1 pomme."
+      ]
+    },
+    {
+      "id": "infusion",
+      "label": "Infusion sans sucre",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "ingredients": [
+        {
+          "foodId": "the-nature",
+          "grams": 250
+        }
+      ],
+      "steps": [
+        "Sans sucre."
       ]
     }
   ]

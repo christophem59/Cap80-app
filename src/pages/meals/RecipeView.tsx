@@ -66,10 +66,18 @@ export function RecipeView({ recipeId, onBack }: { recipeId: string; onBack: () 
         </button>
       </div>
 
-      <p className="text-xs text-[var(--text-muted)]">
-        Prépa {recipe.prepMin} min · Cuisson {recipe.cookMin} min
-        {recipe.batchFriendly ? ' · batch cooking' : ''}
-      </p>
+      {/* Durées inconnues : on n'affiche pas la ligne plutôt qu'un « Prépa 0 min » faux. */}
+      {(recipe.prepMin != null || recipe.cookMin != null || recipe.batchFriendly) && (
+        <p className="text-xs text-[var(--text-muted)]">
+          {[
+            recipe.prepMin != null ? `Prépa ${recipe.prepMin} min` : null,
+            recipe.cookMin != null ? `Cuisson ${recipe.cookMin} min` : null,
+            recipe.batchFriendly ? 'batch cooking' : null,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
+        </p>
+      )}
 
       {/* Portions. */}
       <div className="flex items-center gap-3">
