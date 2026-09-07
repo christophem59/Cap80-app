@@ -185,10 +185,11 @@
       "id": "sauce-fromage-blanc",
       "label": "Sauce fromage blanc citron-herbes",
       "slot": [
-        "dejeuner"
+        "dejeuner",
+        "diner"
       ],
       "servings": 6,
-      "prepMin": 2,
+      "prepMin": 5,
       "cookMin": 0,
       "batchFriendly": true,
       "ingredients": [
@@ -198,7 +199,8 @@
         }
       ],
       "steps": [
-        "6 pots de 60 g."
+        "Fouetter le fromage blanc avec du jus de citron, de l'ail en poudre, une pointe de moutarde, des herbes, du sel et du poivre. Tous ces assaisonnements pèsent moins de 5 kcal par portion et ne sont donc pas comptés dans les ingrédients.",
+        "Répartir en 6 pots de 60 g. À conserver au réfrigérateur uniquement : le fromage blanc tranche à la congélation."
       ]
     },
     {
@@ -519,7 +521,7 @@
         "collation"
       ],
       "servings": 1,
-      "prepMin": 0,
+      "prepMin": 1,
       "cookMin": 0,
       "batchFriendly": false,
       "ingredients": [
@@ -529,7 +531,7 @@
         }
       ],
       "steps": [
-        "300 ml d'eau."
+        "Verser 30 g de whey dans 300 ml d'eau froide et secouer 20 secondes."
       ]
     },
     {
@@ -539,7 +541,7 @@
         "collation"
       ],
       "servings": 1,
-      "prepMin": 0,
+      "prepMin": 2,
       "cookMin": 0,
       "batchFriendly": false,
       "ingredients": [
@@ -553,7 +555,8 @@
         }
       ],
       "steps": [
-        "250 g."
+        "Peser 250 g de fromage blanc 0 % et 25 g d'amandes entières, soit une vingtaine d'amandes.",
+        "Les manger à part plutôt que mélangées : elles restent croquantes et la collation dure plus longtemps."
       ]
     },
     {
@@ -678,8 +681,8 @@
         "diner"
       ],
       "servings": 1,
-      "prepMin": 5,
-      "cookMin": 15,
+      "prepMin": 8,
+      "cookMin": 13,
       "batchFriendly": false,
       "ingredients": [
         {
@@ -704,7 +707,9 @@
         }
       ],
       "steps": [
-        "Champignons."
+        "Émincer les champignons et les cuire 8 minutes à feu vif dans la moitié de l'huile, sans les saler au départ, jusqu'à évaporation complète de leur eau. Ajouter ail en poudre et persil en fin de cuisson.",
+        "Battre 4 œufs, saler, poivrer, les verser sur les champignons et cuire 5 minutes à feu doux à couvert, sans remuer.",
+        "Assaisonner la salade avec le reste de l'huile et servir avec 45 g de pain complet."
       ]
     },
     {
@@ -969,9 +974,9 @@
         "diner"
       ],
       "servings": 1,
-      "prepMin": 15,
+      "prepMin": 10,
       "cookMin": 25,
-      "batchFriendly": false,
+      "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "courgette",
@@ -1007,7 +1012,10 @@
         }
       ],
       "steps": [
-        "Mixer."
+        "Couper tous les légumes en morceaux réguliers et les faire suer 5 minutes dans l'huile d'olive.",
+        "Couvrir d'eau juste à hauteur — pas plus, sinon la soupe est claire — saler, poivrer, et cuire 20 minutes à couvert.",
+        "Mixer jusqu'à obtenir une texture lisse. Servir avec 2 œufs durs et 45 g de pain complet.",
+        "Le surplus se congèle en portions ; noter la date sur le contenant."
       ]
     },
     {
@@ -1579,6 +1587,9 @@
         "diner"
       ],
       "servings": 3,
+      "prepMin": 20,
+      "cookMin": 40,
+      "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "poulet-blanc-cru",
@@ -1610,7 +1621,11 @@
         }
       ],
       "steps": [
-        "Four 200 °C."
+        "Préchauffer le four à 200 °C. Couper pommes de terre, courgette, poivron et oignon en morceaux de 2 cm, les mélanger avec l'huile d'olive, saler, poivrer, ajouter ail en poudre et paprika.",
+        "Étaler les légumes sur une plaque en une seule couche et enfourner 35 à 40 minutes, en remuant à mi-cuisson.",
+        "Assaisonner les blancs de poulet (ail en poudre, paprika, thym), les cuire 25 minutes au four avec les légumes, ou 12 minutes à la poêle en les retournant à mi-cuisson.",
+        "Riz : verser les 125 g dans 250 ml d'eau salée, porter à ébullition, couvrir et cuire 11 minutes à feu doux, puis laisser reposer 5 minutes hors du feu.",
+        "Répartir en 3 parts strictement égales : 150 g de poulet, 188 g de légumes et 112 g de riz par gamelle, soit 450 g. Le pot de sauce reste à part."
       ]
     },
     {
@@ -1620,6 +1635,9 @@
         "dejeuner"
       ],
       "servings": 3,
+      "prepMin": 15,
+      "cookMin": 50,
+      "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "lentilles-vertes-crues",
@@ -1651,16 +1669,25 @@
         }
       ],
       "steps": [
-        "Lentilles rincées."
+        "Rincer les lentilles et les cuire 25 minutes dans une grande quantité d'eau NON salée, puis les égoutter.",
+        "Faire revenir l'oignon et le poivron émincés dans l'huile d'olive 6 minutes à feu moyen, jusqu'à ce qu'ils soient tendres.",
+        "Ajouter le steak haché, l'écraser à la cuillère et le laisser colorer 5 minutes à feu vif.",
+        "Verser les tomates concassées, assaisonner (cumin, paprika, ail en poudre, origan, sel, poivre) et laisser réduire 20 minutes à découvert en remuant de temps en temps.",
+        "Incorporer les lentilles égouttées et poursuivre 5 minutes pour que les saveurs se lient.",
+        "Riz : 125 g dans 250 ml d'eau salée, 11 minutes à couvert. Répartir en 3 parts égales : 510 g de chili et 112 g de riz par gamelle, soit 622 g.",
+        "La salade endive-carotte ne va JAMAIS dans la gamelle à l'avance : elle s'ajoute le matin du repas."
       ]
     },
     {
       "id": "salade-endive-carotte",
-      "label": "Salade endive-carotte",
+      "label": "Salade endive-carotte (accompagne la gamelle chili)",
       "slot": [
         "dejeuner"
       ],
       "servings": 3,
+      "prepMin": 10,
+      "cookMin": 0,
+      "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "endive",
@@ -1672,16 +1699,20 @@
         }
       ],
       "steps": [
-        "Endive émincée."
+        "Émincer les endives en tronçons de 1 cm et râper les carottes.",
+        "Compter 100 g d'endive et 120 g de carotte par portion, soit 220 g. À préparer la veille au soir : la préparation tient 3 jours en boîte fermée sans rendre d'eau."
       ]
     },
     {
       "id": "crudites-concombre-tomate",
-      "label": "Crudités concombre-tomate",
+      "label": "Crudités concombre-tomate (collation)",
       "slot": [
         "collation"
       ],
       "servings": 2,
+      "prepMin": 5,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "concombre",
@@ -1693,16 +1724,20 @@
         }
       ],
       "steps": [
-        "Bâtonnets."
+        "Couper le concombre en bâtonnets et la tomate en quartiers : 120 g et 100 g par portion.",
+        "À préparer le matin même et pas la veille : la tomate rend son eau au-delà de 24 heures et détrempe le concombre."
       ]
     },
     {
       "id": "petit-dej-shaker-skyr",
-      "label": "Bol skyr, whey, flocons, fruits rouges",
+      "label": "Bol skyr, whey, flocons d'avoine, fruits rouges",
       "slot": [
         "petit-dej"
       ],
       "servings": 1,
+      "prepMin": 3,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "skyr-0",
@@ -1722,7 +1757,9 @@
         }
       ],
       "steps": [
-        "Mélanger."
+        "Sortir les fruits rouges la veille au soir et les laisser décongeler au réfrigérateur.",
+        "Mélanger énergiquement le skyr et la whey jusqu'à disparition des grumeaux, incorporer les flocons d'avoine puis garnir de fruits rouges.",
+        "Le bol se prépare la veille au soir et se conserve une nuit au réfrigérateur : les flocons s'assouplissent, la texture est meilleure."
       ]
     },
     {
@@ -1732,6 +1769,9 @@
         "petit-dej"
       ],
       "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "oeuf-dur",
@@ -1743,7 +1783,8 @@
         }
       ],
       "steps": [
-        "3 œufs durs."
+        "Prendre 3 œufs durs dans la boîte du batch, les écaler et les couper en deux.",
+        "Saler, poivrer, saupoudrer de paprika. Servir avec 45 g de pain complet."
       ]
     },
     {
@@ -1753,6 +1794,9 @@
         "collation"
       ],
       "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "oeuf-dur",
@@ -1764,7 +1808,8 @@
         }
       ],
       "steps": [
-        "2 œufs."
+        "Prendre 2 œufs durs dans la boîte du batch et peser 20 g d'amandes.",
+        "À accompagner de la portion de crudités concombre-tomate préparée le matin."
       ]
     },
     {
@@ -1774,6 +1819,9 @@
         "diner"
       ],
       "servings": 1,
+      "prepMin": 10,
+      "cookMin": 15,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "colin-cru",
@@ -1793,16 +1841,22 @@
         }
       ],
       "steps": [
-        "Colin."
+        "Le colin doit avoir été sorti du congélateur la veille au soir et décongelé au réfrigérateur.",
+        "Rincer le quinoa, le cuire 13 minutes dans 150 ml d'eau salée à couvert, puis le laisser gonfler 5 minutes hors du feu.",
+        "Couper les courgettes en rondelles de 5 mm et les saisir 8 minutes à feu vif dans la moitié de l'huile, avec de l'ail en poudre. Ne pas couvrir, sinon elles rendent leur eau.",
+        "Éponger le colin, le cuire 4 minutes par face dans le reste de l'huile à feu moyen, arroser de jus de citron en fin de cuisson."
       ]
     },
     {
       "id": "diner-dinde-haricots-patate-douce",
-      "label": "Dinde, haricots verts, patate douce",
+      "label": "Escalope de dinde, haricots verts, patate douce",
       "slot": [
         "diner"
       ],
       "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "dinde-escalope-crue",
@@ -1822,16 +1876,21 @@
         }
       ],
       "steps": [
-        "Four."
+        "Couper la patate douce en cubes de 2 cm, les mélanger à la moitié de l'huile et au paprika, puis enfourner 25 minutes à 200 °C.",
+        "Cuire les haricots verts 10 minutes à la vapeur, ou 12 minutes à l'eau bouillante salée, puis les égoutter.",
+        "Cuire l'escalope de dinde 4 minutes par face dans le reste de l'huile, avec ail en poudre et thym. Ne pas dépasser la cuisson : la dinde sèche vite."
       ]
     },
     {
       "id": "diner-chili-salade-pain",
-      "label": "Chili (4e portion), salade verte, pain",
+      "label": "Chili (4e portion), salade verte, pain complet",
       "slot": [
         "diner"
       ],
       "servings": 1,
+      "prepMin": 5,
+      "cookMin": 5,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "lentilles-vertes-crues",
@@ -1867,7 +1926,9 @@
         }
       ],
       "steps": [
-        "4e portion."
+        "Reprendre la 4e portion de chili du batch, soit 510 g, et la réchauffer 4 minutes à la poêle à couvert ou 3 minutes au micro-ondes.",
+        "Assaisonner la salade verte avec 8 g d'huile d'olive, du vinaigre et une pointe de moutarde.",
+        "Servir avec 45 g de pain complet. Cette portion doit être consommée au plus tard mercredi soir : elle vient du batch du 6 septembre et n'a pas été congelée."
       ]
     },
     {
@@ -1877,6 +1938,9 @@
         "diner"
       ],
       "servings": 1,
+      "prepMin": 10,
+      "cookMin": 20,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "saumon-keta-cru",
@@ -1896,7 +1960,10 @@
         }
       ],
       "steps": [
-        "Saumon."
+        "Le saumon doit avoir été sorti du congélateur la veille au soir et décongelé au réfrigérateur.",
+        "Couper les pommes de terre en cubes de 2 cm et les cuire 20 minutes à la vapeur.",
+        "Émincer les poireaux en rondelles fines et les cuire 15 minutes à couvert dans la moitié de l'huile avec un fond d'eau, jusqu'à ce qu'ils fondent.",
+        "Cuire le saumon 4 minutes côté peau puis 2 minutes sur l'autre face, dans le reste de l'huile. Finir au jus de citron et à l'aneth."
       ]
     },
     {
@@ -1906,6 +1973,9 @@
         "dejeuner"
       ],
       "servings": 1,
+      "prepMin": 10,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "thon-naturel-egoutte",
@@ -1937,7 +2007,9 @@
         }
       ],
       "steps": [
-        "Rincer."
+        "Rincer et égoutter les pois chiches, égoutter le thon, écaler 2 œufs durs et les couper en quartiers, détailler l'avocat en lamelles.",
+        "Disposer la salade verte au fond, puis les autres éléments par-dessus sans mélanger.",
+        "Assaisonner au moment de manger avec 5 g d'huile d'olive, du jus de citron, une pointe de moutarde, sel et poivre."
       ]
     },
     {
@@ -1947,6 +2019,9 @@
         "collation"
       ],
       "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "fromage-blanc-0",
@@ -1958,7 +2033,7 @@
         }
       ],
       "steps": [
-        "Mélanger."
+        "Sortir les fruits rouges le matin pour qu'ils décongèlent au réfrigérateur, puis les mélanger au fromage blanc au moment de manger."
       ]
     },
     {
@@ -1968,6 +2043,9 @@
         "collation"
       ],
       "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "fromage-blanc-0",
@@ -1983,104 +2061,8 @@
         }
       ],
       "steps": [
-        "Mélanger."
-      ]
-    },
-    {
-      "id": "resto-forfait-dejeuner",
-      "label": "Restaurant — forfait déjeuner (estimation)",
-      "slot": [
-        "dejeuner"
-      ],
-      "servings": 1,
-      "ingredients": [
-        {
-          "foodId": "resto-fajitas",
-          "grams": 300
-        },
-        {
-          "foodId": "pain-blanc-baguette",
-          "grams": 60
-        },
-        {
-          "foodId": "biere-blonde",
-          "grams": 500
-        },
-        {
-          "foodId": "tarte-pommes",
-          "grams": 120
-        }
-      ],
-      "steps": [
-        "Forfait."
-      ]
-    },
-    {
-      "id": "dessert-kiwi",
-      "label": "2 kiwis",
-      "slot": [
-        "collation"
-      ],
-      "servings": 1,
-      "ingredients": [
-        {
-          "foodId": "kiwi",
-          "grams": 150
-        }
-      ],
-      "steps": [
-        "2 kiwis."
-      ]
-    },
-    {
-      "id": "dessert-banane",
-      "label": "1 banane",
-      "slot": [
-        "collation"
-      ],
-      "servings": 1,
-      "ingredients": [
-        {
-          "foodId": "banane",
-          "grams": 120
-        }
-      ],
-      "steps": [
-        "1 banane."
-      ]
-    },
-    {
-      "id": "dessert-pomme",
-      "label": "1 pomme",
-      "slot": [
-        "collation"
-      ],
-      "servings": 1,
-      "ingredients": [
-        {
-          "foodId": "pomme",
-          "grams": 150
-        }
-      ],
-      "steps": [
-        "1 pomme."
-      ]
-    },
-    {
-      "id": "infusion",
-      "label": "Infusion sans sucre",
-      "slot": [
-        "collation"
-      ],
-      "servings": 1,
-      "ingredients": [
-        {
-          "foodId": "the-nature",
-          "grams": 250
-        }
-      ],
-      "steps": [
-        "Sans sucre."
+        "Délayer les 10 g de cacao dégraissé non sucré avec une cuillère d'eau avant de l'incorporer au fromage blanc, sinon il forme des grumeaux.",
+        "Servir avec 25 g d'amandes à part."
       ]
     }
   ]

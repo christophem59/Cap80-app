@@ -21,7 +21,15 @@ type Recipe = {
   ingredients: { foodId: string; grams: number }[]
   steps: string[]
 }
-type Meal = { slot: string; recipeId?: string; foodId?: string; grams?: number; portions?: number }
+type Meal = {
+  slot: string
+  recipeId?: string
+  foodId?: string
+  grams?: number
+  portions?: number
+  /** Repas non décomposé (restaurant) : macros figées telles quelles. */
+  estimated?: { kcal: number; proteinG: number; fiberG?: number }
+}
 
 const foods = (foodsJson as { foods: { id: string }[] }).foods
 const recipes = (recipesJson as { recipes: Recipe[] }).recipes
@@ -104,12 +112,25 @@ describe('semaine par défaut', () => {
   })
 
   it('un repas décrit exactement une source', () => {
+    // Trois sources possibles, jamais deux à la fois : une recette du catalogue,
+    // un aliment pesé, ou une estimation figée (le restaurant, qu'on ne décompose pas).
     const ambigus = week.days.flatMap((d) =>
       d.meals
-        .filter((m) => (m.recipeId ? 1 : 0) + (m.foodId ? 1 : 0) !== 1)
+        .filter((m) => (m.recipeId ? 1 : 0) + (m.foodId ? 1 : 0) + (m.estimated ? 1 : 0) !== 1)
         .map((m) => `${d.label} → ${JSON.stringify(m)}`),
     )
     expect(ambigus).toEqual([])
+  })
+
+  it('un repas estimé chiffre au moins ses calories et ses protéines', () => {
+    // Ces valeurs ne sont recalculables par rien : si elles manquent, le jour est faux
+    // sans que personne ne le voie.
+    const incomplets = week.days.flatMap((d) =>
+      d.meals
+        .filter((m) => m.estimated && !(m.estimated.kcal > 0 && m.estimated.proteinG >= 0))
+        .map((m) => `${d.label} → ${JSON.stringify(m.estimated)}`),
+    )
+    expect(incomplets).toEqual([])
   })
 
   it('un aliment posé directement porte un grammage', () => {
