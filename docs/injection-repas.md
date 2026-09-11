@@ -224,6 +224,9 @@ recette déjà connue, les valeurs en place sont CONSERVÉES), cookedYieldG opti
   Un aliment "cuit" se pèse cuit ; un aliment "cru" se pèse cru.
 - Les épices, aromates, sel, poivre, jus de citron et bouillons NE FIGURENT PAS dans ingredients :
   mets-les dans steps.
+- Un même foodId ne figure QU'UNE FOIS par recette : additionne les grammages toi-même. L'huile
+  de cuisson et l'huile d'assaisonnement d'un même plat font UNE seule ligne. Sinon le validateur
+  fusionne les doublons et le signale.
 - Ne calcule aucune macro dans la recette : l'app les recalcule depuis les ingrédients.
 
 SEMAINE (week.days) : 7 jours, label Lundi→Dimanche, chacun avec "meals" = TABLEAU de repas.
@@ -233,6 +236,11 @@ Chaque repas : slot parmi petit-dej|dejeuner|collation|diner|extra, et EXACTEMEN
   - foodId + grams
   - estimated {kcal, proteinG}   (repas non décomposé, ex. restaurant)
 time "HH:MM" et note sont facultatifs ; isRestaurantDay: true sur un jour de restaurant.
+- Un dessert simple (un fruit) se pose DIRECTEMENT en foodId + grams dans un repas "extra" :
+  n'en fais pas une recette, ça n'apporte rien et ça encombre le catalogue.
+- Un repas au restaurant se déclare en "estimated", jamais en recette : on ne connaît pas les
+  grammages. Mets-y fiberG si le repas en contient, sinon il compte 0 g de fibres.
+  Ajoute une note disant de remplacer par la saisie réelle.
 
 CONTRÔLE CROISÉ (expectedTotals) — OBLIGATOIRE dès que week est présent :
 { "perDay": [{label, kcal, proteinG, fiberG} × 7], "weekAvgKcal": n, "weekAvgProteinG": n,
