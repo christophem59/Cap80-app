@@ -199,8 +199,8 @@
         }
       ],
       "steps": [
-        "Fouetter le fromage blanc avec du jus de citron, de l'ail en poudre, une pointe de moutarde, des herbes, du sel et du poivre. Tous ces assaisonnements pèsent moins de 5 kcal par portion et ne sont donc pas comptés dans les ingrédients.",
-        "Répartir en 6 pots de 60 g. À conserver au réfrigérateur uniquement : le fromage blanc tranche à la congélation."
+        "Fouetter le fromage blanc avec du jus de citron, de l'ail en poudre, une pointe de moutarde, des herbes, du sel et du poivre.",
+        "Répartir en 6 pots de 60 g. Réfrigérateur uniquement : le fromage blanc tranche à la congélation. À faire la veille au soir pour les jours de bureau, sur le moment les jours de télétravail."
       ]
     },
     {
@@ -707,9 +707,10 @@
         }
       ],
       "steps": [
-        "Émincer les champignons et les cuire 8 minutes à feu vif dans la moitié de l'huile, sans les saler au départ, jusqu'à évaporation complète de leur eau. Ajouter ail en poudre et persil en fin de cuisson.",
-        "Battre 4 œufs, saler, poivrer, les verser sur les champignons et cuire 5 minutes à feu doux à couvert, sans remuer.",
-        "Assaisonner la salade avec le reste de l'huile et servir avec 45 g de pain complet."
+        "Essuyer les champignons au torchon plutôt que de les laver : ce sont des éponges, et l'eau absorbée ressort à la cuisson.",
+        "Les émincer et les cuire 8 minutes à feu vif dans la moitié de l'huile, SANS sel au départ, jusqu'à coloration. Saler, poivrer, ail en poudre et persil seulement à la fin.",
+        "Battre 4 œufs, saler, poivrer, les verser sur les champignons et cuire 5 minutes à feu doux à couvert sans remuer. L'omelette doit rester baveuse au centre.",
+        "Assaisonner la salade avec le reste de l'huile, du vinaigre et une pointe de moutarde. Servir avec 45 g de pain complet."
       ]
     },
     {
@@ -1013,7 +1014,7 @@
       ],
       "steps": [
         "Couper tous les légumes en morceaux réguliers et les faire suer 5 minutes dans l'huile d'olive.",
-        "Couvrir d'eau juste à hauteur — pas plus, sinon la soupe est claire — saler, poivrer, et cuire 20 minutes à couvert.",
+        "Couvrir d'eau juste à hauteur et pas davantage, sinon la soupe est claire. Saler, poivrer, cuire 20 minutes à couvert.",
         "Mixer jusqu'à obtenir une texture lisse. Servir avec 2 œufs durs et 45 g de pain complet.",
         "Le surplus se congèle en portions ; noter la date sur le contenant."
       ]
@@ -1609,7 +1610,7 @@
         },
         {
           "foodId": "oignon",
-          "grams": 115
+          "grams": 150
         },
         {
           "foodId": "huile-olive",
@@ -1620,12 +1621,13 @@
           "grams": 125
         }
       ],
+      "cookedYieldG": 1294,
       "steps": [
         "Préchauffer le four à 200 °C. Couper pommes de terre, courgette, poivron et oignon en morceaux de 2 cm, les mélanger avec l'huile d'olive, saler, poivrer, ajouter ail en poudre et paprika.",
         "Étaler les légumes sur une plaque en une seule couche et enfourner 35 à 40 minutes, en remuant à mi-cuisson.",
-        "Assaisonner les blancs de poulet (ail en poudre, paprika, thym), les cuire 25 minutes au four avec les légumes, ou 12 minutes à la poêle en les retournant à mi-cuisson.",
+        "Assaisonner les blancs de poulet (ail en poudre, paprika, thym) et les cuire 25 minutes au four avec les légumes, ou 12 minutes à la poêle en les retournant à mi-cuisson.",
         "Riz : verser les 125 g dans 250 ml d'eau salée, porter à ébullition, couvrir et cuire 11 minutes à feu doux, puis laisser reposer 5 minutes hors du feu.",
-        "Répartir en 3 parts strictement égales : 150 g de poulet, 188 g de légumes et 112 g de riz par gamelle, soit 450 g. Le pot de sauce reste à part."
+        "Rendement mesure le 13/09 : 386 g de poulet, 593 g de legumes et 315 g de riz, soit 1294 g pour 3 gamelles. Repartir en 3 parts egales de 431 g : 129 g de poulet, 198 g de legumes, 105 g de riz."
       ]
     },
     {
@@ -1641,7 +1643,7 @@
       "ingredients": [
         {
           "foodId": "lentilles-vertes-crues",
-          "grams": 262.5
+          "grams": 300
         },
         {
           "foodId": "steak-hache-5-cru",
@@ -1649,7 +1651,7 @@
         },
         {
           "foodId": "tomate-concassee",
-          "grams": 600
+          "grams": 700
         },
         {
           "foodId": "oignon",
@@ -1668,14 +1670,16 @@
           "grams": 125
         }
       ],
+      "cookedYieldG": 2423,
       "steps": [
-        "Rincer les lentilles et les cuire 25 minutes dans une grande quantité d'eau NON salée, puis les égoutter.",
-        "Faire revenir l'oignon et le poivron émincés dans l'huile d'olive 6 minutes à feu moyen, jusqu'à ce qu'ils soient tendres.",
+        "Rincer les lentilles et les cuire 25 minutes dans une grande quantité d'eau NON salée, puis les égoutter. Le sel en début de cuisson durcit leur peau.",
+        "Faire revenir l'oignon et le poivron émincés dans l'huile d'olive 6 minutes à feu moyen.",
         "Ajouter le steak haché, l'écraser à la cuillère et le laisser colorer 5 minutes à feu vif.",
-        "Verser les tomates concassées, assaisonner (cumin, paprika, ail en poudre, origan, sel, poivre) et laisser réduire 20 minutes à découvert en remuant de temps en temps.",
-        "Incorporer les lentilles égouttées et poursuivre 5 minutes pour que les saveurs se lient.",
-        "Riz : 125 g dans 250 ml d'eau salée, 11 minutes à couvert. Répartir en 3 parts égales : 510 g de chili et 112 g de riz par gamelle, soit 622 g.",
-        "La salade endive-carotte ne va JAMAIS dans la gamelle à l'avance : elle s'ajoute le matin du repas."
+        "Verser les tomates concassées, assaisonner (cumin, paprika, ail en poudre, origan, sel, poivre) et laisser réduire 20 minutes à découvert.",
+        "Incorporer les lentilles égouttées et poursuivre 5 minutes pour lier les saveurs.",
+        "Riz : verser 125 g dans 250 ml d'eau salée, porter à ébullition, couvrir et cuire 11 minutes à feu doux, puis laisser reposer 5 minutes hors du feu.",
+        "La salade endive-carotte ne va JAMAIS dans la gamelle à l'avance : elle s'ajoute le matin du repas.",
+        "Rendement mesure le 13/09 : 2108 g de chili et 315 g de riz, soit 2423 g pour 3 gamelles. Repartir en 3 parts egales de 808 g : 703 g de chili et 105 g de riz. Prevoir des contenants d'au moins 900 ml."
       ]
     },
     {
@@ -1700,7 +1704,7 @@
       ],
       "steps": [
         "Émincer les endives en tronçons de 1 cm et râper les carottes.",
-        "Compter 100 g d'endive et 120 g de carotte par portion, soit 220 g. À préparer la veille au soir : la préparation tient 3 jours en boîte fermée sans rendre d'eau."
+        "Compter 100 g d'endive et 120 g de carotte par portion, soit 220 g. À préparer la veille au soir, elle tient 3 jours en boîte fermée sans rendre d'eau."
       ]
     },
     {
@@ -1725,7 +1729,7 @@
       ],
       "steps": [
         "Couper le concombre en bâtonnets et la tomate en quartiers : 120 g et 100 g par portion.",
-        "À préparer le matin même et pas la veille : la tomate rend son eau au-delà de 24 heures et détrempe le concombre."
+        "À préparer le matin même et jamais la veille, la tomate rend son eau au-delà de 24 heures. Se mangent nature, sans assaisonnement."
       ]
     },
     {
@@ -1759,7 +1763,7 @@
       "steps": [
         "Sortir les fruits rouges la veille au soir et les laisser décongeler au réfrigérateur.",
         "Mélanger énergiquement le skyr et la whey jusqu'à disparition des grumeaux, incorporer les flocons d'avoine puis garnir de fruits rouges.",
-        "Le bol se prépare la veille au soir et se conserve une nuit au réfrigérateur : les flocons s'assouplissent, la texture est meilleure."
+        "Le bol se monte la veille au soir et se conserve une nuit au réfrigérateur : les flocons s'assouplissent et la texture est meilleure."
       ]
     },
     {
@@ -1952,7 +1956,7 @@
         },
         {
           "foodId": "pomme-de-terre-crue",
-          "grams": 250
+          "grams": 225
         },
         {
           "foodId": "huile-olive",
@@ -1962,8 +1966,8 @@
       "steps": [
         "Le saumon doit avoir été sorti du congélateur la veille au soir et décongelé au réfrigérateur.",
         "Couper les pommes de terre en cubes de 2 cm et les cuire 20 minutes à la vapeur.",
-        "Émincer les poireaux en rondelles fines et les cuire 15 minutes à couvert dans la moitié de l'huile avec un fond d'eau, jusqu'à ce qu'ils fondent.",
-        "Cuire le saumon 4 minutes côté peau puis 2 minutes sur l'autre face, dans le reste de l'huile. Finir au jus de citron et à l'aneth."
+        "Émincer les poireaux en rondelles fines, les laver dans un saladier d'eau pour que le sable descende, puis les cuire 15 minutes à couvert dans la moitié de l'huile avec un fond d'eau.",
+        "Éponger le saumon, le cuire 4 minutes côté peau sans y toucher puis 2 minutes sur l'autre face dans le reste de l'huile. Le cœur doit rester légèrement translucide."
       ]
     },
     {
@@ -2008,8 +2012,8 @@
       ],
       "steps": [
         "Rincer et égoutter les pois chiches, égoutter le thon, écaler 2 œufs durs et les couper en quartiers, détailler l'avocat en lamelles.",
-        "Disposer la salade verte au fond, puis les autres éléments par-dessus sans mélanger.",
-        "Assaisonner au moment de manger avec 5 g d'huile d'olive, du jus de citron, une pointe de moutarde, sel et poivre."
+        "Disposer la salade verte au fond du saladier puis les autres éléments par-dessus, sans mélanger.",
+        "Assaisonner au dernier moment avec l'huile d'olive, du jus de citron, une pointe de moutarde, sel et poivre."
       ]
     },
     {
@@ -2061,8 +2065,141 @@
         }
       ],
       "steps": [
-        "Délayer les 10 g de cacao dégraissé non sucré avec une cuillère d'eau avant de l'incorporer au fromage blanc, sinon il forme des grumeaux.",
+        "Délayer les 10 g de cacao dégraissé non sucré avec une cuillère à café d'eau avant de l'incorporer au fromage blanc, sinon il forme des grumeaux qui ne partent plus.",
         "Servir avec 25 g d'amandes à part."
+      ]
+    },
+    {
+      "id": "pois-chiches-rotis",
+      "label": "Pois chiches rôtis aux épices",
+      "slot": [
+        "collation"
+      ],
+      "servings": 2,
+      "prepMin": 10,
+      "cookMin": 30,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "pois-chiches-cuits",
+          "grams": 300
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Rincer et égoutter les pois chiches, puis les sécher soigneusement dans un torchon : l'humidité résiduelle les empêche de croustiller.",
+        "Les mélanger avec l'huile d'olive, du paprika, du cumin, de l'ail en poudre, du sel et du poivre.",
+        "Étaler en une seule couche sur une plaque et enfourner 30 minutes à 200 °C, en secouant la plaque toutes les 10 minutes.",
+        "Laisser refroidir complètement à l'air libre avant de ranger, en boîte NON hermétique : fermés, ils ramollissent en une nuit. Se conservent 4 jours. Deux portions de 150 g."
+      ]
+    },
+    {
+      "id": "diner-colin-endives-braisees-pdt",
+      "label": "Colin, endives braisées, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 12,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "endive",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Le colin doit avoir été sorti du congélateur la veille au soir et décongelé au réfrigérateur.",
+        "Endives braisées : les couper en deux dans la longueur et retirer le cône amer à la base. Les poser face coupée vers le bas dans la moitié de l'huile et les laisser caraméliser 5 minutes sans y toucher.",
+        "Ajouter un fond d'eau, un filet de jus de citron contre l'amertume, saler, poivrer, couvrir et laisser fondre 20 minutes à feu doux.",
+        "Pommes de terre en cubes de 2 cm, 20 minutes à la vapeur.",
+        "Éponger le colin au papier absorbant, le cuire 4 minutes par face dans le reste de l'huile à feu moyen, finir au jus de citron."
+      ]
+    },
+    {
+      "id": "diner-dinde-endives-braisees-quinoa",
+      "label": "Escalope de dinde, endives braisées, quinoa",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 12,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "endive",
+          "grams": 300
+        },
+        {
+          "foodId": "quinoa-cru",
+          "grams": 60
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Endives braisées : coupées en deux dans la longueur, cône amer retiré, face coupée vers le bas dans la moitié de l'huile, 5 minutes pour caraméliser.",
+        "Ajouter un fond d'eau et un filet de citron, couvrir et laisser fondre 20 minutes à feu doux.",
+        "Rincer le quinoa et le cuire 13 minutes dans 150 ml d'eau salée à couvert, puis le laisser gonfler 5 minutes hors du feu.",
+        "Cuire l'escalope de dinde 4 minutes par face dans le reste de l'huile avec ail en poudre et thym. La sortir dès que le centre n'est plus rosé : la dinde passe de juteuse à sèche en une minute."
+      ]
+    },
+    {
+      "id": "diner-rumsteck-haricots-pdt",
+      "label": "Rumsteck, haricots verts, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "boeuf-steak-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Sortir le rumsteck du réfrigérateur 20 minutes avant de le cuire : une viande froide au cœur se cuit à l'extérieur avant d'être chaude dedans.",
+        "Couper les pommes de terre en cubes et les rôtir 25 minutes à 200 °C avec la moitié de l'huile et du paprika.",
+        "Cuire les haricots verts 10 minutes à la vapeur ou 12 minutes à l'eau bouillante salée, puis les égoutter immédiatement.",
+        "Saisir le rumsteck dans le reste de l'huile à feu vif, 2 à 3 minutes par face pour une cuisson rosée, puis le laisser reposer 5 minutes sous une feuille d'aluminium avant de le trancher."
       ]
     }
   ]

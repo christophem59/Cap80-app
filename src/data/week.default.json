@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S3 — injectée depuis le bundle corrigé du 2026-09-07. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S4 — injectée depuis le bundle du 2026-09-13. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -22,7 +22,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-courgettes-quinoa"
+          "recipeId": "diner-colin-endives-braisees-pdt"
         },
         {
           "slot": "extra",
@@ -34,6 +34,7 @@
     },
     {
       "label": "Mardi",
+      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -53,7 +54,13 @@
         },
         {
           "slot": "collation",
-          "recipeId": "collation-oeufs-amandes"
+          "foodId": "oeuf-dur",
+          "grams": 110,
+          "note": "2 œufs durs"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "pois-chiches-rotis"
         },
         {
           "slot": "collation",
@@ -61,13 +68,17 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-dinde-haricots-patate-douce"
+          "estimated": {
+            "kcal": 1500,
+            "proteinG": 50,
+            "fiberG": 12
+          },
+          "note": "Restaurant — estimation : plat, pain, bière 250 ml, dessert. À remplacer par la saisie réelle après le repas."
         }
       ]
     },
     {
       "label": "Mercredi",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -75,12 +86,11 @@
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 1260,
-            "proteinG": 44,
-            "fiberG": 10
-          },
-          "note": "Restaurant midi — forfait : plat viande/féculent, pain, 50 cl de bière, dessert. À remplacer par la saisie réelle."
+          "recipeId": "gamelle-poulet-legumes-riz"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "sauce-fromage-blanc"
         },
         {
           "slot": "collation",
@@ -88,7 +98,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-chili-salade-pain"
+          "recipeId": "diner-dinde-endives-braisees-quinoa"
         },
         {
           "slot": "extra",
@@ -119,7 +129,13 @@
         },
         {
           "slot": "collation",
-          "recipeId": "collation-oeufs-amandes"
+          "foodId": "oeuf-dur",
+          "grams": 110,
+          "note": "2 œufs durs"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "pois-chiches-rotis"
         },
         {
           "slot": "collation",
@@ -190,11 +206,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-poulet-legumes-riz"
-        },
-        {
-          "slot": "diner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "diner-rumsteck-haricots-pdt"
         }
       ]
     },
