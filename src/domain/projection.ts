@@ -1,5 +1,5 @@
 import type { BmrProfile, Plan } from './types'
-import { tdee } from './metabolism'
+import { bmr, tdee } from './metabolism'
 import {
   calendarWeekFromDeficitWeek,
   phaseForCalendarWeek,
@@ -50,4 +50,54 @@ export function weekCrossingTarget(
 ): number | null {
   const hit = points.find((p) => p.weightKg <= targetKg)
   return hit ? hit.deficitWeek : null
+}
+
+/** Un pas de la projection à apport constant (§6.9). */
+export interface ConstantIntakePoint {
+  /** Semaines écoulées depuis le départ. Le point 0 décrit la situation d'aujourd'hui. */
+  week: number
+  /** Poids au DÉBUT de cette semaine. */
+  weightKg: number
+  bmrKcal: number
+  tdeeKcal: number
+  deficitKcal: number
+  /** Perte attendue PENDANT cette semaine. */
+  lossKg: number
+}
+
+/**
+ * §6.9 — Projection à apport constant, sans phases.
+ *
+ * À apport constant la perte RALENTIT mécaniquement : le poids baisse, donc le BMR
+ * baisse, donc le déficit se réduit. Une projection linéaire surestime toujours le
+ * résultat — d'où cette itération semaine par semaine, qui recalcule la dépense à chaque
+ * pas. C'est le même principe que §6.6, mais appliqué à un apport unique plutôt qu'au
+ * programme : il répond à « et si je reste à 2 500 kcal ? ».
+ */
+export function projectAtConstantIntake(
+  startWeightKg: number,
+  intakeKcal: number,
+  profile: BmrProfile,
+  weeks: number,
+): ConstantIntakePoint[] {
+  const points: ConstantIntakePoint[] = []
+  let w = startWeightKg
+  for (let i = 0; i <= weeks; i++) {
+    const bmrKcal = bmr(w, profile.heightCm, profile.ageYears, profile.sex)
+    const tdeeKcal = tdee(w, profile)
+    const deficitKcal = tdeeKcal - intakeKcal
+    const lossKg = (deficitKcal * 7) / KCAL_PER_KG
+    points.push({ week: i, weightKg: w, bmrKcal, tdeeKcal, deficitKcal, lossKg })
+    w = w - lossKg
+  }
+  return points
+}
+
+/** Première semaine où le poids projeté atteint `targetKg`, ou null hors de portée. */
+export function weeksToReach(
+  points: ConstantIntakePoint[],
+  targetKg: number,
+): number | null {
+  const hit = points.find((p) => p.weightKg <= targetKg)
+  return hit ? hit.week : null
 }

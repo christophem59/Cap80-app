@@ -101,7 +101,7 @@ function ProfileHeader({
             Dépense estimée {currentWeightKg == null ? 'au poids de départ' : 'à ton poids actuel'}{' '}
             ({fmtKg(poidsRef)} kg) : <strong>{entretien} kcal/jour</strong>, Mifflin-St Jeor ×{' '}
             {String(profile.activityFactor).replace('.', ',')}. C’est la référence dont découlent
-            les cibles des phases.
+            les cibles des phases — et « Énergie » vérifie qu’elle décrit encore la réalité.
           </p>
         </div>
       )}
@@ -171,6 +171,15 @@ export function Program() {
         week={week}
         currentWeightKg={trailingAvg(weights, today) ?? null}
       />
+
+      <button
+        type="button"
+        onClick={() => navigate('/energie')}
+        className="flex w-full items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-left text-sm"
+      >
+        <span className="inline-block h-2 w-2 rounded-full" style={{ background: 'var(--accent)' }} />
+        Modèle énergétique — dépense théorique vs observée
+      </button>
 
       <button
         type="button"

@@ -121,11 +121,29 @@ export async function getRecentMealsForSlot(
     .slice(0, limit)
 }
 
-/** Repas visibles entre deux dates incluses (au plus 2 fichiers mensuels). */
+/**
+ * Fichiers mensuels couvrant [start ; end]. On ÉNUMÈRE les mois plutôt que de prendre
+ * les deux extrémités : une fenêtre de 6 semaines peut traverser trois mois, et les
+ * repas du mois du milieu disparaissaient alors silencieusement du calcul.
+ */
+export function mealFilesInRange(start: LocalDate, end: LocalDate): string[] {
+  const files: string[] = []
+  let d = `${start.slice(0, 7)}-01`
+  const last = `${end.slice(0, 7)}-01`
+  while (d <= last) {
+    files.push(mealFile(d))
+    const [y, m] = d.split('-').map(Number)
+    d = m === 12 ? `${y + 1}-01-01` : `${y}-${String(m + 1).padStart(2, '0')}-01`
+  }
+  return files
+}
+
+/** Repas visibles entre deux dates incluses. */
 export async function getMealsInRange(start: LocalDate, end: LocalDate): Promise<MealLog[]> {
-  const files = [...new Set([mealFile(start), mealFile(end)])]
   const rows: MealLog[] = []
-  for (const f of files) rows.push(...((await getRecordsByFile(f)) as MealLog[]))
+  for (const f of mealFilesInRange(start, end)) {
+    rows.push(...((await getRecordsByFile(f)) as MealLog[]))
+  }
   return visibleRecords(rows).filter((m) => m.date >= start && m.date <= end)
 }
 
@@ -139,8 +157,7 @@ export function useMealsInRange(start: LocalDate, end: LocalDate): MealLog[] {
       })
     }
     load()
-    const files = [...new Set([mealFile(start), mealFile(end)])]
-    const offs = files.map((f) => onRecordsChanged(f, load))
+    const offs = mealFilesInRange(start, end).map((f) => onRecordsChanged(f, load))
     return () => {
       alive = false
       offs.forEach((off) => off())

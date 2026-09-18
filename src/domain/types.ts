@@ -28,7 +28,18 @@ export interface Profile {
   sex: Sex
   startWeightKg: number
   targetWeightKg: number
-  activityFactor: number // 1.40 par défaut, éditable
+  /** Le SEUL paramètre libre du modèle énergétique (§6.9). Jamais une constante du
+   *  code : il se recale sur l'observation, et chaque changement est historisé. */
+  activityFactor: number
+  /** Déficit quotidien visé. L'apport cible en découle (TDEE − ce déficit, §6.9) ;
+   *  600 kcal par défaut. */
+  targetDeficitKcal?: number
+  /** Trajectoire du modèle : chaque recalage du facteur, daté et motivé, pour qu'on
+   *  puisse la relire dans six mois. */
+  activityFactorHistory?: ActivityFactorChange[]
+  /** Corrections manuelles des observations hebdomadaires (§6.9) : un forfait
+   *  restaurant surestimé, une semaine mal saisie. Prime sur ce que l'app calcule. */
+  weekOverrides?: WeekOverride[]
   startDate: LocalDate // fixe la semaine 1
   plan: Plan
   /** Mode « pesée stricte 7 jours » déclenché par la règle audit_journal (§6.7). */
@@ -37,6 +48,28 @@ export interface Profile {
    *  Tant que faux/absent, l'app affiche l'onboarding au lieu des écrans de suivi. */
   onboarded?: boolean
   updatedAt: Timestamp
+}
+
+/** Un recalage du facteur d'activité (§6.9). Jamais écrasé : c'est l'historique du
+ *  modèle lui-même, et il n'a de valeur que complet. */
+export interface ActivityFactorChange {
+  date: LocalDate
+  from: number
+  to: number
+  /** Facteur observé qui a motivé le recalage, quand il était calculable. */
+  observedFactor?: number
+  reason: string
+}
+
+/** Observation hebdomadaire saisie à la main (§6.9). Chaque champ absent laisse la
+ *  valeur calculée par l'app. */
+export interface WeekOverride {
+  week: number
+  avgWeightKg?: number
+  avgIntakeKcal?: number
+  /** Marque l'apport comme une estimation (forfait restaurant, jours non saisis). */
+  estimated?: boolean
+  note?: string
 }
 
 /** Le programme. Modifiable par l'utilisateur : c'est le point 7 du besoin. */

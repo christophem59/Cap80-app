@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import type { Plan } from './types'
-import { adjustPlanKcal, adjustPlanSteps } from './planEdit'
+import { adjustPlanKcal, adjustPlanSteps, setPhaseTargets } from './planEdit'
 import { defaultPlan } from '../data/catalog'
 
 const plan = defaultPlan as Plan
@@ -30,5 +30,35 @@ describe('adjustPlanSteps', () => {
     const out = adjustPlanSteps(plan, 'p2', 2000)
     expect(out.stepGoals['p2']).toBe(plan.stepGoals['p2'] + 2000)
     expect(out.stepGoals['p1']).toBe(plan.stepGoals['p1'])
+  })
+})
+
+describe('setPhaseTargets (§6.9)', () => {
+  const targets = { kcal: 2500, proteinG: 190, fatG: 80, carbsG: 255, fiberMinG: 30 }
+
+  it('écrit les cibles calculées dans la phase visée, et seulement elle', () => {
+    const out = setPhaseTargets(plan, 'p1', targets)
+    expect(out.phases.find((p) => p.id === 'p1')).toMatchObject({
+      targetKcal: 2500,
+      proteinG: 190,
+      fatG: 80,
+      carbsG: 255,
+    })
+    // Les phases suivantes seront recalculées à un poids qu'on ne connaît pas encore.
+    expect(out.phases.find((p) => p.id === 'p2')!.targetKcal).toBe(
+      plan.phases.find((p) => p.id === 'p2')!.targetKcal,
+    )
+  })
+
+  it('respecte le plancher de 1 800 kcal', () => {
+    const out = setPhaseTargets(plan, 'p1', { ...targets, kcal: 1500 })
+    expect(out.phases.find((p) => p.id === 'p1')!.targetKcal).toBe(1800)
+  })
+
+  it('ne touche ni au calibrage ni à une phase à rampe : leur cible n’est pas un nombre', () => {
+    expect(setPhaseTargets(plan, 'p0', targets).phases.find((p) => p.id === 'p0')!.targetKcal).toBeNull()
+    const p4 = setPhaseTargets(plan, 'p4', targets).phases.find((p) => p.id === 'p4')!
+    expect(p4.ramp).toEqual(plan.phases.find((p) => p.id === 'p4')!.ramp)
+    expect(p4.targetKcal).toBe(plan.phases.find((p) => p.id === 'p4')!.targetKcal)
   })
 })

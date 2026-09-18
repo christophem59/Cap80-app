@@ -9,6 +9,7 @@ import { WeekReview } from './pages/WeekReview'
 import { Steps } from './pages/Steps'
 import { Settings } from './pages/Settings'
 import { AdjustmentScreen } from './pages/AdjustmentScreen'
+import { Energy } from './pages/Energy'
 import { EnvieFlow } from './pages/EnvieFlow'
 import { NotFound } from './pages/NotFound'
 
@@ -26,6 +27,7 @@ export const router = createHashRouter([
       { path: 'programme', element: <Program /> },
       { path: 'semaine', element: <WeekReview /> },
       { path: 'ajustement', element: <AdjustmentScreen /> },
+      { path: 'energie', element: <Energy /> },
       { path: 'pas', element: <Steps /> },
       { path: 'reglages', element: <Settings /> },
       { path: 'envie', element: <EnvieFlow /> },

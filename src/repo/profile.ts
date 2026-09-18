@@ -1,5 +1,10 @@
 import { useSyncExternalStore } from 'react'
-import type { Profile } from '../domain/types'
+import type {
+  ActivityFactorChange,
+  LocalDate,
+  Profile,
+  WeekOverride,
+} from '../domain/types'
 import { kvGet, kvSet } from '../db/db'
 import { enqueueProfile } from '../db/outboxStore'
 import { buildDefaultProfile } from '../sync/init'
@@ -107,4 +112,54 @@ export function useProfileHydrated(): boolean {
     () => hydrated,
     () => hydrated,
   )
+}
+
+/**
+ * §6.9 — Recale le facteur d'activité ET consigne le changement.
+ *
+ * L'historisation n'est pas un agrément : le facteur va encore bouger, et sans la trace
+ * datée du pourquoi, personne — pas même son auteur — ne saura relire la trajectoire du
+ * modèle dans six mois. Un recalage sans raison est donc refusé.
+ */
+export async function setActivityFactor(
+  next: number,
+  opts: { date: LocalDate; reason: string; observedFactor?: number },
+): Promise<Profile> {
+  const reason = opts.reason.trim()
+  if (!reason) throw new Error('Un recalage du facteur doit porter sa raison.')
+  return saveProfile((p) => {
+    if (p.activityFactor === next) return p
+    const change: ActivityFactorChange = {
+      date: opts.date,
+      from: p.activityFactor,
+      to: next,
+      ...(opts.observedFactor != null ? { observedFactor: opts.observedFactor } : {}),
+      reason,
+    }
+    return {
+      ...p,
+      activityFactor: next,
+      activityFactorHistory: [...(p.activityFactorHistory ?? []), change],
+    }
+  })
+}
+
+/** Déficit quotidien visé (§6.9). L'apport cible en découle, il n'est jamais saisi. */
+export async function setTargetDeficit(kcal: number): Promise<Profile> {
+  return saveProfile((p) => ({ ...p, targetDeficitKcal: kcal }))
+}
+
+/**
+ * Corrige une observation hebdomadaire. Passer `null` retire la correction et rend la
+ * semaine au calcul de l'app.
+ */
+export async function setWeekOverride(
+  week: number,
+  patch: Omit<WeekOverride, 'week'> | null,
+): Promise<Profile> {
+  return saveProfile((p) => {
+    const rest = (p.weekOverrides ?? []).filter((o) => o.week !== week)
+    const next = patch ? [...rest, { week, ...patch }].sort((a, b) => a.week - b.week) : rest
+    return { ...p, weekOverrides: next }
+  })
 }

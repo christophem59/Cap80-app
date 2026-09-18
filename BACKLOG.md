@@ -31,8 +31,18 @@ Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 - Plus tard (optionnel) : éditeur de recettes in-app ; import du bundle directement dans
   l'app ; planning éditable à la main dans l'app.
 
-## TDEE adaptatif (à décider)
-- Estimer l'entretien RÉEL à partir des données (apport moyen + tendance de poids), pas seulement de la formule Mifflin × facteur d'activité.
-- Exploiter la **semaine de calibrage** (aujourd'hui purement observationnelle, non exploitée par le calcul) pour fixer la cible de départ personnalisée.
-- Complèterait le moteur d'ajustement §6.7 (aujourd'hui réactif sur la seule tendance de poids, par paliers ±100/150 kcal).
-- Prérequis : saisie des repas fiable (sinon estimation faussée).
+## TDEE adaptatif — ✅ Fait (2026-09-18, v1.4.0)
+- Écran `/energie` (accès depuis Programme) : dépense **théorique** et **observée** côte à
+  côte, facteur d'activité impliqué par l'observation, écart en kcal/jour.
+- Le facteur d'activité est un paramètre éditable et **historisé** (date + raison) ;
+  BMR, TDEE, apport cible et macros en découlent, plus rien n'est saisi à la main.
+- TDEE observé sur fenêtre glissante ≥ 3 semaines ; garde-fous perte > 1 %, perte < 0,3 %,
+  dérive du facteur > 0,10 ; proposition de recalage amortie à 80 % de l'écart.
+- Projection à apport constant, itérative (la perte ralentit), + recalcul des cibles de
+  toutes les phases à venir au poids qu'elles verront.
+- Corrections manuelles des observations hebdomadaires (forfait resto estimé).
+- Détail : `docs/modele-energetique.md`.
+- Reste possible : exploiter la **semaine de calibrage** (S0, aujourd'hui purement
+  observationnelle) pour fixer la cible de départ ; fusionner le moteur d'ajustement §6.7
+  (paliers ±100/150 kcal sur la seule tendance de poids) avec ce modèle, qui le double
+  partiellement.

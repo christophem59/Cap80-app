@@ -45,3 +45,36 @@ export function adjustPlanSteps(plan: Plan, fromPhaseId: string, delta: number):
   }
   return { ...plan, stepGoals }
 }
+
+/**
+ * §6.9 — Pose des cibles ABSOLUES sur une phase, celles que le modèle énergétique vient
+ * de calculer. À la différence d'`adjustPlanKcal`, qui applique un delta à la phase en
+ * cours ET aux suivantes, on ne touche ici qu'à la phase visée : les phases ultérieures
+ * seront recalculées le moment venu, à un poids et un facteur qu'on ne connaît pas encore.
+ *
+ * Une phase à rampe ou de calibrage est laissée telle quelle : sa cible n'est pas un nombre.
+ */
+export function setPhaseTargets(
+  plan: Plan,
+  phaseId: string,
+  targets: {
+    kcal: number
+    proteinG: number
+    fatG: number
+    carbsG: number
+    fiberMinG: number
+  },
+): Plan {
+  const phases = plan.phases.map((p): Phase => {
+    if (p.id !== phaseId || p.ramp || p.targetKcal == null) return p
+    return {
+      ...p,
+      targetKcal: floor(targets.kcal),
+      proteinG: targets.proteinG,
+      fatG: targets.fatG,
+      carbsG: targets.carbsG,
+      fiberMinG: targets.fiberMinG,
+    }
+  })
+  return { ...plan, phases }
+}
