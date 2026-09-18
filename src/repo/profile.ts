@@ -10,10 +10,17 @@ import { enqueueProfile } from '../db/outboxStore'
 import { buildDefaultProfile } from '../sync/init'
 import { mergeProfile } from '../sync/merge'
 import { refreshPending, sync } from '../sync/manager'
-import { nowIso } from '../domain/dates'
+import { nowIso, todayLocal } from '../domain/dates'
 import { getRepoConfig, getToken } from '../sync/config'
 import { GitHubClient } from '../sync/github'
 import { parseProfileEnvelope } from '../sync/files'
+import {
+  applyRecalibration,
+  pendingRecalibration,
+  recalibrationSummary,
+} from '../domain/recalibration'
+import { weeklyAverages } from '../domain/weight'
+import { getWeights } from './weights'
 
 // Profil courant en mémoire (source de vérité UI = IndexedDB kv, §1.3). Par défaut,
 // un profil §0 tant que rien n'a été chargé/tiré. Édition/poussée du profil : lot 7.
@@ -162,4 +169,37 @@ export async function setWeekOverride(
     const next = patch ? [...rest, { week, ...patch }].sort((a, b) => a.week - b.week) : rest
     return { ...p, weekOverrides: next }
   })
+}
+
+/**
+ * Applique le recalibrage du modèle énergétique s'il en reste un (§6.9).
+ *
+ * Appelé au démarrage, APRÈS le pull : le poids de référence est la dernière moyenne
+ * hebdomadaire réelle, pas le poids de départ. Idempotent — une fois le facteur inscrit
+ * dans l'historique, plus rien ne se déclenche.
+ *
+ * Renvoie ce qui a changé, pour que l'app puisse le DIRE au lieu de le faire en silence.
+ */
+export async function applyPendingRecalibration(): Promise<{
+  fromKcal: number
+  toKcal: number
+  phaseLabel: string | null
+  phaseKcal: number | null
+  toFactor: number
+} | null> {
+  const recal = pendingRecalibration(profile)
+  if (!recal) return null
+
+  const today = todayLocal()
+  const weights = await getWeights()
+  const weekly = weeklyAverages(weights, profile.startDate, 1)
+  const refWeightKg = weekly.length ? weekly[weekly.length - 1].avg : profile.startWeightKg
+
+  const before = profile
+  const after = applyRecalibration(before, recal, refWeightKg, today)
+  await saveProfile(() => after)
+  return {
+    ...recalibrationSummary(before, after, refWeightKg, today),
+    toFactor: recal.toFactor,
+  }
 }

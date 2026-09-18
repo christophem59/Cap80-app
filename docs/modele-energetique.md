@@ -85,8 +85,24 @@ vraiment**, en projetant de phase en phase. Les phases d'entretien visent la dé
 elle-même. Les phases déjà passées ne sont pas touchées : ce sont des faits. Une phase à
 rampe (stabilisation) garde la sienne et arrête le parcours.
 
-L'écriture dans le programme reste **un geste explicite** : le bouton « Écrire ces cibles
-dans le programme ». Rien n'est modifié dans le dos de l'utilisateur.
+Le bouton « Écrire ces cibles dans le programme » permet de le faire à tout moment.
+
+## Les recalibrages décidés
+
+Un recalibrage — la correction d'un modèle dont on a MESURÉ qu'il se trompait — ne reste
+pas derrière un bouton : l'app continuerait sinon à afficher des cibles qu'elle sait
+fausses en attendant un tap. `src/domain/recalibration.ts` porte la liste des
+recalibrages décidés ; ils s'appliquent une fois, au démarrage, **après le pull** (le
+poids de référence doit être la dernière moyenne hebdomadaire réelle).
+
+Trois garde-fous : rien avant la validation de l'onboarding (le profil est un
+placeholder), rien si le facteur a **déjà** été recalé — à la main ou non, la décision de
+l'utilisateur prime toujours sur une décision datée du code — et rien si le facteur en
+place est déjà au-dessus de la cible.
+
+Et surtout, rien en silence : l'écran Programme affiche une fois ce qui a changé, avec
+les chiffres avant/après. Le recalage reste inscrit dans l'historique du facteur, donc
+réversible à la main.
 
 ## Corriger une observation
 

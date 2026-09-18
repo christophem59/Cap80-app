@@ -8,7 +8,11 @@ import { mergeRecords } from './merge'
 import { countPending, getRecordsByFile, setSha, kvSet } from '../db/db'
 import { emitRecordsChanged } from '../db/events'
 import { dbOutboxStore, applyPulledRecords, enqueueRecord } from '../db/outboxStore'
-import { loadProfileFromDb, reconcileRemoteProfile } from '../repo/profile'
+import {
+  applyPendingRecalibration,
+  loadProfileFromDb,
+  reconcileRemoteProfile,
+} from '../repo/profile'
 import { nowIso } from '../domain/dates'
 import type { Profile, StepEntry } from '../domain/types'
 
@@ -209,9 +213,51 @@ export function startSync(): void {
     } catch {
       // Le pull peut échouer hors-ligne : sans conséquence, l'UI lit IndexedDB.
     }
+    // Le recalibrage du modèle énergétique s'applique ICI, après le pull : le poids de
+    // référence doit être la dernière moyenne hebdomadaire réelle, pas le placeholder.
+    try {
+      const done = await applyPendingRecalibration()
+      if (done) setRecalibrationNotice(done)
+    } catch {
+      // Un recalibrage raté ne doit jamais empêcher l'app de démarrer.
+    }
     await refreshPending()
     await sync()
   })()
+}
+
+// ---- Notification de recalibrage ----
+//
+// Réécrire le programme de quelqu'un sans le lui dire n'est pas acceptable, même quand
+// la correction est juste. L'app le dit donc une fois, sur l'écran Programme.
+
+export interface RecalibrationNotice {
+  fromKcal: number
+  toKcal: number
+  phaseLabel: string | null
+  phaseKcal: number | null
+  toFactor: number
+}
+
+let recalNotice: RecalibrationNotice | null = null
+
+function setRecalibrationNotice(n: RecalibrationNotice) {
+  recalNotice = n
+  emit()
+}
+
+/** Efface la notification (l'utilisateur l'a lue). */
+export function clearRecalibrationNotice(): void {
+  recalNotice = null
+  emit()
+}
+
+export function useRecalibrationNotice(): RecalibrationNotice | null {
+  return useSyncExternalStore(
+    subscribe,
+    () => recalNotice,
+    () => recalNotice,
+  )
 }
 
 // ---- Hook React pour le badge ----

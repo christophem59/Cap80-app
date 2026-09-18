@@ -9,6 +9,7 @@ import { projectTrajectory } from '../domain/projection'
 import { trailingAvg } from '../domain/weight'
 import { MIN_KCAL } from '../domain/adjustment'
 import { tdee } from '../domain/metabolism'
+import { useRecalibrationNotice, clearRecalibrationNotice } from '../sync/manager'
 
 const SEXE_LABELS: Record<Sex, string> = { male: 'Homme', female: 'Femme' }
 
@@ -119,6 +120,60 @@ function fmtKcal(p: Phase): string {
   return p.targetKcal == null ? 'calibrage' : `${p.targetKcal} kcal`
 }
 
+/**
+ * Ce qui vient de changer tout seul, dit une fois.
+ *
+ * Le recalibrage du modèle réécrit les cibles du programme au démarrage. C'est la bonne
+ * décision — mais découvrir que ses calories ont bougé de 300 sans explication serait la
+ * mauvaise expérience. On l'annonce, avec les chiffres, et on renvoie vers le détail.
+ */
+function RecalibrationBanner() {
+  const notice = useRecalibrationNotice()
+  const navigate = useNavigate()
+  if (!notice) return null
+  return (
+    <section
+      className="rounded-xl border p-4 text-sm leading-relaxed"
+      style={{
+        borderColor: 'var(--accent)',
+        background: 'color-mix(in srgb, var(--accent) 8%, var(--surface))',
+      }}
+    >
+      <p className="font-semibold">Le modèle énergétique a été recalé.</p>
+      <p className="mt-1">
+        Trois semaines de données montraient une dépense réelle d’environ 400 kcal/jour
+        supérieure à ce que l’app calculait. Facteur d’activité porté à{' '}
+        <strong>{String(notice.toFactor).replace('.', ',')}</strong> : dépense estimée{' '}
+        {notice.fromKcal} → <strong>{notice.toKcal} kcal/jour</strong>
+        {notice.phaseLabel && notice.phaseKcal != null && (
+          <>
+            , et « {notice.phaseLabel} » vise désormais{' '}
+            <strong>{notice.phaseKcal} kcal</strong>
+          </>
+        )}
+        . Les phases suivantes ont été recalculées au poids qu’elles verront.
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => navigate('/energie')}
+          className="rounded-lg px-3 py-2 text-sm font-semibold text-white"
+          style={{ background: 'var(--accent)' }}
+        >
+          Voir le détail
+        </button>
+        <button
+          type="button"
+          onClick={clearRecalibrationNotice}
+          className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm font-medium"
+        >
+          J’ai lu
+        </button>
+      </div>
+    </section>
+  )
+}
+
 export function Program() {
   const profile = useProfile()
   const weights = useWeights()
@@ -165,6 +220,8 @@ export function Program() {
           Modifier
         </button>
       </div>
+
+      <RecalibrationBanner />
 
       <ProfileHeader
         profile={profile}

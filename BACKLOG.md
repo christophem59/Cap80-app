@@ -41,6 +41,8 @@ Idées à réaliser, par thème. Non priorisé strictement — voir notes.
 - Projection à apport constant, itérative (la perte ralentit), + recalcul des cibles de
   toutes les phases à venir au poids qu'elles verront.
 - Corrections manuelles des observations hebdomadaires (forfait resto estimé).
+- **Recalibrage 1,40 → 1,55 appliqué automatiquement** (v1.4.1) : au démarrage, une fois,
+  avec recalcul des phases et annonce sur l'écran Programme.
 - Détail : `docs/modele-energetique.md`.
 - Reste possible : exploiter la **semaine de calibrage** (S0, aujourd'hui purement
   observationnelle) pour fixer la cible de départ ; fusionner le moteur d'ajustement §6.7
