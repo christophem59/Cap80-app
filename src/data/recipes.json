@@ -699,18 +699,18 @@
         },
         {
           "foodId": "pain-complet",
-          "grams": 45
+          "grams": 70
         },
         {
           "foodId": "huile-olive",
-          "grams": 10
+          "grams": 12
         }
       ],
       "steps": [
-        "Essuyer les champignons au torchon plutôt que de les laver : ce sont des éponges, et l'eau absorbée ressort à la cuisson.",
+        "Essuyer les champignons au torchon plutôt que de les laver : ce sont des éponges et l'eau absorbée ressort à la cuisson.",
         "Les émincer et les cuire 8 minutes à feu vif dans la moitié de l'huile, SANS sel au départ, jusqu'à coloration. Saler, poivrer, ail en poudre et persil seulement à la fin.",
-        "Battre 4 œufs, saler, poivrer, les verser sur les champignons et cuire 5 minutes à feu doux à couvert sans remuer. L'omelette doit rester baveuse au centre.",
-        "Assaisonner la salade avec le reste de l'huile, du vinaigre et une pointe de moutarde. Servir avec 45 g de pain complet."
+        "Battre 4 œufs, les verser sur les champignons, cuire 5 minutes à feu doux à couvert sans remuer. L'omelette doit rester baveuse au centre, elle finit de cuire dans l'assiette.",
+        "Assaisonner la salade avec le reste de l'huile, du vinaigre et une pointe de moutarde. Servir avec 70 g de pain complet."
       ]
     },
     {
@@ -1745,7 +1745,7 @@
       "ingredients": [
         {
           "foodId": "skyr-0",
-          "grams": 250
+          "grams": 300
         },
         {
           "foodId": "whey",
@@ -1753,7 +1753,7 @@
         },
         {
           "foodId": "flocons-avoine",
-          "grams": 40
+          "grams": 50
         },
         {
           "foodId": "fruits-rouges-surgeles",
@@ -1762,8 +1762,8 @@
       ],
       "steps": [
         "Sortir les fruits rouges la veille au soir et les laisser décongeler au réfrigérateur.",
-        "Mélanger énergiquement le skyr et la whey jusqu'à disparition des grumeaux, incorporer les flocons d'avoine puis garnir de fruits rouges.",
-        "Le bol se monte la veille au soir et se conserve une nuit au réfrigérateur : les flocons s'assouplissent et la texture est meilleure."
+        "Mélanger énergiquement le skyr et la whey jusqu'à disparition des grumeaux, incorporer les flocons d'avoine, puis garnir de fruits rouges.",
+        "Le bol se monte la veille au soir sans les fruits : les flocons s'assouplissent pendant la nuit et la texture est nettement meilleure."
       ]
     },
     {
@@ -1783,12 +1783,12 @@
         },
         {
           "foodId": "pain-complet",
-          "grams": 45
+          "grams": 70
         }
       ],
       "steps": [
         "Prendre 3 œufs durs dans la boîte du batch, les écaler et les couper en deux.",
-        "Saler, poivrer, saupoudrer de paprika. Servir avec 45 g de pain complet."
+        "Saler, poivrer, saupoudrer de paprika. Servir avec 70 g de pain complet."
       ]
     },
     {
@@ -1943,7 +1943,7 @@
       ],
       "servings": 1,
       "prepMin": 10,
-      "cookMin": 20,
+      "cookMin": 22,
       "batchFriendly": false,
       "ingredients": [
         {
@@ -1956,18 +1956,18 @@
         },
         {
           "foodId": "pomme-de-terre-crue",
-          "grams": 225
+          "grams": 330
         },
         {
           "foodId": "huile-olive",
-          "grams": 10
+          "grams": 12
         }
       ],
       "steps": [
         "Le saumon doit avoir été sorti du congélateur la veille au soir et décongelé au réfrigérateur.",
         "Couper les pommes de terre en cubes de 2 cm et les cuire 20 minutes à la vapeur.",
-        "Émincer les poireaux en rondelles fines, les laver dans un saladier d'eau pour que le sable descende, puis les cuire 15 minutes à couvert dans la moitié de l'huile avec un fond d'eau.",
-        "Éponger le saumon, le cuire 4 minutes côté peau sans y toucher puis 2 minutes sur l'autre face dans le reste de l'huile. Le cœur doit rester légèrement translucide."
+        "Émincer les poireaux en rondelles fines, les laver dans un saladier d'eau en les récupérant à la main pour laisser le sable au fond, puis les cuire 15 minutes à couvert dans la moitié de l'huile avec un fond d'eau.",
+        "Éponger le saumon au papier absorbant, le cuire 4 minutes côté peau sans y toucher puis 2 minutes sur l'autre face. Le cœur doit rester légèrement translucide : le kéta est maigre pour un saumon et devient sec s'il est trop cuit."
       ]
     },
     {
@@ -2065,8 +2065,8 @@
         }
       ],
       "steps": [
-        "Délayer les 10 g de cacao dégraissé non sucré avec une cuillère à café d'eau avant de l'incorporer au fromage blanc, sinon il forme des grumeaux qui ne partent plus.",
-        "Servir avec 25 g d'amandes à part."
+        "Délayer le cacao dégraissé non sucré avec une cuillère à café d'eau avant de l'incorporer au fromage blanc, sinon il forme des grumeaux qui ne partent plus.",
+        "Servir les 25 g d'amandes à part."
       ]
     },
     {
@@ -2200,6 +2200,375 @@
         "Couper les pommes de terre en cubes et les rôtir 25 minutes à 200 °C avec la moitié de l'huile et du paprika.",
         "Cuire les haricots verts 10 minutes à la vapeur ou 12 minutes à l'eau bouillante salée, puis les égoutter immédiatement.",
         "Saisir le rumsteck dans le reste de l'huile à feu vif, 2 à 3 minutes par face pour une cuisson rosée, puis le laisser reposer 5 minutes sous une feuille d'aluminium avant de le trancher."
+      ]
+    },
+    {
+      "id": "gamelle-poulet-tandoori",
+      "label": "Gamelle poulet tandoori, riz et légumes rôtis",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 3,
+      "prepMin": 20,
+      "cookMin": 45,
+      "batchFriendly": true,
+      "ingredients": [
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "yaourt-nature",
+          "grams": 150
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 200
+        },
+        {
+          "foodId": "courgette",
+          "grams": 300
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 30
+        }
+      ],
+      "steps": [
+        "Marinade, la veille au soir : couper chaque blanc de poulet en deux dans l'épaisseur, puis mélanger à la main avec le yaourt, 2 c. à café de paprika, 1 de cumin, 1 de coriandre moulue, 1 de curcuma, 1 de garam masala, 1 d'ail en poudre, une demi de gingembre, une pointe de piment, une cuillère à soupe de jus de citron, sel et poivre. Filmer et réfrigérer au moins une nuit.",
+        "L'acidité et le calcium du yaourt détendent les fibres : c'est ce qui fait que ce poulet reste moelleux à la réchauffe, là où un blanc grillé nature devient sec.",
+        "Légumes rôtis : couper courgette, poivron et oignon en morceaux de 2 cm, mélanger avec l'huile d'olive, sel, poivre, ail en poudre et paprika. Étaler en une seule couche et enfourner 35 à 40 minutes à 200 °C en remuant à mi-cuisson.",
+        "Poulet : sortir de la marinade SANS essuyer, la couche de yaourt restante forme la croûte. Disposer espacé sur une plaque, idéalement sur une grille, et cuire 20 à 22 minutes à 220 °C, puis 2 à 3 minutes sous le gril pour colorer.",
+        "Riz : 200 g dans 400 ml d'eau salée, 11 minutes à couvert, 5 minutes de repos hors du feu.",
+        "Peser chaque lot et le diviser en 3 parts égales. Mesuré le 19/09 : 447 g de poulet (soit 149 g par gamelle) et 517 g de légumes (172 g par gamelle)."
+      ]
+    },
+    {
+      "id": "gamelle-boulettes-boulgour",
+      "label": "Gamelle boulettes de bœuf sauce tomate et boulgour",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 3,
+      "prepMin": 20,
+      "cookMin": 50,
+      "batchFriendly": true,
+      "cookedYieldG": 1797,
+      "ingredients": [
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "oeuf-entier",
+          "grams": 55
+        },
+        {
+          "foodId": "boulgour-cru",
+          "grams": 225
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 600
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 25
+        }
+      ],
+      "steps": [
+        "Mélanger le steak haché et l'œuf entier avec sel, poivre, ail en poudre, une cuillère à café de cumin et du persil haché. Malaxer le moins possible : trop travaillée, la viande devient compacte et caoutchouteuse.",
+        "Former 18 boulettes d'environ 35 g, roulées entre des mains humides pour qu'elles ne collent pas.",
+        "Saisir les boulettes 5 à 6 minutes à feu vif dans 10 g d'huile, en une seule couche et en les roulant. Elles doivent être colorées, pas cuites à cœur. Réserver.",
+        "Dans la même poêle, faire revenir l'oignon émincé 6 minutes dans les 15 g d'huile restants : il décolle les sucs des boulettes, c'est là que se joue le goût.",
+        "Ajouter les tomates concassées, origan, thym, une feuille de laurier, sel et poivre, puis laisser réduire 15 minutes à découvert.",
+        "Remettre les boulettes dans la sauce et poursuivre 10 minutes à couvert : elles finissent de cuire dedans et s'imprègnent.",
+        "Boulgour : 225 g dans 450 ml d'eau salée, 12 minutes à couvert, puis 10 minutes de repos sans ouvrir.",
+        "Mesuré le 19/09 : 1197 g de boulettes-sauce et 600 g de boulgour, soit 399 g et 200 g par gamelle."
+      ]
+    },
+    {
+      "id": "collation-fb-noix",
+      "label": "Fromage blanc et noix",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 250
+        },
+        {
+          "foodId": "noix",
+          "grams": 25
+        }
+      ],
+      "steps": [
+        "250 g de fromage blanc 0 % et 25 g de cerneaux de noix.",
+        "Les noix apportent des oméga-3 que le reste du programme ne fournit pas, et elles font monter l'apport lipidique sans volume."
+      ]
+    },
+    {
+      "id": "collation-fb-beurre-cacahuete",
+      "label": "Fromage blanc et beurre de cacahuète",
+      "slot": [
+        "collation"
+      ],
+      "servings": 1,
+      "prepMin": 2,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "fromage-blanc-0",
+          "grams": 250
+        },
+        {
+          "foodId": "beurre-cacahuete",
+          "grams": 20
+        }
+      ],
+      "steps": [
+        "Incorporer 20 g de beurre de cacahuète au fromage blanc en fouettant, ou le manger à la cuillère à côté.",
+        "Choisir un beurre de cacahuète sans sucre ni huile de palme ajoutés : la liste d'ingrédients doit tenir en un mot."
+      ]
+    },
+    {
+      "id": "diner-poulet-brocoli-riz",
+      "label": "Poulet sauté au brocoli, soja-gingembre, riz",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 12,
+      "cookMin": 18,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "brocoli",
+          "grams": 300
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 115
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        },
+        {
+          "foodId": "sauce-soja",
+          "grams": 20
+        }
+      ],
+      "steps": [
+        "Riz : 115 g dans 230 ml d'eau salée, 11 minutes à couvert, 5 minutes de repos.",
+        "Détailler le brocoli en petits bouquets et le blanchir 3 minutes à l'eau bouillante salée, puis l'égoutter. Cette précuisson évite qu'il reste cru au wok pendant que le poulet sèche.",
+        "Couper le poulet en lanières et le saisir 5 minutes à feu très vif dans l'huile, sans le remuer sans arrêt : il doit colorer, pas bouillir.",
+        "Ajouter le brocoli, du gingembre frais râpé et de l'ail en poudre, sauter 3 minutes, puis déglacer avec la sauce soja hors du feu pour qu'elle ne brûle pas."
+      ]
+    },
+    {
+      "id": "diner-oeufs-ratatouille",
+      "label": "Œufs au plat sur ratatouille, pain complet",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 15,
+      "cookMin": 35,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 220
+        },
+        {
+          "foodId": "aubergine",
+          "grams": 200
+        },
+        {
+          "foodId": "courgette",
+          "grams": 200
+        },
+        {
+          "foodId": "poivron",
+          "grams": 100
+        },
+        {
+          "foodId": "tomate",
+          "grams": 200
+        },
+        {
+          "foodId": "oignon",
+          "grams": 100
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 15
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 70
+        }
+      ],
+      "steps": [
+        "Couper tous les légumes en dés de 2 cm en les gardant séparés.",
+        "Faire revenir l'oignon et le poivron 5 minutes dans l'huile, ajouter l'aubergine et la laisser colorer 8 minutes — c'est elle qui demande le plus de cuisson et elle boit l'huile, ne pas en rajouter.",
+        "Ajouter la courgette, puis la tomate, du thym, du laurier, de l'ail en poudre, sel et poivre. Laisser mijoter 20 minutes à découvert pour que l'eau des légumes s'évapore.",
+        "Casser les 4 œufs directement sur la ratatouille, couvrir et laisser prendre 5 minutes à feu doux : le blanc doit être pris, le jaune coulant.",
+        "Servir avec 70 g de pain complet pour saucer."
+      ]
+    },
+    {
+      "id": "diner-colin-four-haricots-blancs",
+      "label": "Colin au four, tomates cerises, haricots blancs, olives",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 230
+        },
+        {
+          "foodId": "tomate-cerise",
+          "grams": 200
+        },
+        {
+          "foodId": "haricots-blancs-cuits",
+          "grams": 200
+        },
+        {
+          "foodId": "olives-noires",
+          "grams": 25
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        }
+      ],
+      "steps": [
+        "Le colin doit avoir été sorti du congélateur la veille au soir.",
+        "Couper les pommes de terre en cubes de 2 cm, les mélanger à la moitié de l'huile et enfourner 15 minutes à 200 °C avant d'ajouter le reste : elles sont plus longues à cuire que le poisson.",
+        "Ajouter les tomates cerises entières, les haricots blancs rincés et égouttés, les olives noires, le reste de l'huile, de l'origan, sel et poivre.",
+        "Poser le colin épongé par-dessus et enfourner 12 à 15 minutes. Le poisson est cuit quand la chair se sépare à la fourchette.",
+        "Finir au jus de citron hors du four. Les tomates cerises éclatent et font la sauce, il n'y a rien d'autre à ajouter."
+      ]
+    },
+    {
+      "id": "dejeuner-oeufs-brouilles-saumon-fume",
+      "label": "Œufs brouillés, saumon fumé, pain complet",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 5,
+      "cookMin": 8,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 165
+        },
+        {
+          "foodId": "saumon-fume",
+          "grams": 90
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 80
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 6
+        }
+      ],
+      "steps": [
+        "Battre 3 œufs avec du poivre, sans sel : le saumon fumé en apporte assez.",
+        "Cuire à feu TRÈS doux dans l'huile, en remuant sans arrêt à la spatule, et retirer du feu quand ils sont encore un peu liquides — ils finissent de prendre hors du feu. C'est la seule façon d'avoir des œufs crémeux plutôt que granuleux.",
+        "Servir avec le saumon fumé en lanières, 80 g de pain complet grillé, de l'aneth et un tour de moulin."
+      ]
+    },
+    {
+      "id": "diner-pad-thai-crevettes",
+      "label": "Pad thaï aux crevettes",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 15,
+      "cookMin": 12,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "nouilles-riz-crues",
+          "grams": 115
+        },
+        {
+          "foodId": "crevettes-cuites",
+          "grams": 160
+        },
+        {
+          "foodId": "oeuf-entier",
+          "grams": 55
+        },
+        {
+          "foodId": "pousses-soja",
+          "grams": 120
+        },
+        {
+          "foodId": "cacahuetes",
+          "grams": 20
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        },
+        {
+          "foodId": "sauce-soja",
+          "grams": 15
+        },
+        {
+          "foodId": "carotte",
+          "grams": 50
+        }
+      ],
+      "steps": [
+        "Faire tremper les nouilles de riz 8 à 10 minutes dans l'eau chaude (non bouillante) jusqu'à ce qu'elles soient souples mais encore fermes. Égoutter. Elles finiront de cuire au wok et deviennent de la bouillie si elles sont cuites deux fois.",
+        "Préparer la sauce à part : sauce soja, nuoc-mâm, pâte de tamarin (ou jus de citron vert avec une pointe de sucre). Tout doit être prêt avant d'allumer le feu, le wok ne laisse pas le temps de doser.",
+        "Carotte en fine julienne. Saisir 1 minute à feu très vif dans l'huile.",
+        "Pousser les légumes sur le côté, casser l'œuf dans l'espace libre et le brouiller 30 secondes avant de tout mélanger.",
+        "Ajouter les nouilles égouttées et la sauce, sauter 2 minutes, puis les crevettes et les pousses de soja seulement 1 minute — les pousses doivent rester croquantes.",
+        "Hors du feu : cacahuètes concassées, coriandre fraîche, jus de citron vert."
       ]
     }
   ]

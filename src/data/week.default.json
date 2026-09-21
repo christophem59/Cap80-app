@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S4 — injectée depuis le bundle du 2026-09-13. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S5 — injectée depuis le bundle du 2026-09-21. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -10,19 +10,15 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-legumes-riz"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "gamelle-poulet-tandoori"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-amandes"
+          "recipeId": "collation-fb-noix"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-endives-braisees-pdt"
+          "recipeId": "diner-poulet-brocoli-riz"
         },
         {
           "slot": "extra",
@@ -34,7 +30,6 @@
     },
     {
       "label": "Mardi",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -42,15 +37,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-chili-riz"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "salade-endive-carotte"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "gamelle-boulettes-boulgour"
         },
         {
           "slot": "collation",
@@ -60,20 +47,29 @@
         },
         {
           "slot": "collation",
-          "recipeId": "pois-chiches-rotis"
+          "foodId": "concombre",
+          "grams": 120
         },
         {
           "slot": "collation",
-          "recipeId": "crudites-concombre-tomate"
+          "foodId": "carotte",
+          "grams": 100,
+          "note": "écoule les carottes fatiguées"
+        },
+        {
+          "slot": "collation",
+          "foodId": "amandes",
+          "grams": 20
         },
         {
           "slot": "diner",
-          "estimated": {
-            "kcal": 1500,
-            "proteinG": 50,
-            "fiberG": 12
-          },
-          "note": "Restaurant — estimation : plat, pain, bière 250 ml, dessert. À remplacer par la saisie réelle après le repas."
+          "recipeId": "diner-saumon-poireaux-pdt"
+        },
+        {
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120,
+          "note": "1 banane"
         }
       ]
     },
@@ -86,19 +82,15 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-legumes-riz"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "gamelle-poulet-tandoori"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-amandes"
+          "recipeId": "collation-fb-beurre-cacahuete"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-dinde-endives-braisees-quinoa"
+          "recipeId": "diner-oeufs-ratatouille"
         },
         {
           "slot": "extra",
@@ -117,15 +109,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-chili-riz"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "salade-endive-carotte"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "gamelle-boulettes-boulgour"
         },
         {
           "slot": "collation",
@@ -135,15 +119,22 @@
         },
         {
           "slot": "collation",
-          "recipeId": "pois-chiches-rotis"
+          "foodId": "concombre",
+          "grams": 120
         },
         {
           "slot": "collation",
-          "recipeId": "crudites-concombre-tomate"
+          "foodId": "tomate",
+          "grams": 100
+        },
+        {
+          "slot": "collation",
+          "foodId": "amandes",
+          "grams": 20
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt"
+          "recipeId": "diner-colin-four-haricots-blancs"
         },
         {
           "slot": "extra",
@@ -155,6 +146,7 @@
     },
     {
       "label": "Vendredi",
+      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -162,25 +154,20 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-legumes-riz"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "gamelle-poulet-tandoori"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-amandes"
+          "recipeId": "collation-fb-noix"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-omelette-champignons"
-        },
-        {
-          "slot": "extra",
-          "foodId": "pomme",
-          "grams": 150,
-          "note": "1 pomme"
+          "estimated": {
+            "kcal": 1500,
+            "proteinG": 50,
+            "fiberG": 12
+          },
+          "note": "Restaurant — estimation : plat, pain, bière 250 ml, dessert. À remplacer par la saisie réelle après le repas."
         }
       ]
     },
@@ -193,7 +180,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "dejeuner-salade-thon-pois-chiches"
+          "recipeId": "dejeuner-oeufs-brouilles-saumon-fume"
         },
         {
           "slot": "collation",
@@ -206,7 +193,14 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-rumsteck-haricots-pdt"
+          "recipeId": "diner-pad-thai-crevettes",
+          "note": "Repas familial : crevettes pour Christophe, poulet pour sa femme et son fils, ajoutés en fin de cuisson."
+        },
+        {
+          "slot": "extra",
+          "foodId": "kiwi",
+          "grams": 150,
+          "note": "2 kiwis"
         }
       ]
     },
@@ -219,15 +213,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-chili-riz"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "salade-endive-carotte"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "sauce-fromage-blanc"
+          "recipeId": "gamelle-boulettes-boulgour"
         },
         {
           "slot": "collation",
@@ -240,7 +226,13 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-soupe-oeufs-pain"
+          "recipeId": "diner-omelette-champignons"
+        },
+        {
+          "slot": "extra",
+          "foodId": "pomme",
+          "grams": 150,
+          "note": "1 pomme"
         }
       ]
     }

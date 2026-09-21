@@ -1,6 +1,6 @@
 {
   "source": "Valeurs pour 100 g du produit tel que pesé, d'après les tables Ciqual (ANSES) et USDA, arrondies. À affiner pour un usage critique. Enrichissable via custom-foods.json (dépôt privé) ou l'app.",
-  "version": "580e30958a8a",
+  "version": "24fdd9c56471",
   "foods": [
     { "id": "poulet-blanc-cru", "label": "Blanc de poulet, cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 121, "proteinG": 23, "fatG": 2.6, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.7, "servings": [{ "label": "1 blanc (~150 g)", "grams": 150 }] },
     { "id": "dinde-escalope-crue", "label": "Escalope de dinde, crue", "category": "proteines", "state": "cru", "per100g": { "kcal": 110, "proteinG": 24, "fatG": 1.5, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 escalope (~120 g)", "grams": 120 }] },
@@ -373,6 +373,7 @@
     { "id": "pate-feuilletee", "label": "Pâte feuilletée / brisée (crue)", "category": "feculents", "state": "cru", "per100g": { "kcal": 380, "proteinG": 6, "fatG": 23, "carbsG": 38, "fiberG": 2 }, "servings": [{ "label": "1/4 de pâte (~60 g)", "grams": 60 }] },
     { "id": "riz-thai-cru", "label": "Riz thaï / rond, cru", "category": "feculents", "state": "cru", "per100g": { "kcal": 350, "proteinG": 7, "fatG": 0.9, "carbsG": 78, "fiberG": 1.4 }, "cookedFactor": 2.8 },
     { "id": "pain-grille", "label": "Pain grillé / toasté (tranche)", "category": "feculents", "state": "tel-quel", "per100g": { "kcal": 290, "proteinG": 9, "fatG": 4, "carbsG": 54, "fiberG": 4 }, "servings": [{ "label": "1 tranche (~25 g)", "grams": 25 }] },
+    { "id": "nouilles-riz-crues", "label": "Nouilles de riz, crues", "category": "feculents", "state": "cru", "per100g": { "kcal": 364, "proteinG": 6, "fatG": 0.6, "carbsG": 82, "fiberG": 1.6 }, "cookedFactor": 2.5 },
     { "id": "pak-choi", "label": "Pak choï / chou chinois, cru", "category": "legumes", "state": "cru", "per100g": { "kcal": 15, "proteinG": 1.5, "fatG": 0.2, "carbsG": 1.5, "fiberG": 1 }, "servings": [{ "label": "1 portion (150 g)", "grams": 150 }] },
     { "id": "cresson", "label": "Cresson, cru", "category": "legumes", "state": "cru", "per100g": { "kcal": 21, "proteinG": 2.5, "fatG": 0.3, "carbsG": 1.3, "fiberG": 1.5 }, "servings": [{ "label": "1 portion (50 g)", "grams": 50 }] },
     { "id": "salsifis", "label": "Salsifis, crus", "category": "legumes", "state": "cru", "per100g": { "kcal": 82, "proteinG": 3.3, "fatG": 0.2, "carbsG": 15, "fiberG": 3.5 }, "servings": [{ "label": "1 portion (150 g)", "grams": 150 }] },
