@@ -50,6 +50,14 @@ describe('recalibrage du modèle — à qui il s’applique', () => {
   it('ne redescend pas quelqu’un déjà au-dessus de la cible', () => {
     expect(pendingRecalibration({ ...base, activityFactor: 1.6 })).toBeNull()
   })
+
+  it('ne s’applique pas à un programme démarré APRÈS la décision', () => {
+    // Une réinstallation avec un programme neuf choisit son niveau d'activité à
+    // l'onboarding : lui plaquer 1,55, conclusion tirée de semaines qui n'ont jamais eu
+    // lieu pour ce programme, écraserait ce choix.
+    expect(pendingRecalibration({ ...base, startDate: '2026-10-05' })).toBeNull()
+    expect(pendingRecalibration({ ...base, startDate: recal.date })).toBeNull()
+  })
 })
 
 describe('recalibrage du modèle — ce qu’il change', () => {

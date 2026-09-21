@@ -43,16 +43,26 @@ export const RECALIBRATIONS: Recalibration[] = [
 ]
 
 /**
- * Recalibrage restant à appliquer, ou null. On ne touche à rien tant que l'onboarding
- * n'est pas validé (le profil est encore un placeholder), ni si le facteur a DÉJÀ été
- * recalé — à la main ou par un recalibrage antérieur : la décision de l'utilisateur
- * prime toujours sur une décision datée du code.
+ * Recalibrage restant à appliquer, ou null.
+ *
+ * Quatre refus, dans cet ordre :
+ *  - onboarding non validé : le profil est encore un placeholder, il n'y a rien à corriger ;
+ *  - facteur DÉJÀ recalé, à la main ou non : la décision de l'utilisateur prime toujours
+ *    sur une décision datée du code ;
+ *  - programme démarré APRÈS la décision : un recalibrage corrige un modèle dont on a
+ *    mesuré la dérive sur des semaines précises. Appliqué à un programme neuf, il
+ *    plaquerait les conclusions tirées de semaines qui n'ont jamais eu lieu — et
+ *    écraserait le niveau d'activité que l'utilisateur vient de choisir à l'onboarding ;
+ *  - facteur déjà au-dessus de la cible : on ne redescend personne.
  */
 export function pendingRecalibration(profile: Profile): Recalibration | null {
   if (!profile.onboarded) return null
-  const history = profile.activityFactorHistory ?? []
-  if (history.length > 0) return null
-  return RECALIBRATIONS.find((r) => profile.activityFactor < r.toFactor) ?? null
+  if ((profile.activityFactorHistory ?? []).length > 0) return null
+  return (
+    RECALIBRATIONS.find(
+      (r) => profile.startDate < r.date && profile.activityFactor < r.toFactor,
+    ) ?? null
+  )
 }
 
 /**
