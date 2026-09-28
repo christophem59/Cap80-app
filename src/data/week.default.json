@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S5 — injectée depuis le bundle du 2026-09-21. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S6 — injectée depuis le bundle du 2026-09-28. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -10,7 +10,8 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-tandoori"
+          "recipeId": "gamelle-tajine",
+          "portions": 1
         },
         {
           "slot": "collation",
@@ -18,13 +19,13 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-poulet-brocoli-riz"
+          "recipeId": "diner-saumon-poireaux-pdt"
         },
         {
           "slot": "extra",
           "foodId": "kiwi",
           "grams": 150,
-          "note": "2 kiwis"
+          "note": "dessert — 2 kiwis"
         }
       ]
     },
@@ -37,44 +38,28 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-boulgour"
+          "recipeId": "gamelle-boulettes-boulgour",
+          "portions": 1
         },
         {
           "slot": "collation",
-          "foodId": "oeuf-dur",
-          "grams": 110,
-          "note": "2 œufs durs"
-        },
-        {
-          "slot": "collation",
-          "foodId": "concombre",
-          "grams": 120
-        },
-        {
-          "slot": "collation",
-          "foodId": "carotte",
-          "grams": 100,
-          "note": "écoule les carottes fatiguées"
-        },
-        {
-          "slot": "collation",
-          "foodId": "amandes",
-          "grams": 20
+          "recipeId": "collation-oeufs-crudites-amandes"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt"
+          "recipeId": "diner-colin-four-haricots-blancs"
         },
         {
           "slot": "extra",
           "foodId": "banane",
           "grams": 120,
-          "note": "1 banane"
+          "note": "dessert"
         }
       ]
     },
     {
       "label": "Mercredi",
+      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -82,21 +67,23 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-tandoori"
+          "recipeId": "gamelle-tajine",
+          "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-beurre-cacahuete"
+          "recipeId": "collation-fb-beurre-cacahuete",
+          "time": "16:00",
+          "note": "ne pas la sauter — arriver rassasié à l'apéro est la moitié du travail"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-oeufs-ratatouille"
-        },
-        {
-          "slot": "extra",
-          "foodId": "banane",
-          "grams": 120,
-          "note": "1 banane"
+          "estimated": {
+            "kcal": 1400,
+            "proteinG": 40,
+            "fiberG": 5
+          },
+          "note": "Apéro dînatoire — forfait : charcuterie, fromage, pain, olives, 2 à 3 verres"
         }
       ]
     },
@@ -109,44 +96,27 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-boulgour"
+          "recipeId": "gamelle-boulettes-boulgour",
+          "portions": 1
         },
         {
           "slot": "collation",
-          "foodId": "oeuf-dur",
-          "grams": 110,
-          "note": "2 œufs durs"
-        },
-        {
-          "slot": "collation",
-          "foodId": "concombre",
-          "grams": 120
-        },
-        {
-          "slot": "collation",
-          "foodId": "tomate",
-          "grams": 100
-        },
-        {
-          "slot": "collation",
-          "foodId": "amandes",
-          "grams": 20
+          "recipeId": "collation-oeufs-crudites-amandes"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-four-haricots-blancs"
+          "recipeId": "diner-steak-puree-choufleur"
         },
         {
           "slot": "extra",
           "foodId": "kiwi",
           "grams": 150,
-          "note": "2 kiwis"
+          "note": "dessert — 2 kiwis"
         }
       ]
     },
     {
       "label": "Vendredi",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -154,7 +124,8 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-tandoori"
+          "recipeId": "gamelle-tajine",
+          "portions": 1
         },
         {
           "slot": "collation",
@@ -162,12 +133,13 @@
         },
         {
           "slot": "diner",
-          "estimated": {
-            "kcal": 1500,
-            "proteinG": 50,
-            "fiberG": 12
-          },
-          "note": "Restaurant — estimation : plat, pain, bière 250 ml, dessert. À remplacer par la saisie réelle après le repas."
+          "recipeId": "diner-omelette-champignons"
+        },
+        {
+          "slot": "extra",
+          "foodId": "pomme",
+          "grams": 150,
+          "note": "dessert"
         }
       ]
     },
@@ -193,19 +165,19 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-pad-thai-crevettes",
-          "note": "Repas familial : crevettes pour Christophe, poulet pour sa femme et son fils, ajoutés en fin de cuisson."
+          "recipeId": "diner-poulet-brocoli-riz"
         },
         {
           "slot": "extra",
           "foodId": "kiwi",
           "grams": 150,
-          "note": "2 kiwis"
+          "note": "dessert — 2 kiwis"
         }
       ]
     },
     {
       "label": "Dimanche",
+      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -213,7 +185,12 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-boulgour"
+          "estimated": {
+            "kcal": 1100,
+            "proteinG": 45,
+            "fiberG": 6
+          },
+          "note": "Pique-nique — forfait"
         },
         {
           "slot": "collation",
@@ -222,17 +199,11 @@
         {
           "slot": "collation",
           "recipeId": "shaker-whey-eau",
-          "time": "16:00"
+          "time": "17:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-omelette-champignons"
-        },
-        {
-          "slot": "extra",
-          "foodId": "pomme",
-          "grams": 150,
-          "note": "1 pomme"
+          "recipeId": "diner-oeufs-ratatouille"
         }
       ]
     }
