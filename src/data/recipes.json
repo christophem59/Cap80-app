@@ -1959,10 +1959,10 @@
       ],
       "steps": [
         "Cuire les pommes de terre en robe des champs 20 minutes à l'eau salée, ou 18 minutes à la vapeur.",
-        "Émincer les blancs de poireau en fines rondelles et les rincer soigneusement : le sable se loge entre les feuilles.",
-        "Faire fondre les poireaux 15 minutes à feu doux dans 6 g d'huile, à couvert, avec une cuillère d'eau. Ils doivent compoter, pas colorer.",
-        "Poêle chaude, 6 g d'huile, cuire le saumon 4 minutes côté peau puis 2 minutes sur l'autre face. Le cœur doit rester translucide.",
-        "Sel, poivre, aneth ou citron sur le saumon au moment de servir."
+        "Émincer les blancs de poireau en fines rondelles et les rincer après avoir coupé : le sable se loge entre les feuilles et un poireau rincé entier reste sableux.",
+        "Faire fondre les poireaux 15 minutes à feu doux dans 6 g d'huile, à couvert, avec une cuillère d'eau. Ils doivent compoter et devenir translucides, pas colorer.",
+        "Poêle chaude, 6 g d'huile, cuire le saumon 4 minutes côté peau sans y toucher puis 2 minutes sur l'autre face. Le kéta titre 9,2 g de lipides contre 13 pour le saumon d'Atlantique : il sèche vite, le cœur doit rester translucide.",
+        "Sel, poivre, aneth ou un trait de citron sur le saumon au moment de servir."
       ]
     },
     {
@@ -2250,7 +2250,8 @@
       "id": "gamelle-boulettes-boulgour",
       "label": "Gamelle boulettes de bœuf sauce tomate et boulgour",
       "slot": [
-        "dejeuner"
+        "dejeuner",
+        "diner"
       ],
       "servings": 3,
       "prepMin": 20,
@@ -2285,10 +2286,10 @@
       ],
       "steps": [
         "Boulgour : 225 g dans 450 ml d'eau salée, ébullition, 12 minutes à feu doux à couvert, puis 10 minutes de repos sans ouvrir.",
-        "Mélanger le haché et l'œuf avec sel, poivre, ail en poudre, cumin et persil. Malaxer le moins possible : trop travaillée, la viande devient caoutchouteuse.",
+        "Mélanger le haché et l'œuf avec sel, poivre, ail en poudre, cumin et persil, en malaxant le moins possible : trop travaillée, la viande devient caoutchouteuse.",
         "Former 18 boulettes d'environ 35 g en les roulant entre des mains humides.",
-        "Saisir les boulettes 6 minutes à feu vif dans 10 g d'huile en les roulant. Elles doivent être colorées, pas cuites à cœur. Réserver.",
-        "Faire suer 150 g d'oignon dans 15 g d'huile pendant 6 minutes : il décolle les sucs laissés par les boulettes.",
+        "Saisir les boulettes 6 minutes à feu vif dans 10 g d'huile en les roulant. Colorées, pas cuites à cœur. Réserver.",
+        "Faire suer 150 g d'oignon dans 15 g d'huile pendant 6 minutes, pour décoller les sucs laissés par les boulettes.",
         "Ajouter les tomates concassées, origan, thym, laurier, sel et poivre, et laisser réduire 15 minutes à découvert.",
         "Remettre les boulettes dans la sauce et poursuivre 10 minutes à couvert.",
         "Répartir en 3 gamelles de 379 g de boulettes et sauce sur 205 g de boulgour, soit 584 g par gamelle."
@@ -2481,12 +2482,12 @@
     },
     {
       "id": "dejeuner-oeufs-brouilles-saumon-fume",
-      "label": "Œufs brouillés, saumon fumé, pain complet",
+      "label": "Œufs brouillés, saumon fumé, pain complet et tomates",
       "slot": [
         "dejeuner"
       ],
       "servings": 1,
-      "prepMin": 5,
+      "prepMin": 8,
       "cookMin": 8,
       "batchFriendly": false,
       "ingredients": [
@@ -2505,12 +2506,22 @@
         {
           "foodId": "huile-olive",
           "grams": 6
+        },
+        {
+          "foodId": "tomate",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 100
         }
       ],
       "steps": [
-        "Battre 3 œufs avec du poivre, sans sel : le saumon fumé en apporte assez.",
-        "Cuire à feu TRÈS doux dans l'huile, en remuant sans arrêt à la spatule, et retirer du feu quand ils sont encore un peu liquides — ils finissent de prendre hors du feu. C'est la seule façon d'avoir des œufs crémeux plutôt que granuleux.",
-        "Servir avec le saumon fumé en lanières, 80 g de pain complet grillé, de l'aneth et un tour de moulin."
+        "Griller le pain en premier : les œufs brouillés n'attendent pas, le pain si.",
+        "Battre les 3 œufs à la fourchette avec sel et poivre, sans les monter.",
+        "Feu doux, 6 g d'huile, verser les œufs et remuer en continu à la spatule. Les retirer du feu quand ils sont encore brillants et un peu liquides : ils finissent de prendre dans l'assiette.",
+        "Détailler les tomates en quartiers et les assaisonner au dernier moment avec la salade, vinaigre et herbes.",
+        "Disposer le saumon fumé à cru sur les œufs, sans le cuire."
       ]
     },
     {
@@ -2661,6 +2672,107 @@
         "Mixer le chou-fleur chaud avec le lait, du sel, du poivre et une pointe de muscade jusqu'à obtenir une purée lisse.",
         "Poêle très chaude, 6 g d'huile, saisir le steak 2 minutes par face pour une cuisson rosée, saler seulement après la première face colorée.",
         "Faire revenir les haricots verts 2 minutes dans les 6 g d'huile restants avec de l'ail, et servir avec le steak et la purée."
+      ]
+    },
+    {
+      "id": "gamelle-porc-lentilles-carottes",
+      "label": "Gamelle mijoté de porc, lentilles vertes et carottes",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 3,
+      "prepMin": 15,
+      "cookMin": 40,
+      "batchFriendly": true,
+      "cookedYieldG": 2120,
+      "ingredients": [
+        {
+          "foodId": "porc-filet-mignon-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "lentilles-vertes-crues",
+          "grams": 240
+        },
+        {
+          "foodId": "carotte",
+          "grams": 450
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 450
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 24
+        }
+      ],
+      "steps": [
+        "Cuire les lentilles à part : 240 g dans trois fois leur volume d'eau, sans sel et sans tomate, 22 minutes à petits bouillons, puis égoutter. L'acidité de la tomate empêche les lentilles de s'attendrir, elles resteraient fermes si on les cuisait dans la sauce.",
+        "Détailler le filet mignon en médaillons de 2 cm, les carottes en rondelles de 5 mm, émincer l'oignon.",
+        "Saisir les médaillons 4 minutes à feu vif dans 12 g d'huile, en une seule couche. Ils doivent être colorés sur les deux faces et rester crus au centre. Réserver avec leur jus.",
+        "Faire suer l'oignon et les carottes 6 minutes à feu moyen dans les 12 g d'huile restants, dans la même cocotte : ils décollent les sucs du porc.",
+        "Ajouter les tomates concassées, thym, laurier, sel, poivre et de l'eau à mi-hauteur des carottes. Couvrir et laisser mijoter 20 minutes à feu doux, jusqu'à ce que les carottes se percent sans résistance.",
+        "Remettre les lentilles égouttées et le porc avec son jus, 8 minutes à couvert à feu doux. Le filet mignon est une pièce maigre : au-delà il devient sec et filandreux.",
+        "Hors du feu, remuer une cuillère à café de moutarde dans la sauce pour réveiller le porc, qui est une viande douce.",
+        "Répartir en 3 gamelles de 707 g."
+      ]
+    },
+    {
+      "id": "dejeuner-salade-jambon-oeufs-pdt",
+      "label": "Salade composée jambon, œufs durs et pommes de terre",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 15,
+      "cookMin": 20,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "jambon-blanc",
+          "grams": 120
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "tomate",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 80
+        },
+        {
+          "foodId": "cornichon",
+          "grams": 30
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 50
+        }
+      ],
+      "steps": [
+        "Cuire les pommes de terre 20 minutes à l'eau salée, puis les couper en rondelles tièdes.",
+        "Assaisonner les pommes de terre pendant qu'elles sont encore chaudes : tièdes elles absorbent la vinaigrette, froides elles la laissent au fond du saladier.",
+        "Écaler 2 œufs durs et les couper en quartiers, détailler le jambon en lanières, les tomates en quartiers, les cornichons en rondelles.",
+        "Mélanger l'huile avec du vinaigre, de la moutarde, du sel et du poivre, puis réunir tous les éléments sur le lit de salade verte.",
+        "Servir avec 50 g de pain complet."
       ]
     }
   ]

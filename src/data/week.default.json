@@ -1,8 +1,9 @@
 {
-  "note": "Semaine S6 — injectée depuis le bundle du 2026-09-28. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S7 — injectée depuis le bundle du 2026-10-05. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
+      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -10,12 +11,93 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-tajine",
+          "estimated": {
+            "kcal": 950,
+            "proteinG": 45,
+            "fiberG": 8
+          },
+          "note": "Déplacement Paris — déjeuner extérieur, forfait"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "16:00",
+          "note": "dose emportée"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "18:00",
+          "note": "dose emportée"
+        },
+        {
+          "slot": "diner",
+          "estimated": {
+            "kcal": 1050,
+            "proteinG": 45,
+            "fiberG": 8
+          },
+          "note": "Déplacement Paris — dîner extérieur, forfait"
+        }
+      ]
+    },
+    {
+      "label": "Mardi",
+      "isRestaurantDay": true,
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "estimated": {
+            "kcal": 550,
+            "proteinG": 25,
+            "fiberG": 4
+          },
+          "note": "Petit-déjeuner d'hôtel, forfait"
+        },
+        {
+          "slot": "dejeuner",
+          "estimated": {
+            "kcal": 950,
+            "proteinG": 45,
+            "fiberG": 8
+          },
+          "note": "Déplacement Paris — déjeuner extérieur, forfait"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "16:00",
+          "note": "dose emportée"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "gamelle-boulettes-boulgour",
+          "portions": 1,
+          "note": "gamelle sortie du congélateur lundi matin"
+        },
+        {
+          "slot": "extra",
+          "foodId": "pomme",
+          "grams": 150,
+          "note": "dessert"
+        }
+      ]
+    },
+    {
+      "label": "Mercredi",
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "petit-dej-shaker-skyr"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "gamelle-porc-lentilles-carottes",
           "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-noix"
+          "recipeId": "collation-fb-cacao-amandes"
         },
         {
           "slot": "diner",
@@ -30,64 +112,6 @@
       ]
     },
     {
-      "label": "Mardi",
-      "meals": [
-        {
-          "slot": "petit-dej",
-          "recipeId": "petit-dej-oeufs-pain"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-boulgour",
-          "portions": 1
-        },
-        {
-          "slot": "collation",
-          "recipeId": "collation-oeufs-crudites-amandes"
-        },
-        {
-          "slot": "diner",
-          "recipeId": "diner-colin-four-haricots-blancs"
-        },
-        {
-          "slot": "extra",
-          "foodId": "banane",
-          "grams": 120,
-          "note": "dessert"
-        }
-      ]
-    },
-    {
-      "label": "Mercredi",
-      "isRestaurantDay": true,
-      "meals": [
-        {
-          "slot": "petit-dej",
-          "recipeId": "petit-dej-shaker-skyr"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "gamelle-tajine",
-          "portions": 1
-        },
-        {
-          "slot": "collation",
-          "recipeId": "collation-fb-beurre-cacahuete",
-          "time": "16:00",
-          "note": "ne pas la sauter — arriver rassasié à l'apéro est la moitié du travail"
-        },
-        {
-          "slot": "diner",
-          "estimated": {
-            "kcal": 1400,
-            "proteinG": 40,
-            "fiberG": 5
-          },
-          "note": "Apéro dînatoire — forfait : charcuterie, fromage, pain, olives, 2 à 3 verres"
-        }
-      ]
-    },
-    {
       "label": "Jeudi",
       "meals": [
         {
@@ -96,22 +120,22 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-boulgour",
+          "recipeId": "gamelle-porc-lentilles-carottes",
           "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "collation-oeufs-crudites-amandes"
+          "recipeId": "collation-fb-fruits-rouges"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-steak-puree-choufleur"
+          "recipeId": "diner-colin-four-haricots-blancs"
         },
         {
           "slot": "extra",
-          "foodId": "kiwi",
-          "grams": 150,
-          "note": "dessert — 2 kiwis"
+          "foodId": "poire",
+          "grams": 160,
+          "note": "dessert"
         }
       ]
     },
@@ -124,7 +148,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-tajine",
+          "recipeId": "gamelle-porc-lentilles-carottes",
           "portions": 1
         },
         {
@@ -133,18 +157,19 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-omelette-champignons"
+          "recipeId": "diner-oeufs-ratatouille"
         },
         {
           "slot": "extra",
-          "foodId": "pomme",
+          "foodId": "kiwi",
           "grams": 150,
-          "note": "dessert"
+          "note": "dessert — 2 kiwis"
         }
       ]
     },
     {
       "label": "Samedi",
+      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -156,28 +181,28 @@
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-fruits-rouges"
+          "recipeId": "collation-fb-beurre-cacahuete",
+          "time": "16:00"
         },
         {
           "slot": "collation",
           "recipeId": "shaker-whey-eau",
-          "time": "16:00"
+          "time": "18:30",
+          "note": "avant de partir au restaurant"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-poulet-brocoli-riz"
-        },
-        {
-          "slot": "extra",
-          "foodId": "kiwi",
-          "grams": 150,
-          "note": "dessert — 2 kiwis"
+          "estimated": {
+            "kcal": 1500,
+            "proteinG": 50,
+            "fiberG": 12
+          },
+          "note": "Restaurant — forfait, dessert compris"
         }
       ]
     },
     {
       "label": "Dimanche",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -185,12 +210,7 @@
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 1100,
-            "proteinG": 45,
-            "fiberG": 6
-          },
-          "note": "Pique-nique — forfait"
+          "recipeId": "dejeuner-salade-jambon-oeufs-pdt"
         },
         {
           "slot": "collation",
@@ -203,7 +223,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-oeufs-ratatouille"
+          "recipeId": "diner-poulet-brocoli-riz"
         }
       ]
     }
