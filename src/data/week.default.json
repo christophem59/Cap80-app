@@ -1,9 +1,8 @@
 {
-  "note": "Semaine S7 — injectée depuis le bundle du 2026-10-05. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S8 — injectée depuis le bundle du 2026-10-12. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
@@ -11,74 +10,49 @@
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 950,
-            "proteinG": 45,
-            "fiberG": 8
-          },
-          "note": "Déplacement Paris — déjeuner extérieur, forfait"
+          "recipeId": "gamelle-poulet-riz-legumes",
+          "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "shaker-whey-eau",
-          "time": "16:00",
-          "note": "dose emportée"
-        },
-        {
-          "slot": "collation",
-          "recipeId": "shaker-whey-eau",
-          "time": "18:00",
-          "note": "dose emportée"
+          "recipeId": "collation-fb-noix"
         },
         {
           "slot": "diner",
-          "estimated": {
-            "kcal": 1050,
-            "proteinG": 45,
-            "fiberG": 8
-          },
-          "note": "Déplacement Paris — dîner extérieur, forfait"
+          "recipeId": "diner-omelette-champignons"
+        },
+        {
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120,
+          "note": "dessert"
         }
       ]
     },
     {
       "label": "Mardi",
-      "isRestaurantDay": true,
       "meals": [
         {
           "slot": "petit-dej",
-          "estimated": {
-            "kcal": 550,
-            "proteinG": 25,
-            "fiberG": 4
-          },
-          "note": "Petit-déjeuner d'hôtel, forfait"
+          "recipeId": "petit-dej-oeufs-pain"
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 950,
-            "proteinG": 45,
-            "fiberG": 8
-          },
-          "note": "Déplacement Paris — déjeuner extérieur, forfait"
+          "recipeId": "gamelle-boulettes-semoule",
+          "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "shaker-whey-eau",
-          "time": "16:00",
-          "note": "dose emportée"
+          "recipeId": "collation-fb-beurre-cacahuete"
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-boulettes-boulgour",
-          "portions": 1,
-          "note": "gamelle sortie du congélateur lundi matin"
+          "recipeId": "diner-saumon-poireaux-pdt"
         },
         {
           "slot": "extra",
-          "foodId": "pomme",
-          "grams": 150,
+          "foodId": "banane",
+          "grams": 120,
           "note": "dessert"
         }
       ]
@@ -92,7 +66,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-porc-lentilles-carottes",
+          "recipeId": "gamelle-poulet-riz-legumes",
           "portions": 1
         },
         {
@@ -101,7 +75,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt"
+          "recipeId": "diner-pad-thai-crevettes"
         },
         {
           "slot": "extra",
@@ -120,7 +94,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-porc-lentilles-carottes",
+          "recipeId": "gamelle-boulettes-semoule",
           "portions": 1
         },
         {
@@ -133,8 +107,8 @@
         },
         {
           "slot": "extra",
-          "foodId": "poire",
-          "grams": 160,
+          "foodId": "pomme",
+          "grams": 150,
           "note": "dessert"
         }
       ]
@@ -148,7 +122,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-porc-lentilles-carottes",
+          "recipeId": "gamelle-poulet-riz-legumes",
           "portions": 1
         },
         {
@@ -223,7 +197,13 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-poulet-brocoli-riz"
+          "recipeId": "diner-dinde-haricots-verts-pdt"
+        },
+        {
+          "slot": "extra",
+          "foodId": "pomme",
+          "grams": 150,
+          "note": "dessert"
         }
       ]
     }

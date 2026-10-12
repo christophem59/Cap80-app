@@ -370,53 +370,60 @@
     },
     {
       "id": "gamelle-poulet-riz-legumes",
-      "label": "Gamelle poulet, riz, légumes rôtis",
+      "label": "Gamelle poulet rôti, riz et légumes rôtis au brocoli",
       "slot": [
-        "dejeuner"
+        "dejeuner",
+        "diner"
       ],
-      "servings": 1,
-      "prepMin": 3,
-      "cookMin": 0,
+      "servings": 3,
+      "prepMin": 20,
+      "cookMin": 40,
       "batchFriendly": true,
       "ingredients": [
         {
           "foodId": "poulet-blanc-cru",
-          "grams": 200
+          "grams": 690
         },
         {
           "foodId": "riz-basmati-cru",
-          "grams": 83
+          "grams": 240
         },
         {
           "foodId": "courgette",
-          "grams": 100
+          "grams": 300
         },
         {
           "foodId": "poivron",
-          "grams": 75
+          "grams": 180
+        },
+        {
+          "foodId": "aubergine",
+          "grams": 240
         },
         {
           "foodId": "brocoli",
-          "grams": 75
+          "grams": 300
         },
         {
           "foodId": "oignon",
-          "grams": 50
+          "grams": 150
         },
         {
           "foodId": "huile-olive",
-          "grams": 11
-        },
-        {
-          "foodId": "fromage-blanc-0",
-          "grams": 60
+          "grams": 36
         }
       ],
       "steps": [
-        "Assemblage d'une portion de poulet rôti + riz + légumes rôtis + 2 doses de sauce.",
-        "Sauce dans un pot séparé.",
-        "Moutarde, ail, jus de citron, herbes, sel, poivre selon le goût (non comptés)."
-      ]
+        "Four à 200 degrés. Couper le poulet en cubes de 3 cm, la courgette, l'aubergine et le poivron en morceaux de 2 à 3 cm, émincer l'oignon.",
+        "Répartir le poulet et les légumes sur DEUX plaques séparées, en une seule couche : entassés, ils rendent leur eau et s'étuvent au lieu de rôtir, et le poulet ressort gris et bouilli.",
+        "Plaque du poulet : la moitié de l'huile, sel, poivre, paprika, ail en poudre et thym. Plaque des légumes : le reste de l'huile, sel, poivre, herbes.",
+        "Enfourner 40 minutes en remuant à mi-cuisson.",
+        "Cuire le riz à part : 240 g dans 360 ml d'eau salée, ébullition, 11 minutes à feu doux à couvert, puis 10 minutes de repos sans ouvrir.",
+        "Cuire le brocoli à la vapeur 6 minutes et l'égoutter à fond. Surgelé, il ne va pas au four : gorgé d'eau, il noierait la plaque.",
+        "Réunir poulet, légumes rôtis, brocoli et riz, puis arroser du jus de cuisson du poulet : il porte une partie de l'huile comptée dans la recette et évite que la viande sèche au réchauffage.",
+        "Répartir en 3 gamelles d'environ 698 g."
+      ],
+      "cookedYieldG": 2095
     },
     {
       "id": "gamelle-poulet-lentilles-crudites",
@@ -2518,10 +2525,10 @@
       ],
       "steps": [
         "Griller le pain en premier : les œufs brouillés n'attendent pas, le pain si.",
-        "Battre les 3 œufs à la fourchette avec sel et poivre, sans les monter.",
-        "Feu doux, 6 g d'huile, verser les œufs et remuer en continu à la spatule. Les retirer du feu quand ils sont encore brillants et un peu liquides : ils finissent de prendre dans l'assiette.",
-        "Détailler les tomates en quartiers et les assaisonner au dernier moment avec la salade, vinaigre et herbes.",
-        "Disposer le saumon fumé à cru sur les œufs, sans le cuire."
+        "Battre les œufs à la fourchette sans sel : le sel dans les œufs crus dénature les protéines et les rend liquides si on attend.",
+        "Feu doux, l'huile, verser les œufs et remuer en continu à la spatule en raclant le fond, 3 à 4 minutes.",
+        "Retirer du feu quand ils sont encore brillants et un peu coulants : la chaleur résiduelle finit la cuisson pendant le dressage.",
+        "Saler et poivrer maintenant, poser le saumon fumé à cru par-dessus, et servir avec les tomates en quartiers et la salade assaisonnées au dernier moment."
       ]
     },
     {
@@ -2768,11 +2775,105 @@
         }
       ],
       "steps": [
-        "Cuire les pommes de terre 20 minutes à l'eau salée, puis les couper en rondelles tièdes.",
-        "Assaisonner les pommes de terre pendant qu'elles sont encore chaudes : tièdes elles absorbent la vinaigrette, froides elles la laissent au fond du saladier.",
-        "Écaler 2 œufs durs et les couper en quartiers, détailler le jambon en lanières, les tomates en quartiers, les cornichons en rondelles.",
-        "Mélanger l'huile avec du vinaigre, de la moutarde, du sel et du poivre, puis réunir tous les éléments sur le lit de salade verte.",
-        "Servir avec 50 g de pain complet."
+        "Cuire les pommes de terre 20 minutes à l'eau salée, en robe des champs pour qu'elles ne se gorgent pas.",
+        "Monter la vinaigrette pendant la cuisson : huile, vinaigre, une pointe de moutarde, sel, poivre.",
+        "Éplucher et couper les pommes de terre en rondelles pendant qu'elles sont brûlantes, et verser la vinaigrette dessus immédiatement. Tièdes elles absorbent l'assaisonnement, froides elles le laissent au fond du saladier.",
+        "Détailler le jambon en lanières, les tomates en quartiers, les cornichons en rondelles, écaler et couper les œufs durs en quartiers.",
+        "Dresser sur un lit de salade verte, saler les tomates au dernier moment, et servir avec le pain complet."
+      ]
+    },
+    {
+      "id": "gamelle-boulettes-semoule",
+      "label": "Gamelle boulettes de bœuf, sauce tomate aux légumes et semoule",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 2,
+      "prepMin": 20,
+      "cookMin": 45,
+      "batchFriendly": true,
+      "cookedYieldG": 1430,
+      "ingredients": [
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 400
+        },
+        {
+          "foodId": "oeuf-entier",
+          "grams": 31
+        },
+        {
+          "foodId": "couscous-semoule-crue",
+          "grams": 151
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 400
+        },
+        {
+          "foodId": "carotte",
+          "grams": 160
+        },
+        {
+          "foodId": "courgette",
+          "grams": 151
+        },
+        {
+          "foodId": "oignon",
+          "grams": 100
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 17
+        }
+      ],
+      "steps": [
+        "Mélanger le haché et l'œuf avec sel, poivre, ail en poudre, cumin et persil, en malaxant le moins possible : trop travaillée, la viande devient caoutchouteuse.",
+        "Former des boulettes d'environ 39 g en les roulant entre des mains humides.",
+        "Saisir les boulettes 6 minutes à feu vif dans un tiers de l'huile, en les roulant. Colorées, pas cuites à cœur. Réserver.",
+        "Râper la carotte et la courgette plutôt que de les couper en dés : râpées, elles fondent dans la tomate et deviennent invisibles.",
+        "Faire suer l'oignon avec la carotte et la courgette râpées dans le reste de l'huile, 8 minutes à feu moyen.",
+        "Ajouter les tomates concassées, origan, thym, laurier, sel et poivre, et laisser réduire 15 minutes à découvert.",
+        "Remettre les boulettes dans la sauce et poursuivre 10 minutes à couvert.",
+        "Semoule : verser un volume d'eau bouillante salée avec un filet d'huile, couvrir 5 minutes, puis égrener à la fourchette.",
+        "Répartir en 2 gamelles d'environ 715 g, soit 5 boulettes et la sauce sur la semoule."
+      ]
+    },
+    {
+      "id": "diner-dinde-haricots-verts-pdt",
+      "label": "Escalope de dinde, haricots verts, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 22,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 250
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Cuire les pommes de terre 20 minutes à l'eau salée, ou 18 minutes à la vapeur.",
+        "Cuire les haricots verts 8 minutes à l'eau bouillante salée, puis les égoutter aussitôt pour qu'ils restent fermes.",
+        "Poêle très chaude, la moitié de l'huile, saisir l'escalope 3 minutes par face. La dinde est très maigre : au-delà elle devient sèche et filandreuse.",
+        "Saler seulement après avoir retourné la première face : le sel sur la face crue fait sortir le jus et la viande grise au lieu de croûter.",
+        "Faire revenir les haricots verts 2 minutes dans le reste de l'huile avec de l'ail, et servir avec les pommes de terre."
       ]
     }
   ]
