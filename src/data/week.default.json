@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S9 — injectée depuis le bundle du 2026-10-19. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S9 — corrigée depuis le bundle du 2026-10-19 (batch décalé au mardi soir). Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -21,9 +21,13 @@
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-roti-porc-boulangere",
-          "portions": 1,
-          "note": "portion du batch tout juste cuisiné"
+          "recipeId": "diner-tortilla-pdt-haricots",
+          "note": "batch reporté à mardi, viandes encore congelées"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "21:00"
         },
         {
           "slot": "extra",
@@ -62,12 +66,20 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt-leger"
+          "recipeId": "gamelle-roti-porc-boulangere",
+          "portions": 1,
+          "note": "batch du soir, portion mangée tout de suite"
         },
         {
           "slot": "collation",
           "recipeId": "shaker-whey-eau",
-          "time": "21:00"
+          "time": "21:30"
+        },
+        {
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120,
+          "note": "dessert"
         }
       ]
     },

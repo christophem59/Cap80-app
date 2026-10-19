@@ -3054,6 +3054,44 @@
         "Retirer du feu quand ils sont encore brillants et un peu coulants : la chaleur résiduelle finit la cuisson pendant le dressage.",
         "Saler et poivrer maintenant, poser le saumon fumé à cru par-dessus, et servir avec les tomates en quartiers et la salade."
       ]
+    },
+    {
+      "id": "diner-tortilla-pdt-haricots",
+      "label": "Tortilla de pommes de terre et haricots verts à l'ail",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 220
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 200
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Pommes de terre en rondelles de 3 mm, cuites à couvert à feu moyen dans les deux tiers de l'huile, 15 minutes. Fondantes et non croustillantes : c'est une tortilla, pas des pommes sautées.",
+        "Haricots verts 8 minutes à l'eau bouillante salée, puis égouttés aussitôt.",
+        "Battre les œufs, saler, poivrer, et y verser les pommes de terre encore chaudes. Laisser reposer 5 minutes hors du feu.",
+        "Ce repos fait toute la tortilla : les pommes de terre s'imprègnent et la texture devient crémeuse au lieu d'un mille-feuille d'œuf et de patate.",
+        "Reverser dans la poêle, feu doux, 8 minutes à couvert, jusqu'à ce que les bords se décollent seuls.",
+        "Retourner à l'aide d'une assiette et poursuivre 3 minutes. Le cœur reste légèrement baveux.",
+        "Haricots verts 2 minutes à la poêle avec le reste de l'huile et de l'ail, et servir."
+      ]
     }
   ]
 }
