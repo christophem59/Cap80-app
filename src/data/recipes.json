@@ -2789,55 +2789,55 @@
         "dejeuner",
         "diner"
       ],
-      "servings": 2,
+      "servings": 3,
       "prepMin": 20,
       "cookMin": 45,
       "batchFriendly": true,
-      "cookedYieldG": 1430,
+      "cookedYieldG": 2145,
       "ingredients": [
         {
           "foodId": "steak-hache-5-cru",
-          "grams": 400
+          "grams": 600
         },
         {
           "foodId": "oeuf-entier",
-          "grams": 31
+          "grams": 47
         },
         {
           "foodId": "couscous-semoule-crue",
-          "grams": 151
+          "grams": 227
         },
         {
           "foodId": "tomate-concassee",
-          "grams": 400
+          "grams": 600
         },
         {
           "foodId": "carotte",
-          "grams": 160
+          "grams": 240
         },
         {
           "foodId": "courgette",
-          "grams": 151
+          "grams": 227
         },
         {
           "foodId": "oignon",
-          "grams": 100
+          "grams": 150
         },
         {
           "foodId": "huile-olive",
-          "grams": 17
+          "grams": 26
         }
       ],
       "steps": [
         "Mélanger le haché et l'œuf avec sel, poivre, ail en poudre, cumin et persil, en malaxant le moins possible : trop travaillée, la viande devient caoutchouteuse.",
-        "Former des boulettes d'environ 39 g en les roulant entre des mains humides.",
-        "Saisir les boulettes 6 minutes à feu vif dans un tiers de l'huile, en les roulant. Colorées, pas cuites à cœur. Réserver.",
+        "Former des boulettes d'environ 40 g en les roulant entre des mains humides.",
+        "Saisir les boulettes en deux fournées de 6 minutes à feu vif dans un tiers de l'huile. Colorées, pas cuites à cœur. Réserver.",
         "Râper la carotte et la courgette plutôt que de les couper en dés : râpées, elles fondent dans la tomate et deviennent invisibles.",
         "Faire suer l'oignon avec la carotte et la courgette râpées dans le reste de l'huile, 8 minutes à feu moyen.",
         "Ajouter les tomates concassées, origan, thym, laurier, sel et poivre, et laisser réduire 15 minutes à découvert.",
         "Remettre les boulettes dans la sauce et poursuivre 10 minutes à couvert.",
         "Semoule : verser un volume d'eau bouillante salée avec un filet d'huile, couvrir 5 minutes, puis égrener à la fourchette.",
-        "Répartir en 2 gamelles d'environ 715 g, soit 5 boulettes et la sauce sur la semoule."
+        "Répartir en gamelles d'environ 715 g. Celles du jeudi et du vendredi partent au congélateur dès qu'elles sont tièdes."
       ]
     },
     {
@@ -2874,6 +2874,185 @@
         "Poêle très chaude, la moitié de l'huile, saisir l'escalope 3 minutes par face. La dinde est très maigre : au-delà elle devient sèche et filandreuse.",
         "Saler seulement après avoir retourné la première face : le sel sur la face crue fait sortir le jus et la viande grise au lieu de croûter.",
         "Faire revenir les haricots verts 2 minutes dans le reste de l'huile avec de l'ail, et servir avec les pommes de terre."
+      ]
+    },
+    {
+      "id": "gamelle-roti-porc-boulangere",
+      "label": "Gamelle rôti de porc, pommes de terre boulangères et haricots verts",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 2,
+      "prepMin": 15,
+      "cookMin": 80,
+      "batchFriendly": true,
+      "cookedYieldG": 1300,
+      "ingredients": [
+        {
+          "foodId": "porc-filet-mignon-cru",
+          "grams": 460
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 500
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 360
+        },
+        {
+          "foodId": "oignon",
+          "grams": 100
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 20
+        }
+      ],
+      "steps": [
+        "Sortir le rôti du frigo 30 minutes avant : enfourné froid, l'extérieur est cuit quand le cœur est encore cru.",
+        "Four à 180 degrés chaleur tournante. Trancher les pommes de terre en rondelles de 4 à 5 mm et émincer l'oignon.",
+        "Plat à four : pommes de terre et oignons en couches, sel, poivre, thym, la moitié de l'huile et du bouillon à mi-hauteur. Mouillées, pas noyées. Enfourner 15 minutes seules.",
+        "Saisir le rôti sur toutes ses faces dans une poêle très chaude avec le reste de l'huile, 10 minutes en le tournant toutes les 2 minutes. Le four à 180 degrés ne le colorera jamais : toute la croûte se fait ici.",
+        "Poser le rôti sur les pommes de terre et enfourner 55 à 60 minutes, jusqu'à 65 degrés à cœur.",
+        "Haricots verts 8 minutes à l'eau bouillante salée, égouttés aussitôt. Ils seront réchauffés deux fois de plus, ils sortent fermes.",
+        "Sortir le rôti et le laisser reposer 15 minutes avant de trancher. Tranché à chaud, le jus part sur la planche et la viande réchauffée est sèche.",
+        "Trancher épais, 1,5 cm. Les tranches fines se dessèchent instantanément au réchauffage.",
+        "Répartir, arroser chaque gamelle du jus du plat, et coucher les tranches SOUS les pommes de terre : au micro-ondes c'est la couche du dessus qui sèche."
+      ]
+    },
+    {
+      "id": "diner-pad-thai-poulet",
+      "label": "Pad thaï au poulet, nouilles de riz et pousses de soja",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 15,
+      "cookMin": 12,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "nouilles-riz-crues",
+          "grams": 105
+        },
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 160
+        },
+        {
+          "foodId": "oeuf-entier",
+          "grams": 55
+        },
+        {
+          "foodId": "pousses-soja",
+          "grams": 120
+        },
+        {
+          "foodId": "cacahuetes",
+          "grams": 20
+        },
+        {
+          "foodId": "carotte",
+          "grams": 50
+        },
+        {
+          "foodId": "sauce-soja",
+          "grams": 15
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Tremper les nouilles 8 minutes dans l'eau chaude, pas bouillante, et les égoutter encore fermes. Elles finiront de cuire au wok ; bouillies, elles s'agglomèrent en pâte.",
+        "Couper le poulet en lanières fines et râper la carotte.",
+        "Wok très chaud, la moitié de l'huile, saisir le poulet 5 minutes sans le remuer tout de suite.",
+        "Pousser le poulet sur le côté, verser l'œuf battu dans l'espace libre et le brouiller 30 secondes avant de mélanger.",
+        "Ajouter la carotte râpée et les nouilles égouttées, la sauce soja, un trait de jus de citron, et sauter 2 minutes.",
+        "Pousses de soja en dernier, 1 minute à peine : elles doivent rester croquantes.",
+        "Hors du feu, le reste de l'huile et les cacahuètes concassées."
+      ]
+    },
+    {
+      "id": "diner-saumon-poireaux-pdt-leger",
+      "label": "Saumon, fondue de poireaux et pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "saumon-keta-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "poireau-cru",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Cuire les pommes de terre 18 minutes à la vapeur.",
+        "Poireaux (surgelés, sans les décongeler) à feu moyen dans la moitié de l'huile, à couvert, 12 minutes, puis à découvert 5 minutes pour évaporer l'eau rendue.",
+        "Poêle très chaude, le reste de l'huile, saumon côté peau 4 minutes sans y toucher, puis 2 minutes sur l'autre face.",
+        "Le cœur doit rester rose nacré : à cœur blanc opaque, il est déjà sec."
+      ]
+    },
+    {
+      "id": "dejeuner-oeufs-brouilles-saumon-fume-leger",
+      "label": "Œufs brouillés, saumon fumé, tomates et salade",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 8,
+      "cookMin": 8,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 165
+        },
+        {
+          "foodId": "saumon-fume",
+          "grams": 90
+        },
+        {
+          "foodId": "pain-complet",
+          "grams": 40
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 6
+        },
+        {
+          "foodId": "tomate",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 100
+        }
+      ],
+      "steps": [
+        "Griller le pain en premier : les œufs brouillés n'attendent pas, le pain si.",
+        "Battre les œufs à la fourchette sans sel : le sel dans les œufs crus dénature les protéines et les rend liquides si on attend.",
+        "Feu doux, l'huile, verser les œufs et remuer en continu à la spatule en raclant le fond, 3 à 4 minutes.",
+        "Retirer du feu quand ils sont encore brillants et un peu coulants : la chaleur résiduelle finit la cuisson pendant le dressage.",
+        "Saler et poivrer maintenant, poser le saumon fumé à cru par-dessus, et servir avec les tomates en quartiers et la salade."
       ]
     }
   ]

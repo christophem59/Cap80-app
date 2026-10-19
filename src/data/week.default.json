@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S8 — injectée depuis le bundle du 2026-10-12. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S9 — injectée depuis le bundle du 2026-10-19. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -10,16 +10,20 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes",
-          "portions": 1
+          "recipeId": "gamelle-boulettes-semoule",
+          "portions": 1,
+          "note": "reste du batch de la semaine précédente"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-noix"
+          "recipeId": "collation-fb-noix",
+          "time": "16:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-omelette-champignons"
+          "recipeId": "gamelle-roti-porc-boulangere",
+          "portions": 1,
+          "note": "portion du batch tout juste cuisiné"
         },
         {
           "slot": "extra",
@@ -38,22 +42,32 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-semoule",
-          "portions": 1
+          "estimated": {
+            "kcal": 950,
+            "proteinG": 45,
+            "fiberG": 8
+          },
+          "note": "Déjeuner d'équipe — forfait extérieur"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-beurre-cacahuete"
-        },
-        {
-          "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt"
+          "recipeId": "collation-fb-fruits-rouges",
+          "time": "16:00"
         },
         {
           "slot": "extra",
-          "foodId": "banane",
-          "grams": 120,
-          "note": "dessert"
+          "foodId": "fruits-rouges-surgeles",
+          "grams": 100,
+          "note": "ajoutés à la collation"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-saumon-poireaux-pdt-leger"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "21:00"
         }
       ]
     },
@@ -66,22 +80,23 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes",
+          "recipeId": "gamelle-roti-porc-boulangere",
           "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-cacao-amandes"
+          "recipeId": "collation-fb-cacao-amandes",
+          "time": "16:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-pad-thai-crevettes"
+          "recipeId": "diner-colin-four-haricots-blancs"
         },
         {
           "slot": "extra",
           "foodId": "kiwi",
           "grams": 150,
-          "note": "dessert — 2 kiwis"
+          "note": "dessert"
         }
       ]
     },
@@ -95,15 +110,22 @@
         {
           "slot": "dejeuner",
           "recipeId": "gamelle-boulettes-semoule",
-          "portions": 1
+          "portions": 1,
+          "note": "sortie du congélateur mercredi soir"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-fruits-rouges"
+          "recipeId": "collation-fb-fruits-rouges",
+          "time": "16:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-four-haricots-blancs"
+          "recipeId": "diner-pad-thai-poulet"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "shaker-whey-eau",
+          "time": "21:00"
         },
         {
           "slot": "extra",
@@ -122,22 +144,30 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-riz-legumes",
-          "portions": 1
+          "recipeId": "gamelle-boulettes-semoule",
+          "portions": 1,
+          "note": "sortie du congélateur jeudi soir"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-noix"
+          "recipeId": "collation-fb-cacao-amandes",
+          "time": "16:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-oeufs-ratatouille"
+          "recipeId": "diner-omelette-champignons"
+        },
+        {
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120,
+          "note": "dessert"
         },
         {
           "slot": "extra",
           "foodId": "kiwi",
           "grams": 150,
-          "note": "dessert — 2 kiwis"
+          "note": "dessert"
         }
       ]
     },
@@ -151,18 +181,12 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "dejeuner-oeufs-brouilles-saumon-fume"
+          "recipeId": "dejeuner-oeufs-brouilles-saumon-fume-leger"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-beurre-cacahuete",
+          "recipeId": "collation-fb-fruits-rouges",
           "time": "16:00"
-        },
-        {
-          "slot": "collation",
-          "recipeId": "shaker-whey-eau",
-          "time": "18:30",
-          "note": "avant de partir au restaurant"
         },
         {
           "slot": "diner",
@@ -187,13 +211,20 @@
           "recipeId": "dejeuner-salade-jambon-oeufs-pdt"
         },
         {
+          "slot": "extra",
+          "foodId": "pain-complet",
+          "grams": 30,
+          "note": "pain supplémentaire au déjeuner"
+        },
+        {
           "slot": "collation",
-          "recipeId": "collation-fb-cacao-amandes"
+          "recipeId": "collation-fb-cacao-amandes",
+          "time": "16:00"
         },
         {
           "slot": "collation",
           "recipeId": "shaker-whey-eau",
-          "time": "17:00"
+          "time": "18:00"
         },
         {
           "slot": "diner",
