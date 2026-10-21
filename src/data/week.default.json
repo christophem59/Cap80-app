@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S9 — corrigée depuis le bundle du 2026-10-19 (batch décalé au mardi soir). Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S9 — corrigée depuis le bundle du 2026-10-21 (repas réels de mardi à samedi). Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -22,7 +22,7 @@
         {
           "slot": "diner",
           "recipeId": "diner-tortilla-pdt-haricots",
-          "note": "batch reporté à mardi, viandes encore congelées"
+          "note": "batch reporté, viandes encore congelées"
         },
         {
           "slot": "collation",
@@ -32,8 +32,7 @@
         {
           "slot": "extra",
           "foodId": "banane",
-          "grams": 120,
-          "note": "dessert"
+          "grams": 120
         }
       ]
     },
@@ -47,11 +46,11 @@
         {
           "slot": "dejeuner",
           "estimated": {
-            "kcal": 950,
-            "proteinG": 45,
-            "fiberG": 8
+            "kcal": 1150,
+            "proteinG": 65,
+            "fiberG": 7
           },
-          "note": "Déjeuner d'équipe — forfait extérieur"
+          "note": "Déjeuner d'équipe au restaurant — soupe à l'oignon, filet mignon, risotto"
         },
         {
           "slot": "collation",
@@ -61,14 +60,11 @@
         {
           "slot": "extra",
           "foodId": "fruits-rouges-surgeles",
-          "grams": 100,
-          "note": "ajoutés à la collation"
+          "grams": 100
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-roti-porc-boulangere",
-          "portions": 1,
-          "note": "batch du soir, portion mangée tout de suite"
+          "recipeId": "mardi-soir-sandwichs"
         },
         {
           "slot": "collation",
@@ -78,8 +74,7 @@
         {
           "slot": "extra",
           "foodId": "banane",
-          "grams": 120,
-          "note": "dessert"
+          "grams": 120
         }
       ]
     },
@@ -92,8 +87,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-roti-porc-boulangere",
-          "portions": 1
+          "recipeId": "mercredi-midi-pates-colin"
         },
         {
           "slot": "collation",
@@ -102,13 +96,14 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-four-haricots-blancs"
+          "recipeId": "gamelle-roti-porc-boulangere",
+          "portions": 1,
+          "note": "batch du soir, portion mangée tout de suite"
         },
         {
           "slot": "extra",
           "foodId": "kiwi",
-          "grams": 150,
-          "note": "dessert"
+          "grams": 150
         }
       ]
     },
@@ -123,7 +118,7 @@
           "slot": "dejeuner",
           "recipeId": "gamelle-boulettes-semoule",
           "portions": 1,
-          "note": "sortie du congélateur mercredi soir"
+          "note": "BOULETTES JEU, 704 g"
         },
         {
           "slot": "collation",
@@ -142,8 +137,7 @@
         {
           "slot": "extra",
           "foodId": "pomme",
-          "grams": 150,
-          "note": "dessert"
+          "grams": 150
         }
       ]
     },
@@ -158,7 +152,7 @@
           "slot": "dejeuner",
           "recipeId": "gamelle-boulettes-semoule",
           "portions": 1,
-          "note": "sortie du congélateur jeudi soir"
+          "note": "BOULETTES VEN, 704 g"
         },
         {
           "slot": "collation",
@@ -172,14 +166,7 @@
         {
           "slot": "extra",
           "foodId": "banane",
-          "grams": 120,
-          "note": "dessert"
-        },
-        {
-          "slot": "extra",
-          "foodId": "kiwi",
-          "grams": 150,
-          "note": "dessert"
+          "grams": 120
         }
       ]
     },
@@ -193,7 +180,12 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "dejeuner-oeufs-brouilles-saumon-fume-leger"
+          "estimated": {
+            "kcal": 1500,
+            "proteinG": 50,
+            "fiberG": 12
+          },
+          "note": "Restaurant du midi — forfait, dessert compris"
         },
         {
           "slot": "collation",
@@ -202,12 +194,8 @@
         },
         {
           "slot": "diner",
-          "estimated": {
-            "kcal": 1500,
-            "proteinG": 50,
-            "fiberG": 12
-          },
-          "note": "Restaurant — forfait, dessert compris"
+          "recipeId": "diner-colin-haricots-blancs-leger",
+          "note": "les 150 g de colin restants"
         }
       ]
     },
@@ -245,8 +233,7 @@
         {
           "slot": "extra",
           "foodId": "pomme",
-          "grams": 150,
-          "note": "dessert"
+          "grams": 150
         }
       ]
     }

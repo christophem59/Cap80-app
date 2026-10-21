@@ -2935,7 +2935,7 @@
       "ingredients": [
         {
           "foodId": "nouilles-riz-crues",
-          "grams": 105
+          "grams": 85
         },
         {
           "foodId": "poulet-blanc-cru",
@@ -2967,11 +2967,11 @@
         }
       ],
       "steps": [
-        "Tremper les nouilles 8 minutes dans l'eau chaude, pas bouillante, et les égoutter encore fermes. Elles finiront de cuire au wok ; bouillies, elles s'agglomèrent en pâte.",
+        "Tremper les nouilles 8 minutes dans l'eau chaude, pas bouillante, et les égoutter encore fermes. Bouillies, elles s'agglomèrent en pâte.",
         "Couper le poulet en lanières fines et râper la carotte.",
         "Wok très chaud, la moitié de l'huile, saisir le poulet 5 minutes sans le remuer tout de suite.",
         "Pousser le poulet sur le côté, verser l'œuf battu dans l'espace libre et le brouiller 30 secondes avant de mélanger.",
-        "Ajouter la carotte râpée et les nouilles égouttées, la sauce soja, un trait de jus de citron, et sauter 2 minutes.",
+        "Ajouter la carotte râpée, les nouilles égouttées, la sauce soja et un trait de citron, sauter 2 minutes.",
         "Pousses de soja en dernier, 1 minute à peine : elles doivent rester croquantes.",
         "Hors du feu, le reste de l'huile et les cacahuètes concassées."
       ]
@@ -3091,6 +3091,112 @@
         "Reverser dans la poêle, feu doux, 8 minutes à couvert, jusqu'à ce que les bords se décollent seuls.",
         "Retourner à l'aide d'une assiette et poursuivre 3 minutes. Le cœur reste légèrement baveux.",
         "Haricots verts 2 minutes à la poêle avec le reste de l'huile et de l'ail, et servir."
+      ]
+    },
+    {
+      "id": "mardi-soir-sandwichs",
+      "label": "Deux sandwichs jambon blanc, emmental, pain complet",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 5,
+      "cookMin": 0,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "pain-complet",
+          "grams": 160
+        },
+        {
+          "foodId": "jambon-blanc",
+          "grams": 80
+        },
+        {
+          "foodId": "emmental-rape",
+          "grams": 60
+        }
+      ],
+      "steps": [
+        "Quatre tranches de pain complet, 80 g de jambon blanc et 60 g d'emmental répartis en deux sandwichs.",
+        "Repas improvisé du mardi soir, saisi après coup pour que la semaine reste juste."
+      ]
+    },
+    {
+      "id": "mercredi-midi-pates-colin",
+      "label": "Spaghettis aux poireaux, crème légère et colin",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 15,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "pates-seches-crues",
+          "grams": 100
+        },
+        {
+          "foodId": "poireau",
+          "grams": 150
+        },
+        {
+          "foodId": "creme-legere-15",
+          "grams": 60
+        },
+        {
+          "foodId": "colin-cru",
+          "grams": 100
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Poireaux fondus à l'huile, crème légère hors du feu, colin émietté en fin de cuisson.",
+        "Repas improvisé du mercredi midi, saisi après coup. Point faible : 100 g de colin ne donnent que 17 g de protéines."
+      ]
+    },
+    {
+      "id": "diner-colin-haricots-blancs-leger",
+      "label": "Colin au four, haricots blancs, tomates cerises et olives",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 20,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 150
+        },
+        {
+          "foodId": "tomate-cerise",
+          "grams": 200
+        },
+        {
+          "foodId": "haricots-blancs-cuits",
+          "grams": 200
+        },
+        {
+          "foodId": "olives-noires",
+          "grams": 25
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Four à 200 degrés. Tomates cerises entières, haricots blancs égouttés et rincés, olives, huile, thym et ail dans un plat.",
+        "Enfourner le plat 10 minutes seul, pour que les tomates commencent à éclater et rendre leur jus.",
+        "Poser le colin dessus, saler, et poursuivre 10 à 12 minutes. Le poisson est cuit dès qu'il se détache en lamelles sous la fourchette.",
+        "Au-delà il devient cotonneux : sors-le dès que la chair perd sa transparence au centre."
       ]
     }
   ]
