@@ -2883,43 +2883,43 @@
         "dejeuner",
         "diner"
       ],
-      "servings": 2,
+      "servings": 3,
       "prepMin": 15,
       "cookMin": 80,
       "batchFriendly": true,
-      "cookedYieldG": 1300,
+      "cookedYieldG": 1950,
       "ingredients": [
         {
-          "foodId": "porc-filet-mignon-cru",
-          "grams": 460
+          "foodId": "roti-porc-cru",
+          "grams": 690
         },
         {
           "foodId": "pomme-de-terre-crue",
-          "grams": 500
+          "grams": 750
         },
         {
           "foodId": "haricots-verts-crus",
-          "grams": 360
+          "grams": 540
         },
         {
           "foodId": "oignon",
-          "grams": 100
+          "grams": 150
         },
         {
           "foodId": "huile-olive",
-          "grams": 20
+          "grams": 30
         }
       ],
       "steps": [
         "Sortir le rôti du frigo 30 minutes avant : enfourné froid, l'extérieur est cuit quand le cœur est encore cru.",
-        "Four à 180 degrés chaleur tournante. Trancher les pommes de terre en rondelles de 4 à 5 mm et émincer l'oignon.",
-        "Plat à four : pommes de terre et oignons en couches, sel, poivre, thym, la moitié de l'huile et du bouillon à mi-hauteur. Mouillées, pas noyées. Enfourner 15 minutes seules.",
-        "Saisir le rôti sur toutes ses faces dans une poêle très chaude avec le reste de l'huile, 10 minutes en le tournant toutes les 2 minutes. Le four à 180 degrés ne le colorera jamais : toute la croûte se fait ici.",
+        "Four à 180 degrés chaleur tournante. Pommes de terre en rondelles de 4 à 5 mm, oignon émincé.",
+        "Plat à four : pommes de terre et oignons en couches, sel, poivre, thym, la moitié de l'huile, et du bouillon à mi-hauteur. Mouillées, pas noyées. Enfourner 15 minutes seules.",
+        "Saisir le rôti sur toutes ses faces dans une poêle très chaude, 10 minutes. Le four à 180 degrés ne le colorera jamais : toute la croûte se fait là.",
         "Poser le rôti sur les pommes de terre et enfourner 55 à 60 minutes, jusqu'à 65 degrés à cœur.",
-        "Haricots verts 8 minutes à l'eau bouillante salée, égouttés aussitôt. Ils seront réchauffés deux fois de plus, ils sortent fermes.",
-        "Sortir le rôti et le laisser reposer 15 minutes avant de trancher. Tranché à chaud, le jus part sur la planche et la viande réchauffée est sèche.",
+        "Haricots verts surgelés 6 minutes à l'eau bouillante salée, égouttés aussitôt. Déjà blanchis avant congélation, ils n'en demandent pas plus.",
+        "Sortir le rôti et le laisser reposer 15 minutes avant de trancher. Tranché à chaud, le jus part sur la planche.",
         "Trancher épais, 1,5 cm. Les tranches fines se dessèchent instantanément au réchauffage.",
-        "Répartir, arroser chaque gamelle du jus du plat, et coucher les tranches SOUS les pommes de terre : au micro-ondes c'est la couche du dessus qui sèche."
+        "Arroser chaque gamelle du jus du plat et coucher les tranches sous les pommes de terre : au micro-ondes, c'est la couche du dessus qui sèche."
       ]
     },
     {
@@ -3197,6 +3197,220 @@
         "Enfourner le plat 10 minutes seul, pour que les tomates commencent à éclater et rendre leur jus.",
         "Poser le colin dessus, saler, et poursuivre 10 à 12 minutes. Le poisson est cuit dès qu'il se détache en lamelles sous la fourchette.",
         "Au-delà il devient cotonneux : sors-le dès que la chair perd sa transparence au centre."
+      ]
+    },
+    {
+      "id": "gamelle-chili-boeuf-haricots-rouges",
+      "label": "Gamelle chili de bœuf, haricots rouges et riz",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 3,
+      "prepMin": 15,
+      "cookMin": 65,
+      "batchFriendly": true,
+      "cookedYieldG": 2306,
+      "ingredients": [
+        {
+          "foodId": "steak-hache-5-cru",
+          "grams": 525
+        },
+        {
+          "foodId": "haricots-rouges-cuits",
+          "grams": 450
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 600
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "carotte",
+          "grams": 150
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 21
+        }
+      ],
+      "steps": [
+        "Oignon et poivron en dés d'1 cm, carotte râpée. Râpée, elle fond dans la sauce et l'épaissit au lieu de rester un corps étranger.",
+        "Rincer les haricots rouges à l'eau claire : le jus de conserve est amidonné et rend le chili pâteux.",
+        "Saisir le haché en deux fournées à feu vif, en le défaisant à la cuillère. Ce qui compte est la surface du fond, pas le volume de la cocotte : une couche trop épaisse cuit à la vapeur.",
+        "Faire suer oignon, poivron et carotte 10 minutes dans la même cocotte, en grattant les sucs.",
+        "Épices à sec pendant 1 minute avant tout liquide : cumin, paprika, origan, piment, ail, laurier, et une cuillère de cacao dégraissé non sucré.",
+        "Les arômes des épices sont gras-solubles : chauffés dans l'huile ils se libèrent, versés dans la sauce ils restent poudreux.",
+        "Ajouter les tomates concassées, le haché et un peu d'eau, puis laisser réduire à découvert jusqu'à ce que la sauce nappe la cuillère.",
+        "Les haricots rouges seulement dans les 10 dernières minutes : ajoutés au départ, ils finissent en purée.",
+        "Riz cuit à part, une minute de moins que d'habitude : il continuera à boire la sauce pendant trois jours au frigo.",
+        "Mélanger le riz au chili et répartir en gamelles d'environ 769 g."
+      ]
+    },
+    {
+      "id": "diner-saumon-poireaux-pdt-s10",
+      "label": "Saumon, fondue de poireaux et pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "saumon-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "poireau",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Pommes de terre à la vapeur, 18 minutes.",
+        "Poireaux surgelés sans les décongeler, à couvert 12 minutes à feu moyen, puis 5 minutes à découvert pour évaporer l'eau rendue.",
+        "Poêle très chaude, saumon côté peau 4 minutes sans y toucher, puis 2 minutes sur l'autre face.",
+        "Le cœur doit rester rose nacré : à cœur blanc opaque, il est déjà sec."
+      ]
+    },
+    {
+      "id": "diner-saumon-haricots-verts-pdt",
+      "label": "Saumon, haricots verts à l'ail et pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 22,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "saumon-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 250
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 200
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Pommes de terre à la vapeur, 18 minutes.",
+        "Haricots verts surgelés directement dans l'eau bouillante salée, 6 minutes, puis égouttés aussitôt.",
+        "Poêle très chaude, saumon côté peau 4 minutes sans y toucher, puis 2 minutes sur l'autre face.",
+        "Haricots verts 2 minutes à la poêle avec l'ail pendant que le saumon repose."
+      ]
+    },
+    {
+      "id": "diner-steak-pdt-haricots-verts",
+      "label": "Faux filet, pommes de terre et haricots verts",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "boeuf-steak-cru",
+          "grams": 220
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Sécher la viande à fond au papier absorbant : une surface humide plafonne à 100 degrés et ne dore jamais.",
+        "Pommes de terre à la vapeur 18 minutes, haricots verts surgelés 6 minutes à l'eau bouillante salée.",
+        "Poêle brûlante, un filet d'huile, poser la viande et ne plus y toucher : 3 minutes par face.",
+        "Saler après avoir retourné la première face : le sel sur la face crue fait sortir le jus et la viande grise.",
+        "Repos de 5 minutes à couvert d'une feuille d'alu posée sans serrer, avant de trancher."
+      ]
+    },
+    {
+      "id": "diner-dinde-ratatouille",
+      "label": "Escalope de dinde et ratatouille",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 15,
+      "cookMin": 35,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "courgette",
+          "grams": 200
+        },
+        {
+          "foodId": "aubergine",
+          "grams": 200
+        },
+        {
+          "foodId": "poivron",
+          "grams": 100
+        },
+        {
+          "foodId": "tomate",
+          "grams": 200
+        },
+        {
+          "foodId": "oignon",
+          "grams": 80
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Cuire chaque légume séparément : l'aubergine met 8 minutes, la courgette 5, les tomates s'effondrent en 5. Tous ensemble, l'aubergine est crue quand la courgette est en purée.",
+        "Aubergine en premier, poêle très chaude et peu d'huile. C'est une éponge : toute l'huile versée au départ est absorbée en dix secondes sans qu'elle dore.",
+        "Puis oignon et poivron 6 minutes, puis courgette seule 5 minutes à feu vif, chaque fois réservés.",
+        "Tomates en quartiers, sel, ail, thym et laurier, 5 minutes qu'elles s'effondrent, puis tout réunir 5 minutes à feu doux.",
+        "Escalope de dinde 3 minutes par face dans une poêle très chaude, salée après avoir retourné la première face.",
+        "La dinde passe de juteuse à cotonneuse en une minute : sortir dès que la chair est opaque sur les bords. Au-delà de 2 cm d'épaisseur, ouvrir l'escalope en deux plutôt qu'allonger la cuisson."
       ]
     }
   ]

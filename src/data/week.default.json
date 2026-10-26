@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S9 — corrigée depuis le bundle du 2026-10-21 (repas réels de mardi à samedi). Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S10 — injectée depuis le bundle du 2026-10-26. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -10,29 +10,23 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-semoule",
+          "recipeId": "gamelle-chili-boeuf-haricots-rouges",
           "portions": 1,
-          "note": "reste du batch de la semaine précédente"
+          "note": "CHILI LUN, 769 g"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-noix",
+          "recipeId": "collation-fb-fruits-rouges",
           "time": "16:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-tortilla-pdt-haricots",
-          "note": "batch reporté, viandes encore congelées"
-        },
-        {
-          "slot": "collation",
-          "recipeId": "shaker-whey-eau",
-          "time": "21:00"
+          "recipeId": "diner-saumon-poireaux-pdt-s10"
         },
         {
           "slot": "extra",
-          "foodId": "banane",
-          "grams": 120
+          "foodId": "kiwi",
+          "grams": 150
         }
       ]
     },
@@ -45,31 +39,23 @@
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 1150,
-            "proteinG": 65,
-            "fiberG": 7
-          },
-          "note": "Déjeuner d'équipe au restaurant — soupe à l'oignon, filet mignon, risotto"
+          "recipeId": "gamelle-chili-boeuf-haricots-rouges",
+          "portions": 1,
+          "note": "CHILI MAR, 769 g"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-fruits-rouges",
+          "recipeId": "collation-fb-cacao-amandes",
           "time": "16:00"
         },
         {
-          "slot": "extra",
-          "foodId": "fruits-rouges-surgeles",
-          "grams": 100
-        },
-        {
           "slot": "diner",
-          "recipeId": "mardi-soir-sandwichs"
+          "recipeId": "diner-omelette-champignons"
         },
         {
           "slot": "collation",
           "recipeId": "shaker-whey-eau",
-          "time": "21:30"
+          "time": "21:00"
         },
         {
           "slot": "extra",
@@ -87,18 +73,20 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "mercredi-midi-pates-colin"
+          "recipeId": "gamelle-chili-boeuf-haricots-rouges",
+          "portions": 1,
+          "note": "CHILI MER, 769 g"
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-cacao-amandes",
+          "recipeId": "collation-fb-fruits-rouges",
           "time": "16:00"
         },
         {
           "slot": "diner",
           "recipeId": "gamelle-roti-porc-boulangere",
           "portions": 1,
-          "note": "batch du soir, portion mangée tout de suite"
+          "note": "batch 2 du soir, portion mangée tout de suite"
         },
         {
           "slot": "extra",
@@ -116,18 +104,17 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-semoule",
-          "portions": 1,
-          "note": "BOULETTES JEU, 704 g"
+          "recipeId": "gamelle-roti-porc-boulangere",
+          "portions": 1
         },
         {
           "slot": "collation",
-          "recipeId": "collation-fb-fruits-rouges",
+          "recipeId": "collation-fb-cacao-amandes",
           "time": "16:00"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-pad-thai-poulet"
+          "recipeId": "diner-saumon-haricots-verts-pdt"
         },
         {
           "slot": "collation",
@@ -143,35 +130,6 @@
     },
     {
       "label": "Vendredi",
-      "meals": [
-        {
-          "slot": "petit-dej",
-          "recipeId": "petit-dej-shaker-skyr"
-        },
-        {
-          "slot": "dejeuner",
-          "recipeId": "gamelle-boulettes-semoule",
-          "portions": 1,
-          "note": "BOULETTES VEN, 704 g"
-        },
-        {
-          "slot": "collation",
-          "recipeId": "collation-fb-cacao-amandes",
-          "time": "16:00"
-        },
-        {
-          "slot": "diner",
-          "recipeId": "diner-omelette-champignons"
-        },
-        {
-          "slot": "extra",
-          "foodId": "banane",
-          "grams": 120
-        }
-      ]
-    },
-    {
-      "label": "Samedi",
       "isRestaurantDay": true,
       "meals": [
         {
@@ -180,12 +138,8 @@
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 1500,
-            "proteinG": 50,
-            "fiberG": 12
-          },
-          "note": "Restaurant du midi — forfait, dessert compris"
+          "recipeId": "gamelle-roti-porc-boulangere",
+          "portions": 1
         },
         {
           "slot": "collation",
@@ -194,8 +148,40 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-haricots-blancs-leger",
-          "note": "les 150 g de colin restants"
+          "estimated": {
+            "kcal": 1400,
+            "proteinG": 50,
+            "fiberG": 9
+          },
+          "note": "Restaurant — pizza, forfait boisson comprise"
+        }
+      ]
+    },
+    {
+      "label": "Samedi",
+      "meals": [
+        {
+          "slot": "petit-dej",
+          "recipeId": "petit-dej-shaker-skyr"
+        },
+        {
+          "slot": "dejeuner",
+          "recipeId": "dejeuner-oeufs-brouilles-saumon-fume-leger"
+        },
+        {
+          "slot": "collation",
+          "recipeId": "collation-fb-noix",
+          "time": "16:00"
+        },
+        {
+          "slot": "diner",
+          "recipeId": "diner-steak-pdt-haricots-verts",
+          "note": "le faux filet restant"
+        },
+        {
+          "slot": "extra",
+          "foodId": "kiwi",
+          "grams": 150
         }
       ]
     },
@@ -211,12 +197,6 @@
           "recipeId": "dejeuner-salade-jambon-oeufs-pdt"
         },
         {
-          "slot": "extra",
-          "foodId": "pain-complet",
-          "grams": 30,
-          "note": "pain supplémentaire au déjeuner"
-        },
-        {
           "slot": "collation",
           "recipeId": "collation-fb-cacao-amandes",
           "time": "16:00"
@@ -228,7 +208,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-dinde-haricots-verts-pdt"
+          "recipeId": "diner-dinde-ratatouille"
         },
         {
           "slot": "extra",
