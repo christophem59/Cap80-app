@@ -1,6 +1,6 @@
 {
   "source": "Valeurs pour 100 g du produit tel que pesé, d'après les tables Ciqual (ANSES) et USDA, arrondies. À affiner pour un usage critique. Enrichissable via custom-foods.json (dépôt privé) ou l'app.",
-  "version": "0fe8de1f9c2b",
+  "version": "31b36ced8183",
   "foods": [
     { "id": "poulet-blanc-cru", "label": "Blanc de poulet, cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 121, "proteinG": 23, "fatG": 2.6, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.7, "servings": [{ "label": "1 blanc (~150 g)", "grams": 150 }] },
     { "id": "dinde-escalope-crue", "label": "Escalope de dinde, crue", "category": "proteines", "state": "cru", "per100g": { "kcal": 110, "proteinG": 24, "fatG": 1.5, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 escalope (~120 g)", "grams": 120 }] },
@@ -506,7 +506,7 @@
     { "id": "whey-neutre", "label": "Whey concentrée goût neutre, poudre", "category": "proteines", "state": "tel-quel", "per100g": { "kcal": 380, "proteinG": 75, "fatG": 4, "carbsG": 6, "fiberG": 0 }, "servings": [{ "label": "1 dose (30 g)", "grams": 30 }] },
     { "id": "whey-isolate", "label": "Whey isolate, poudre", "category": "proteines", "state": "tel-quel", "per100g": { "kcal": 370, "proteinG": 85, "fatG": 1, "carbsG": 3, "fiberG": 0 }, "servings": [{ "label": "1 dose (30 g)", "grams": 30 }] },
     { "id": "saumon-keta-cru", "label": "Saumon kéta du Pacifique, cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 166, "proteinG": 21, "fatG": 9.2, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 pavé (125 g)", "grams": 125 }] },
-    { "id": "roti-porc-cru", "label": "Rôti de porc (longe/filet), cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 160, "proteinG": 21, "fatG": 8, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.7, "servings": [{ "label": "1 tranche crue (~80 g)", "grams": 80 }, { "label": "1 rôti (~1200 g)", "grams": 1200 }] },
+    { "id": "roti-porc-cru", "label": "Rôti de porc (longe/filet), cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 160, "proteinG": 21, "fatG": 8, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.9, "servings": [{ "label": "1 tranche crue (~80 g)", "grams": 80 }, { "label": "1 rôti (~1200 g)", "grams": 1200 }] },
     { "id": "cacao-degraisse", "label": "Cacao en poudre dégraissé, non sucré", "category": "epices", "state": "tel-quel", "per100g": { "kcal": 350, "proteinG": 24, "fatG": 10, "carbsG": 12, "fiberG": 30 }, "servings": [{ "label": "1 c. à c. (5 g)", "grams": 5 }] },
     { "id": "edulcorant-table", "label": "Édulcorant de table (poudre ou liquide)", "category": "epices", "state": "tel-quel", "per100g": { "kcal": 0, "proteinG": 0, "fatG": 0, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 dose (1 g)", "grams": 1 }] },
     { "id": "creatine-monohydrate", "label": "Créatine monohydrate, poudre", "category": "autre", "state": "tel-quel", "per100g": { "kcal": 0, "proteinG": 0, "fatG": 0, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 dose (5 g)", "grams": 5 }] },

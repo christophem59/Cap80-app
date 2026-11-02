@@ -2790,7 +2790,7 @@
         "diner"
       ],
       "servings": 3,
-      "prepMin": 20,
+      "prepMin": 35,
       "cookMin": 45,
       "batchFriendly": true,
       "cookedYieldG": 2145,
@@ -2831,13 +2831,12 @@
       "steps": [
         "Mélanger le haché et l'œuf avec sel, poivre, ail en poudre, cumin et persil, en malaxant le moins possible : trop travaillée, la viande devient caoutchouteuse.",
         "Former des boulettes d'environ 40 g en les roulant entre des mains humides.",
-        "Saisir les boulettes en deux fournées de 6 minutes à feu vif dans un tiers de l'huile. Colorées, pas cuites à cœur. Réserver.",
+        "Saisir les boulettes en deux fournées de 6 minutes à feu vif dans un tiers de l'huile. Colorées, pas cuites à cœur.",
         "Râper la carotte et la courgette plutôt que de les couper en dés : râpées, elles fondent dans la tomate et deviennent invisibles.",
         "Faire suer l'oignon avec la carotte et la courgette râpées dans le reste de l'huile, 8 minutes à feu moyen.",
         "Ajouter les tomates concassées, origan, thym, laurier, sel et poivre, et laisser réduire 15 minutes à découvert.",
         "Remettre les boulettes dans la sauce et poursuivre 10 minutes à couvert.",
-        "Semoule : verser un volume d'eau bouillante salée avec un filet d'huile, couvrir 5 minutes, puis égrener à la fourchette.",
-        "Répartir en gamelles d'environ 715 g. Celles du jeudi et du vendredi partent au congélateur dès qu'elles sont tièdes."
+        "Semoule : verser un volume d'eau bouillante salée avec un filet d'huile, couvrir 5 minutes, puis égrener à la fourchette."
       ]
     },
     {
@@ -3265,13 +3264,13 @@
         "diner"
       ],
       "servings": 1,
-      "prepMin": 10,
+      "prepMin": 12,
       "cookMin": 25,
       "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "saumon-cru",
-          "grams": 250
+          "grams": 220
         },
         {
           "foodId": "poireau",
@@ -3288,9 +3287,10 @@
       ],
       "steps": [
         "Pommes de terre à la vapeur, 18 minutes.",
-        "Poireaux surgelés sans les décongeler, à couvert 12 minutes à feu moyen, puis 5 minutes à découvert pour évaporer l'eau rendue.",
-        "Poêle très chaude, saumon côté peau 4 minutes sans y toucher, puis 2 minutes sur l'autre face.",
-        "Le cœur doit rester rose nacré : à cœur blanc opaque, il est déjà sec."
+        "Poireaux à couvert 12 minutes à feu moyen, puis 5 minutes à découvert pour évaporer l'eau rendue. Sans cette phase à découvert, tu obtiens une soupe et pas une fondue.",
+        "Sécher le saumon au papier absorbant. Décongelé il pleure, et une surface humide ne croûte jamais.",
+        "Poêle très chaude, saumon côté peau, appuyer vingt secondes à la spatule pour que la peau ne se rétracte pas, puis quatre minutes sans y toucher. Retourner, deux minutes.",
+        "Le cœur doit rester rose nacré : à cœur blanc opaque il est déjà sec, et ça se joue dans les trente dernières secondes."
       ]
     },
     {
@@ -3300,13 +3300,13 @@
         "diner"
       ],
       "servings": 1,
-      "prepMin": 10,
+      "prepMin": 12,
       "cookMin": 22,
       "batchFriendly": false,
       "ingredients": [
         {
           "foodId": "saumon-cru",
-          "grams": 250
+          "grams": 220
         },
         {
           "foodId": "haricots-verts-crus",
@@ -3323,9 +3323,10 @@
       ],
       "steps": [
         "Pommes de terre à la vapeur, 18 minutes.",
-        "Haricots verts surgelés directement dans l'eau bouillante salée, 6 minutes, puis égouttés aussitôt.",
-        "Poêle très chaude, saumon côté peau 4 minutes sans y toucher, puis 2 minutes sur l'autre face.",
-        "Haricots verts 2 minutes à la poêle avec l'ail pendant que le saumon repose."
+        "Haricots verts surgelés directement dans l'eau bouillante salée, six minutes seulement : ils sont déjà blanchis avant congélation.",
+        "Sécher le saumon, poêle très chaude, côté peau quatre minutes sans y toucher, puis deux minutes sur l'autre face.",
+        "Démarrer l'ail émincé dans l'huile FROIDE puis monter en température. Jeté dans une poêle brûlante il brûle en trente secondes et son amertume contamine tout le plat.",
+        "Haricots verts deux minutes avec l'ail pendant que le saumon repose."
       ]
     },
     {
@@ -3411,6 +3412,246 @@
         "Tomates en quartiers, sel, ail, thym et laurier, 5 minutes qu'elles s'effondrent, puis tout réunir 5 minutes à feu doux.",
         "Escalope de dinde 3 minutes par face dans une poêle très chaude, salée après avoir retourné la première face.",
         "La dinde passe de juteuse à cotonneuse en une minute : sortir dès que la chair est opaque sur les bords. Au-delà de 2 cm d'épaisseur, ouvrir l'escalope en deux plutôt qu'allonger la cuisson."
+      ]
+    },
+    {
+      "id": "gamelle-curry-poulet-pois-chiches",
+      "label": "Gamelle curry de poulet au lait de coco, pois chiches et riz",
+      "slot": [
+        "dejeuner",
+        "diner"
+      ],
+      "servings": 3,
+      "prepMin": 55,
+      "cookMin": 65,
+      "batchFriendly": true,
+      "cookedYieldG": 1907,
+      "ingredients": [
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "pois-chiches-cuits",
+          "grams": 300
+        },
+        {
+          "foodId": "creme-coco",
+          "grams": 113
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 105
+        },
+        {
+          "foodId": "oignon",
+          "grams": 120
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 225
+        },
+        {
+          "foodId": "courgette",
+          "grams": 188
+        },
+        {
+          "foodId": "carotte",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 21
+        }
+      ],
+      "steps": [
+        "Compter une heure pleine de taillage pour un batch complet : poulet en cubes de 3 cm, oignon émincé, carotte en petits dés, courgette en demi-rondelles.",
+        "Rincer les pois chiches à l'eau claire : le jus de conserve est amidonné et rend la sauce pâteuse.",
+        "Saisir le poulet en trois fournées à feu vif. Pour 1,6 kg sur un batch entier, deux fournées laissent encore une couche trop épaisse et aucune coloration.",
+        "Faire suer oignon et carotte dix minutes dans la même cocotte, en grattant les sucs de la viande.",
+        "Épices à sec pendant une minute avant tout liquide : curry, cumin, curcuma, ail, gingembre. Leurs arômes sont gras-solubles et ne se libèrent que dans la matière grasse.",
+        "Ajouter les tomates concassées, le poulet et un peu d'eau, puis laisser mijoter vingt minutes à découvert.",
+        "Faire sauter les courgettes à part cinq minutes à feu vif : jetées crues dans le mijotage, elles se délitent complètement.",
+        "Pois chiches et courgettes dans les huit dernières minutes seulement, sinon les pois chiches finissent en purée.",
+        "Lait de coco en tout dernier, feu très doux, cinq minutes SANS JAMAIS BOUILLIR. Portée à ébullition l'émulsion se casse, la sauce devient grainée et c'est irréversible.",
+        "Riz cuit à part une minute de moins que d'habitude : il continuera à boire la sauce pendant trois jours au frigo.",
+        "Mélanger le riz au curry et répartir en gamelles d'environ 635 g."
+      ]
+    },
+    {
+      "id": "diner-colin-haricots-blancs-pdt",
+      "label": "Colin au four, haricots blancs, tomates cerises et olives",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 230
+        },
+        {
+          "foodId": "haricots-blancs-cuits",
+          "grams": 200
+        },
+        {
+          "foodId": "tomate-cerise",
+          "grams": 200
+        },
+        {
+          "foodId": "olives-noires",
+          "grams": 25
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Four à 200 degrés. Pommes de terre à la vapeur en parallèle, 15 minutes.",
+        "Tomates cerises entières, haricots blancs égouttés et rincés, olives, huile, thym et ail dans un plat, enfournés dix minutes seuls.",
+        "Ces dix minutes font éclater les tomates et leur jus devient la sauce du plat : saute-les et tu n'as qu'un assemblage sec.",
+        "Poser le colin dessus, saler, et poursuivre dix à douze minutes. Il est cuit dès que la chair se détache en lamelles sous la fourchette.",
+        "Au-delà il devient cotonneux : sortir dès que la chair perd sa transparence au centre."
+      ]
+    },
+    {
+      "id": "diner-dinde-courgettes-poivrons-pdt",
+      "label": "Escalope de dinde, courgettes et poivrons poêlés, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 12,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "courgette",
+          "grams": 200
+        },
+        {
+          "foodId": "poivron",
+          "grams": 150
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Pommes de terre à la vapeur, 18 minutes.",
+        "Poivron en lanières six minutes à feu vif, puis courgette en demi-rondelles cinq minutes. Séparément : la courgette est à 95 pour cent d'eau et noierait le poivron.",
+        "Poêle très chaude, escalope de dinde trois minutes par face, salée seulement après avoir retourné la première face.",
+        "La dinde passe de juteuse à cotonneuse en une minute : sortir dès que la chair est opaque sur les bords.",
+        "Au-delà de deux centimètres d'épaisseur, ouvrir l'escalope en deux dans l'épaisseur plutôt que d'allonger la cuisson."
+      ]
+    },
+    {
+      "id": "dejeuner-salade-composee-jambon",
+      "label": "Salade composée jambon, œufs durs et pommes de terre tièdes",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 15,
+      "cookMin": 20,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "jambon-blanc",
+          "grams": 120
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "tomate",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 80
+        },
+        {
+          "foodId": "cornichon",
+          "grams": 30
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Pommes de terre en robe des champs à l'eau salée, vingt minutes. Non épluchées, elles ne se gorgent pas d'eau.",
+        "Monter la vinaigrette pendant la cuisson : huile, vinaigre, pointe de moutarde, sel, poivre.",
+        "Éplucher et trancher les pommes de terre BRÛLANTES et verser les deux tiers de la vinaigrette dessus immédiatement. Chaudes elles boivent l'assaisonnement, froides elles le laissent au fond du saladier.",
+        "Garder le dernier tiers de vinaigrette pour les feuilles, au moment de passer à table : dressée en avance, la salade flétrit pendant que les pommes de terre refroidissent.",
+        "Saler les tomates à la dernière seconde, sinon elles rendent leur eau et diluent tout."
+      ]
+    },
+    {
+      "id": "dejeuner-gnocchi-champignons-jambon",
+      "label": "Gnocchi poêlés aux champignons, jambon et œufs durs",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 1,
+      "prepMin": 10,
+      "cookMin": 15,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "gnocchi",
+          "grams": 200
+        },
+        {
+          "foodId": "champignons",
+          "grams": 250
+        },
+        {
+          "foodId": "jambon-blanc",
+          "grams": 120
+        },
+        {
+          "foodId": "oeuf-dur",
+          "grams": 110
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 80
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Nettoyer les champignons au torchon et non sous l'eau : ils l'absorbent comme une éponge et tu passes dix minutes à l'évaporer.",
+        "Champignons en lamelles épaisses, poêle très chaude, en deux fois. Saler seulement une fois colorés, sinon ils rendent leur eau et s'étuvent.",
+        "Réserver les champignons, puis poêler les gnocchi sans les faire bouillir d'abord : ils doivent dorer sur les deux faces, six à huit minutes.",
+        "Réunir gnocchi, champignons et jambon en lanières, une minute à feu vif.",
+        "Servir avec les œufs durs en quartiers et la salade assaisonnée au dernier moment."
       ]
     }
   ]
