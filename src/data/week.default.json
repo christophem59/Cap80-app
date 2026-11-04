@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S11 — injectée depuis le bundle du 2026-11-02. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S11 — corrigée depuis le bundle du 2026-11-04. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -21,7 +21,9 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt-s10"
+          "recipeId": "gamelle-chili-boeuf-haricots-rouges",
+          "portions": 1,
+          "note": "portion de chili sortie du congélateur"
         },
         {
           "slot": "extra",
@@ -39,9 +41,12 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-curry-poulet-pois-chiches",
-          "portions": 1,
-          "note": "CURRY MAR, 635 g"
+          "estimated": {
+            "kcal": 1100,
+            "proteinG": 48,
+            "fiberG": 8
+          },
+          "note": "Pizzas offertes par la boîte"
         },
         {
           "slot": "collation",
@@ -50,7 +55,9 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-haricots-blancs-pdt"
+          "recipeId": "gamelle-curry-poulet-pois-chiches",
+          "portions": 1,
+          "note": "CURRY MAR, 635 g"
         },
         {
           "slot": "collation",
@@ -84,9 +91,8 @@
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-boulettes-semoule",
-          "portions": 1,
-          "note": "batch 2 du soir, portion mangée tout de suite"
+          "recipeId": "diner-saumon-poireaux-pdt-s10",
+          "note": "écoule les poireaux frais achetés samedi"
         },
         {
           "slot": "extra",
@@ -105,7 +111,8 @@
         {
           "slot": "dejeuner",
           "recipeId": "gamelle-boulettes-semoule",
-          "portions": 1
+          "portions": 1,
+          "note": "batch du midi, portion mangée fraîche"
         },
         {
           "slot": "collation",
@@ -114,7 +121,8 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-saumon-haricots-verts-pdt"
+          "recipeId": "gamelle-boulettes-semoule",
+          "portions": 1
         },
         {
           "slot": "collation",
@@ -166,7 +174,8 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "dejeuner-salade-composee-jambon"
+          "recipeId": "dejeuner-salade-composee-jambon",
+          "note": "avec les tomates cerises à écouler"
         },
         {
           "slot": "collation",
