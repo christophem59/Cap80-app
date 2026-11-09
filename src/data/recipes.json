@@ -3653,6 +3653,275 @@
         "Réunir gnocchi, champignons et jambon en lanières, une minute à feu vif.",
         "Servir avec les œufs durs en quartiers et la salade assaisonnée au dernier moment."
       ]
+    },
+    {
+      "id": "gamelle-poulet-basquaise",
+      "label": "Poulet basquaise aux haricots blancs",
+      "slot": [
+        "dejeuner"
+      ],
+      "servings": 3,
+      "prepMin": 32,
+      "cookMin": 55,
+      "batchFriendly": true,
+      "cookedYieldG": 2439,
+      "ingredients": [
+        {
+          "foodId": "poulet-blanc-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "riz-basmati-cru",
+          "grams": 240
+        },
+        {
+          "foodId": "poivron",
+          "grams": 370
+        },
+        {
+          "foodId": "tomate-concassee",
+          "grams": 369
+        },
+        {
+          "foodId": "tomate",
+          "grams": 300
+        },
+        {
+          "foodId": "haricots-blancs-cuits",
+          "grams": 245
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 21
+        }
+      ],
+      "steps": [
+        "Egoutter et rincer les haricots blancs sous l'eau froide pour retirer le jus de conserve, sale et amer.",
+        "Epepiner les poivrons et retirer les cloisons blanches (amertume), tailler en lanieres d'un centimetre. Emincer l'oignon fin, couper les tomates fraiches en gros des.",
+        "Couper le poulet en morceaux de 3 a 4 cm, pas plus petits pour qu'ils ne sechent pas a la rechauffe.",
+        "Saisir le poulet en trois fournees dans la moitie de l'huile, poele tres chaude. Reserver avec le jus rendu.",
+        "Suer l'oignon 5 minutes dans le reste de l'huile sans colorer, ajouter les poivrons, saler, couvrir et laisser fondre 15 minutes a feu moyen-doux.",
+        "Ajouter les tomates fraiches 5 minutes, puis la tomate concassee, l'ail, le laurier et le thym. Baisser le feu avant d'incorporer le paprika fume, qui devient amer s'il brule.",
+        "Remettre le poulet et son jus, couvrir et mijoter 15 minutes a feu doux. Ajouter les haricots blancs dans les 5 dernieres minutes seulement, sinon ils se defont.",
+        "Cuire le riz separement a l'eau salee. Il ne va jamais dans la sauce : un riz qui mijote absorbe tout le liquide et les gamelles sont seches des le lendemain.",
+        "Laisser tiedir 30 minutes a decouvert avant de fermer les boites. Conditionner riz et sauce separement."
+      ]
+    },
+    {
+      "id": "gamelle-porc-champignons-semoule",
+      "label": "Saute de porc aux champignons, sauce moutarde",
+      "slot": [
+        "diner"
+      ],
+      "servings": 3,
+      "prepMin": 38,
+      "cookMin": 25,
+      "batchFriendly": true,
+      "cookedYieldG": 2173,
+      "ingredients": [
+        {
+          "foodId": "roti-porc-cru",
+          "grams": 600
+        },
+        {
+          "foodId": "couscous-semoule-crue",
+          "grams": 180
+        },
+        {
+          "foodId": "champignons",
+          "grams": 375
+        },
+        {
+          "foodId": "carotte",
+          "grams": 338
+        },
+        {
+          "foodId": "courgette",
+          "grams": 338
+        },
+        {
+          "foodId": "oignon",
+          "grams": 150
+        },
+        {
+          "foodId": "creme-legere-15",
+          "grams": 113
+        },
+        {
+          "foodId": "moutarde",
+          "grams": 23
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 21
+        }
+      ],
+      "steps": [
+        "Essuyer les champignons au torchon sans les laver : un champignon gorge d'eau ne dore jamais. Les couper en quartiers.",
+        "Tailler les carottes en des de 5 mm, les courgettes en des d'un centimetre avec la peau, emincer l'oignon.",
+        "Couper le roti de porc en cubes de 3 cm.",
+        "Saisir le porc en deux fournees dans la moitie de l'huile, poele tres chaude, jusqu'a coloration. Reserver.",
+        "Faire sauter les champignons a feu vif en une seule couche, sans sel au depart : le sel fait sortir l'eau et ils bouillent au lieu de griller. Saler en fin de coloration et reserver.",
+        "Suer l'oignon et les carottes 6 minutes dans le reste de l'huile, ajouter les courgettes 4 minutes.",
+        "Remettre le porc et les champignons, deglacer, incorporer la creme et la moutarde hors du feu vif pour qu'elle ne tranche pas. Thym, ail, paprika, poivre. Mijoter 10 minutes a feu doux.",
+        "Preparer la semoule a part : eau bouillante salee a hauteur, couvrir 5 minutes, egrener a la fourchette.",
+        "Laisser tiedir 25 minutes a decouvert avant de fermer les boites. Semoule et saute conditionnes separement."
+      ]
+    },
+    {
+      "id": "diner-steak-pdt-brocoli",
+      "label": "Steak de boeuf, pommes de terre, brocoli",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 26,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "boeuf-steak-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 300
+        },
+        {
+          "foodId": "brocoli",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Sortir le steak du refrigerateur 20 minutes avant cuisson : une viande froide cuit de facon inegale.",
+        "Pommes de terre en des de 2 cm, depart eau froide salee, 10 minutes, puis egoutter et laisser secher 2 minutes avant de les rissoler.",
+        "Detailler le brocoli en petits bouquets, cuire 6 minutes dans une grande quantite d'eau bouillante salee pour garder la couleur.",
+        "Rissoler les pommes de terre 8 minutes dans les deux tiers de l'huile, sans les remuer les 4 premieres minutes.",
+        "Saisir le steak dans une poele brulante, l'huile frottee sur la viande et non dans la poele, 2 a 3 minutes par face. Saler apres cuisson seulement.",
+        "Laisser reposer la viande 4 minutes sous une feuille d'aluminium avant de servir, sinon le jus part dans l'assiette."
+      ]
+    },
+    {
+      "id": "diner-dinde-champignons-pdt",
+      "label": "Dinde, champignons, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 27,
+      "cookMin": 25,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "dinde-escalope-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "champignons",
+          "grams": 400
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Essuyer les champignons sans les laver, les couper en quartiers.",
+        "Pommes de terre en des, precuites 10 minutes a l'eau salee, egouttees et sechees.",
+        "Faire sauter les champignons a feu vif en une couche, sans sel au depart, 6 minutes. Saler en fin de cuisson et reserver.",
+        "Rissoler les pommes de terre 8 minutes dans la meme poele.",
+        "Cuire les escalopes de dinde 3 minutes par face a feu moyen-vif. La dinde seche tres vite : des que le centre n'est plus rose, elle est prete.",
+        "Reunir hors du feu, ail et persil, poivre."
+      ]
+    },
+    {
+      "id": "diner-omelette-champignons-salade",
+      "label": "Omelette aux champignons, salade et tomates cerises",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 23,
+      "cookMin": 12,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "oeuf-entier",
+          "grams": 200
+        },
+        {
+          "foodId": "champignons",
+          "grams": 150
+        },
+        {
+          "foodId": "salade-verte",
+          "grams": 150
+        },
+        {
+          "foodId": "tomate-cerise",
+          "grams": 250
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 10
+        }
+      ],
+      "steps": [
+        "Essuyer et emincer les champignons, les faire sauter a feu vif dans la moitie de l'huile jusqu'a coloration, saler en fin.",
+        "Battre les oeufs a la fourchette sans exces : trop battus, ils rendent une omelette caoutchouteuse.",
+        "Verser les oeufs sur les champignons a feu moyen-doux, ramener les bords vers le centre avec une spatule pendant les 2 premieres minutes.",
+        "Arreter la cuisson quand le dessus est encore legerement baveux : l'omelette finit de cuire dans l'assiette.",
+        "Servir avec la salade et les tomates cerises assaisonnees du reste de l'huile et d'un trait de vinaigre."
+      ]
+    },
+    {
+      "id": "diner-colin-haricots-verts-pdt",
+      "label": "Colin, haricots verts a l'ail, pommes de terre",
+      "slot": [
+        "diner"
+      ],
+      "servings": 1,
+      "prepMin": 26,
+      "cookMin": 20,
+      "batchFriendly": false,
+      "ingredients": [
+        {
+          "foodId": "colin-cru",
+          "grams": 250
+        },
+        {
+          "foodId": "haricots-verts-crus",
+          "grams": 300
+        },
+        {
+          "foodId": "pomme-de-terre-crue",
+          "grams": 300
+        },
+        {
+          "foodId": "huile-olive",
+          "grams": 12
+        }
+      ],
+      "steps": [
+        "Sortir le colin du congelateur la veille au soir et le laisser decongeler au refrigerateur.",
+        "Pommes de terre en des, depart eau froide salee, 15 a 18 minutes.",
+        "Cuire les haricots verts dans une grande quantite d'eau bien bouillante et salee, 7 minutes. Une petite casserole fait chuter la temperature et les haricots virent au gris.",
+        "Secher le colin au papier absorbant, le cuire 3 a 4 minutes par face dans la moitie de l'huile, poele chaude, sans le retourner plus d'une fois : la chair se delite.",
+        "Faire sauter les haricots egouttes 1 minute avec l'ail et le persil dans le reste de l'huile.",
+        "Servir immediatement, le poisson ne supporte pas l'attente."
+      ]
     }
   ]
 }
