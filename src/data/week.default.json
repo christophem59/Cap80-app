@@ -1,5 +1,5 @@
 {
-  "note": "Semaine S12 — injectée depuis le bundle du 2026-11-09. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
+  "note": "Semaine S13 — injectée depuis le bundle du 2026-11-16. Remplacement complet : le planning précédent n'est pas fusionné, il est écrasé.",
   "days": [
     {
       "label": "Lundi",
@@ -10,7 +10,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-basquaise",
+          "recipeId": "gamelle-boeuf-carottes",
           "portions": 1
         },
         {
@@ -19,7 +19,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-steak-pdt-brocoli",
+          "recipeId": "diner-colin-poireaux-pdt",
           "portions": 1
         },
         {
@@ -29,6 +29,11 @@
         {
           "slot": "extra",
           "foodId": "pomme",
+          "grams": 150
+        },
+        {
+          "slot": "extra",
+          "foodId": "kiwi",
           "grams": 150
         }
       ]
@@ -42,7 +47,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-basquaise",
+          "recipeId": "gamelle-boeuf-carottes",
           "portions": 1
         },
         {
@@ -51,8 +56,13 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-dinde-champignons-pdt",
+          "recipeId": "diner-steak-pdt-haricots-verts",
           "portions": 1
+        },
+        {
+          "slot": "extra",
+          "foodId": "kiwi",
+          "grams": 150
         },
         {
           "slot": "extra",
@@ -70,7 +80,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-poulet-basquaise",
+          "recipeId": "gamelle-boeuf-carottes",
           "portions": 1
         },
         {
@@ -79,7 +89,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-porc-champignons-semoule",
+          "recipeId": "gamelle-poulet-tikka",
           "portions": 1
         },
         {
@@ -102,16 +112,27 @@
         },
         {
           "slot": "dejeuner",
-          "estimated": {
-            "kcal": 1500,
-            "proteinG": 50,
-            "fiberG": 12
-          }
+          "recipeId": "dejeuner-salade-lentilles",
+          "portions": 1
+        },
+        {
+          "slot": "collation",
+          "recipeId": "collation-fb-fruits-rouges"
         },
         {
           "slot": "diner",
-          "recipeId": "diner-omelette-champignons-salade",
+          "recipeId": "diner-colin-tomates-courgettes-pdt",
           "portions": 1
+        },
+        {
+          "slot": "extra",
+          "foodId": "kiwi",
+          "grams": 150
+        },
+        {
+          "slot": "extra",
+          "foodId": "banane",
+          "grams": 120
         }
       ]
     },
@@ -124,7 +145,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "gamelle-porc-champignons-semoule",
+          "recipeId": "gamelle-poulet-tikka",
           "portions": 1
         },
         {
@@ -133,7 +154,7 @@
         },
         {
           "slot": "diner",
-          "recipeId": "diner-colin-haricots-verts-pdt",
+          "recipeId": "diner-dinde-brocoli-pdt",
           "portions": 1
         },
         {
@@ -142,8 +163,8 @@
         },
         {
           "slot": "extra",
-          "foodId": "banane",
-          "grams": 120
+          "foodId": "kiwi",
+          "grams": 150
         }
       ]
     },
@@ -156,7 +177,7 @@
         },
         {
           "slot": "dejeuner",
-          "recipeId": "dejeuner-salade-composee-jambon",
+          "recipeId": "dejeuner-salade-composee-allegee",
           "portions": 1
         },
         {
@@ -164,18 +185,12 @@
           "recipeId": "collation-fb-fruits-rouges"
         },
         {
-          "slot": "collation",
-          "recipeId": "shaker-whey-eau"
-        },
-        {
           "slot": "diner",
-          "recipeId": "diner-saumon-poireaux-pdt-s10",
-          "portions": 1
-        },
-        {
-          "slot": "extra",
-          "foodId": "pomme",
-          "grams": 150
+          "estimated": {
+            "kcal": 1200,
+            "proteinG": 45,
+            "fiberG": 10
+          }
         }
       ]
     },
@@ -201,13 +216,13 @@
         },
         {
           "slot": "diner",
-          "recipeId": "gamelle-porc-champignons-semoule",
+          "recipeId": "gamelle-poulet-tikka",
           "portions": 1
         },
         {
           "slot": "extra",
-          "foodId": "pomme",
-          "grams": 150
+          "foodId": "banane",
+          "grams": 120
         }
       ]
     }

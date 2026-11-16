@@ -1,6 +1,6 @@
 {
   "source": "Valeurs pour 100 g du produit tel que pesé, d'après les tables Ciqual (ANSES) et USDA, arrondies. À affiner pour un usage critique. Enrichissable via custom-foods.json (dépôt privé) ou l'app.",
-  "version": "31b36ced8183",
+  "version": "dec95b33c543",
   "foods": [
     { "id": "poulet-blanc-cru", "label": "Blanc de poulet, cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 121, "proteinG": 23, "fatG": 2.6, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.7, "servings": [{ "label": "1 blanc (~150 g)", "grams": 150 }] },
     { "id": "dinde-escalope-crue", "label": "Escalope de dinde, crue", "category": "proteines", "state": "cru", "per100g": { "kcal": 110, "proteinG": 24, "fatG": 1.5, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 escalope (~120 g)", "grams": 120 }] },
@@ -511,6 +511,7 @@
     { "id": "edulcorant-table", "label": "Édulcorant de table (poudre ou liquide)", "category": "epices", "state": "tel-quel", "per100g": { "kcal": 0, "proteinG": 0, "fatG": 0, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 dose (1 g)", "grams": 1 }] },
     { "id": "creatine-monohydrate", "label": "Créatine monohydrate, poudre", "category": "autre", "state": "tel-quel", "per100g": { "kcal": 0, "proteinG": 0, "fatG": 0, "carbsG": 0, "fiberG": 0 }, "servings": [{ "label": "1 dose (5 g)", "grams": 5 }] },
     { "id": "haricots-verts-crus", "label": "Haricots verts, crus", "category": "legumes", "state": "cru", "per100g": { "kcal": 31, "proteinG": 1.8, "fatG": 0.1, "carbsG": 5, "fiberG": 3.2 }, "cookedFactor": 0.9 },
-    { "id": "poireau-cru", "label": "Poireau, cru", "category": "legumes", "state": "cru", "per100g": { "kcal": 61, "proteinG": 1.5, "fatG": 0.3, "carbsG": 12, "fiberG": 1.8 }, "cookedFactor": 0.8 }
+    { "id": "poireau-cru", "label": "Poireau, cru", "category": "legumes", "state": "cru", "per100g": { "kcal": 61, "proteinG": 1.5, "fatG": 0.3, "carbsG": 12, "fiberG": 1.8 }, "cookedFactor": 0.8 },
+    { "id": "paleron-boeuf-cru", "label": "Paleron de boeuf (a braiser), cru", "category": "proteines", "state": "cru", "per100g": { "kcal": 165, "proteinG": 20, "fatG": 9, "carbsG": 0, "fiberG": 0 }, "cookedFactor": 0.65, "servings": [{ "label": "1 portion (~150 g)", "grams": 150 }, { "label": "1 piece entiere (~800 g)", "grams": 800 }] }
   ]
 }
